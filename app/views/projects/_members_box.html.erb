@@ -1,0 +1,13 @@
+  <% if @users_by_role.any? %>
+  <div class="members box">
+    <h3><%=l(:label_member_plural)%></h3>
+    <ul>
+    <% @users_by_role.keys.sort.each do |role| %>
+      <li><%=h role %>
+      <ul><li><%= @users_by_role[role].sort.collect{|u| link_to_user u}.join("</li><li>").html_safe %></li></ul>
+      </li>
+    <% end %>
+    </ul>
+
+  </div>
+  <% end %>

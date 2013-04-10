@@ -1,5 +1,14 @@
 $(document).ready(function(){  
 
+  $('ul').each(function(){
+    if($(this).children().length==0)
+      {
+      $(this).remove();
+      }
+    //$(this).remove();
+    });
+    
+
   $('a.icon, #main-menu li a').each(function(index){
     if($(this).html() == $(this).text()) {
       $(this).html('<span>'+$(this).html()+'</span>');
@@ -18,7 +27,7 @@ $(document).ready(function(){
 
   $('div.tabs ul li a').each(function(index){
     $(this).addClass('no_line in_link');
-    //$(this).html('<span>'+$(this).html()+'</span>');
+    $(this).html('<span>'+$(this).html()+'</span>');
     
   });
 });
