@@ -9,7 +9,7 @@ end
 
 Rails.application.config.to_prepare do
   ApplicationHelper.send(:include, Usability::ApplicationHelperPatch)
-  #Redmine::MenuManager::MenuHelper.send(:include, Usability::MenuManagerPatch)
+  Redmine::MenuManager::MenuHelper.send(:include, Usability::MenuManagerPatch)
 end
 
 require 'usability/view_hooks'
