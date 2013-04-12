@@ -1,3 +1,5 @@
+require 'application_helper'
+
 module Usability
   module ApplicationHelperPatch
     def self.included(base) # :nodoc:
@@ -30,7 +32,7 @@ module Usability
         lablel_styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
         width = options[:width] || '60px;'
         legend = options[:legend] || ''
-        pcts = [pcts, pcts] unless pcts.is_a?(Array)
+        pcts = [pcts] unless pcts.is_a?(Array)
         pcts = pcts.collect(&:round)
         s = ''
         s << '<div class="H">'
