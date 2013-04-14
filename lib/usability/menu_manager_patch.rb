@@ -19,7 +19,9 @@ module Usability
         def render_menu_with_usability(menu, project=nil)
           rendered_menu = render_menu_without_usability(menu, project)
           if rendered_menu.nil?
-            rendered_menu = render_menu_without_usability(:project_menu, User.current.pref.favourite_project_id.nil? ? User.current.memberships.last.project : Project.find(User.current.pref.favourite_project_id)) 
+            if  User.current.logged?
+              rendered_menu = render_menu_without_usability(:project_menu, User.current.pref.favourite_project_id.nil? ? User.current.memberships.last.project : Project.find(User.current.pref.favourite_project_id)) 
+            end
           end
           rendered_menu
 
