@@ -1,6 +1,6 @@
 $(document).ready(function(){  
 
-  $('ul').each(function(){
+  $('.splitcontentleft ul').each(function(){
     if($(this).children().length==0)
       {
       $(this).remove();
