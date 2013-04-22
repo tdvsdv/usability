@@ -20,11 +20,15 @@ module Usability
 
     module InstanceMethods 
       def page_header_title_with_usability
+        s = ''
+        s << '<span>'
         if @project.nil? || @project.new_record?
-          h(Setting.app_title)
+          s << h(Setting.app_title)
         else
-          h(@project.name.html_safe) 
+          s << h(@project.name.html_safe) 
         end   
+        s << '</span>'
+        s.html_safe
       end
 
       def progress_bar_with_usability(pcts, options={})
