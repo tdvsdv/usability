@@ -1,3 +1,4 @@
 # English strings go here for Rails i18n
-en:
+ru:
   field_favourite_project: "Избранный проект"
+  custom_help_url: "Ссылка на страницу помощи"
