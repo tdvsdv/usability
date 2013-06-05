@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
     
 
-  $('a.icon, #main-menu li a').each(function(index){
+  $('a.icon, #main-menu li a, #top-menu li a:not(:has(span))').each(function(index){
     if($(this).html() == $(this).text()) {
       $(this).html('<span>'+$(this).html()+'</span>');
     }
