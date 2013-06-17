@@ -4,6 +4,7 @@ module Usability
   module ApplicationHelperPatch
     def self.included(base) # :nodoc:
       base.extend(ClassMethods)
+
       base.send(:include, InstanceMethods)
 
       # Same as typing in the class 
@@ -19,6 +20,8 @@ module Usability
     end
 
     module InstanceMethods 
+
+
       def page_header_title_with_usability
         s = ''
         s << '<span>'

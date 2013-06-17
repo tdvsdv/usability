@@ -1,3 +1,5 @@
+require 'application_helper'
+
 Redmine::Plugin.register :usability do
   name 'Usability plugin'
   author 'Author name'
@@ -10,6 +12,12 @@ Redmine::Plugin.register :usability do
            :partial => 'settings/usability'
 
   delete_menu_item :top_menu, :help
+  delete_menu_item :account_menu, :login
+  delete_menu_item :account_menu, :my_account
+  #delete_menu_item :account_menu, :logout
+  
+  #menu :account_menu, :my_name_1, { :controller => 'my', :action => 'account' }, :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }
+  menu :account_menu, :my_name, '#', :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }, :html => {:class => "in_link", :data => {:content_class => 'my_name_popover_content'}}
 end
 
 Rails.application.config.to_prepare do
@@ -21,4 +29,4 @@ end
 
 require 'usability/view_hooks'
 
-Redmine::Plugin.find('usability').menu :top_menu, :help,Usability::InfoPatch::Redmine::Info.help_url, :last => true
+Redmine::Plugin.find('usability').menu :top_menu, :help, Usability::InfoPatch::Redmine::Info.help_url, :last => true

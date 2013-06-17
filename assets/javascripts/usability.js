@@ -1,5 +1,7 @@
 $(document).ready(function(){  
 
+  $('a.my-name').popover({html: "true", trigger: "click", placement: "bottom", container: 'body', content: function(){return $('.'+$(this).attr('data-content-class')).map(function() {return $(this).html()}).get().join('')} })
+
   $('.splitcontentleft ul').each(function(){
     if($(this).children().length==0)
       {
