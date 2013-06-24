@@ -16,7 +16,7 @@ module Usability
   
   module InstanceMethods
     def favourite_project
-      fav_project = Project.find(User.current.preference.favourite_project_id) if User.current.preference.favourite_project_id || get_favourite_project
+      fav_project = Project.find(User.current.preference.favourite_project_id) if User.current.preference.favourite_project_id
       fav_project ||= get_favourite_project
     end
 

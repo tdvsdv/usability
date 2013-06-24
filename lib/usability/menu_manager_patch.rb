@@ -20,7 +20,7 @@ module Usability
           rendered_menu = render_menu_without_usability(menu, project)
           if rendered_menu.nil? and User.current.logged?
             if User.current.preference.favourite_project_id.nil? 
-              User.current.preference.favourite_project_id = User.current.favourite_project.id unless User.current.favourite_project.nil?
+              User.current.preference.favourite_project_id = User.current.get_favourite_project.id unless User.current.get_favourite_project.nil?
               User.current.preference.save
             end
             if  User.current.memberships != []
