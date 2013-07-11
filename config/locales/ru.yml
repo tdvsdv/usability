@@ -2,3 +2,8 @@
 ru:
   field_favourite_project: "Избранный проект"
   custom_help_url: "Ссылка на страницу помощи"
+  mouse_click: "Клик мыши"
+  mouse_over: "Наведение мыши"
+  all_projects: "Все проекты"
+  appearance_and_usability: "Внешний вид и удобство использования"
+  select_an_event_to_open_the_pop_up_menu: "Выберите событие для открытия вспомогательного меню"

@@ -1,0 +1,15 @@
+<%= form_tag({:controller => 'users', :action => 'update_usability_preferences'}, :method => 'put', :remote => true) do |f| %>
+  <div class="modal-header">
+    <h3 id="myModalLabel"><%= l(:appearance_and_usability) %></h3>
+  </div>
+  <div class="modal-body" style="max-height: 500px;">
+    <h4><%= l(:select_an_event_to_open_the_pop_up_menu) %> </h4>
+    <label><%= radio_button_tag 'usability[top_menu_event]', 'mouseclick', (not @usability.nil? and @usability[:top_menu_event] == 'mouseclick') %> &mdash; <%= l(:mouse_click) %> </label>
+    <label><%= radio_button_tag 'usability[top_menu_event]', 'mouseover', (@usability.nil? or @usability[:top_menu_event] == 'mouseover') %> &mdash; <%= l(:mouse_over) %> </label>
+  </div>
+  <div class="modal-footer">
+    <%= submit_tag  l(:button_save), :style => 'margin-top: -2px; padding: 1px 6px;' %>
+    <button class="" data-dismiss="modal" aria-hidden="true"><%= l(:close_window) %></button>
+  </div>
+<% end %>
+

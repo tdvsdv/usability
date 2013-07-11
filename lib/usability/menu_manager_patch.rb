@@ -7,8 +7,8 @@ module Usability
       base.send(:include, InstanceMethods)
 
       base.class_eval do
-        alias_method_chain :render_menu, :usability
-        alias_method_chain :display_main_menu?, :usability
+        #alias_method_chain :render_menu, :usability
+        #alias_method_chain :display_main_menu?, :usability
       end
     end
 

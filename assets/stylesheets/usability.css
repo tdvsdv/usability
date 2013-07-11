@@ -1,0 +1,39 @@
+div.menu_block
+  {
+  border-bottom: 1px solid #ccc;
+  margin: 0px 0px 10px 0px;
+  padding: 0px 0px 10px 0px;
+  }
+
+.popover-content
+  {
+  line-height: 1.5em;
+  }
+
+.popover-content div.menu_block_title
+  {
+  white-space: nowrap;
+  
+  
+  }
+.popover-content div.menu_block_title div.title
+  {
+  float: left;
+  font-weight: bold;
+  width: 240px;
+  overflow: hidden;
+  }
+
+.popover-content div.menu_block_title div.grad
+  {
+  float: left;
+  width: 20px;
+  margin-left: -20px;
+  background-image: url(../images/grad_24px.png);
+  }
+
+.modal h4
+  {
+   border-bottom: none; 
+  }
+  

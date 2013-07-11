@@ -1,3 +1,40 @@
+<div class="I" id="usability_user_preferences">
+  <%= User.current.preference.usability.nil? ? '' : YAML.load(User.current.preference.usability).inject(''){|s, (k,v)| s << "<div class=\"#{k}\">#{v}</div>"; s.html_safe;} %>
+</div>
+
 <div class="I my_name_popover_content">
-<%= link_to(l(:label_settings), { :controller => 'my', :action => 'account' }) %>
+<%= link_to(l(:label_settings), { :controller => 'my', :action => 'account' }) %><br/>
+<%= link_to(l(:appearance_and_usability), 
+      {:controller => 'users', :action => 'edit_usability_preferences', :id => User.current.id},
+      :remote => true,
+      :method => 'get', :class => 'in_link') %>
+</div>
+
+
+<div class="I projects_popover_content">
+<div class="menu_block_title">
+<% favourite_project = User.current.favourite_project %>
+  <div class="title"><%= favourite_project.name %></div>
+  <div class="grad">&nbsp;</div>
+</div>
+<div class="menu_block">
+
+
+<div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
+<div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
+
+<% if favourite_project.wiki && !favourite_project.wiki.new_record? %>
+  <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project }  %></div>
+<% end %>
+
+<% if favourite_project.shared_versions.any? %>
+<div><%= link_to l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project }  %></div>
+<% end %>
+</div>
+
+<%= link_to(l(:all_projects), { :controller => 'projects', :action => 'index' }) %>
+<% projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq %>
+<% project_tree(projects) do |project, level| %>
+  <div style="padding-left: <%= level*20 %>px;"><%= link_to_project(project) %></div>
+<% end %>
 </div>

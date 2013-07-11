@@ -11,16 +11,29 @@ module Usability
       base.class_eval do
       alias_method_chain :page_header_title, :usability
       alias_method_chain :progress_bar, :usability
+      alias_method_chain :render_project_jump_box, :usability
       end
 
     end
 
     module ClassMethods   
+      def render_project_list
+        s = ''
+        projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq
+        if projects.any?
+          project_tree(projects) do |project, level|
 
+          end
+        end
+        s.html_safe
+      end
     end
 
     module InstanceMethods 
 
+      def render_project_jump_box_with_usability
+        return
+      end
 
       def page_header_title_with_usability
         s = ''
