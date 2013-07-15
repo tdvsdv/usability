@@ -1,5 +1,5 @@
 <div class="I" id="usability_user_preferences">
-  <%= User.current.preference.usability.nil? ? '' : YAML.load(User.current.preference.usability).inject(''){|s, (k,v)| s << "<div class=\"#{k}\">#{v}</div>"; s.html_safe;} %>
+  <%= User.current.try(:preference).try(:usability).nil? ? '' : YAML.load(User.current.preference.usability).inject(''){|s, (k,v)| s << "<div class=\"#{k}\">#{v}</div>"; s.html_safe;} %>
 </div>
 
 <div class="I my_name_popover_content">
