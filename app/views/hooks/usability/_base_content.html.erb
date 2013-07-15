@@ -13,32 +13,34 @@
 
 <div class="I projects_popover_content">
 
-<% favourite_project = User.current.favourite_project %>  
+<% if User.current.logged? %>
+  <% favourite_project = User.current.favourite_project %>  
 
-<% if not favourite_project.nil? %>
+  <% if not favourite_project.nil? %>
 
-  <div class="menu_block_title">
+    <div class="menu_block_title">
 
-    <div class="title"><%= favourite_project.name %></div>
-    <div class="grad">&nbsp;</div>
-  </div>
-  <div class="menu_block">
+      <div class="title"><%= favourite_project.name %></div>
+      <div class="grad">&nbsp;</div>
+    </div>
+    <div class="menu_block">
 
 
-  <div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
+    <div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
 
-  <% if favourite_project.shared_versions.any? %>
-   <div><%= link_to l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project }  %></div>
+    <% if favourite_project.shared_versions.any? %>
+     <div><%= link_to l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project }  %></div>
+    <% end %>
+
+    <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
+
+    <% if favourite_project.wiki && !favourite_project.wiki.new_record? %>
+      <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project }  %></div>
+    <% end %>
+
+
+    </div>
   <% end %>
-
-  <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
-
-  <% if favourite_project.wiki && !favourite_project.wiki.new_record? %>
-    <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project }  %></div>
-  <% end %>
-
-
-  </div>
 <% end %>
 
 <%= link_to(l(:all_projects), { :controller => 'projects', :action => 'index' }) %>
