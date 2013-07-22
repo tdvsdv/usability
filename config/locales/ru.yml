@@ -1,6 +1,7 @@
 # English strings go here for Rails i18n
 ru:
   field_favourite_project: "Избранный проект"
+  documents: "Документы"
   custom_help_url: "Ссылка на страницу помощи"
   mouse_click: "Клик мыши"
   mouse_over: "Наведение мыши"

@@ -38,6 +38,9 @@
       <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project }  %></div>
     <% end %>
 
+    <% if favourite_project.module_enabled?("dmsf") %>
+      <div><%= link_to l(:documents), { :controller => 'dmsf', :action => 'show', :id => favourite_project }  %></div>
+    <% end %>
 
     </div>
   <% end %>
