@@ -1,4 +1,22 @@
 $(document).ready(function(){  
+
+  var loc = location.href.split('#')
+  if(loc.length>1)
+    {
+    if($('#tab-'+loc[1]).length==1)
+      {
+      showTab(loc[1])
+      }
+    }
+
+  $('.tabs a').click(function(){
+    var url = $(this).attr('href').split('?tab=')
+
+    var loc = location.href.split('#')
+    location.href = loc[0] + '#' + url[1];
+    })
+
+
   var user_preferences = []
   user_preferences['top_menu_event'] = 'mouseover'
   $('#usability_user_preferences div').each(function(){
