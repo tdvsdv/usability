@@ -55,6 +55,6 @@
 
 <% projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq %>
 <% project_tree(projects) do |project, level| %>
-  <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, { :controller => 'issues', :action => 'index', :project_id => project }  %></div>
+  <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item)  %></div>
 <% end %>
 </div>
