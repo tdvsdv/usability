@@ -1,3 +1,11 @@
 # English strings go here for Rails i18n
 en:
-  my_label: "My label"
+  field_favourite_project: "Favourite project"
+  documents: "Documents"
+  custom_help_url: "Help page URL"
+  mouse_click: "Mouse click"
+  mouse_over: "Mouse over"
+  all_projects: "All projects"
+  appearance_and_usability: "Appearance and usability"
+  select_an_event_to_open_the_pop_up_menu: "Select an event to open pop-up menu"
+  go_to_project_issues: "Go to project issues"
