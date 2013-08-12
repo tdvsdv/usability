@@ -35,7 +35,7 @@
     <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
 
     <% if favourite_project.wiki && !favourite_project.wiki.new_record? %>
-      <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project }  %></div>
+      <div><%= link_to l(:label_wiki), { :controller => 'wiki', :action => 'show', :project_id => favourite_project, :id => nil }  %></div>
     <% end %>
 
     <% if favourite_project.module_enabled?("dmsf") %>
