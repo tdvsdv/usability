@@ -36,4 +36,22 @@ div.menu_block
   {
    border-bottom: none; 
   }
+
+a.close_sidebar, a.show_sidebar
+  {
+  
+  background-repeat: no-repeat;
+  background-position: 100% 0%;
+  width: 16px;
+  height: 16px;
+  }
+
+a.close_sidebar
+  {
+  background-image: url(../images/close.png);
+  }
+a.show_sidebar
+  {
+  background-image: url(../images/diamonds.png);
+  }
   

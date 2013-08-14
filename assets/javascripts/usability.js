@@ -1,5 +1,30 @@
 $(document).ready(function(){  
 
+  var close_sidebar = $('<a/>', {href: '#',
+                                 class: 'R close_sidebar icon',
+                                 click: function(){
+                                  if($(this).hasClass('close_sidebar'))
+                                    {
+                                    $('#sidebar').hide()
+                                    $(this).addClass('show_sidebar')
+                                    $(this).removeClass('close_sidebar')
+                                    $('#content').data('margin-right', $('#content').css('margin-right'))
+                                    $('#content').css('margin-right', '16px')
+                                    $('#sidebar').before($(this))
+                                    }
+                                  else
+                                    {
+                                    $('#sidebar').show()
+                                    $(this).removeClass('show_sidebar')
+                                    $(this).addClass('close_sidebar')
+                                    $('#content').css('margin-right',  $('#content').data('margin-right'))
+                                    $('#sidebar').prepend($(this))                                      
+                                    }
+
+                                  }
+                                })
+  $('#sidebar').prepend(close_sidebar)
+
   var loc = location.href.split('#')
   if(loc.length>1)
     {
