@@ -1,0 +1,8 @@
+<% text_custom_fields_values=issue.custom_field_values.reject {|value| value.custom_field.field_format!='text' || value.value.to_s==''} %>
+<% text_custom_fields_values.each do |custom_value| %>
+  <hr>
+  <p><strong><%=h(custom_value.custom_field.name) %></strong></p>
+  <div class="wiki">
+  <%= textilizable custom_value.value %>
+  </div>
+<% end %>

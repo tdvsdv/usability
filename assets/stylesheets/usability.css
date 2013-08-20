@@ -1,3 +1,26 @@
+/* ----- from a_small_things starts ---- */
+
+div.loader {
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/loader.gif); 
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-bottom: -4px;
+  box-sizing: border-box;
+}
+
+
+.loader.form_loader {
+  cursor: pointer;
+  background-position: 0px 0px;
+  margin: 70px auto;
+  display: block;
+  box-sizing: content-box;
+}
+
+/* ----- from a_small_things ends ---- */
+
 div.menu_block
   {
   border-bottom: 1px solid #ccc;

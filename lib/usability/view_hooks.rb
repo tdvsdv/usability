@@ -5,6 +5,7 @@ module Usability
       render_on(:view_my_account, :partial => "hooks/users/favourite_project")
       render_on(:view_layouts_base_content, :partial => "hooks/usability/base_content")
       render_on(:view_layouts_base_body_bottom, :partial => "hooks/usability/body_bottom")
+      render_on(:view_issues_show_description_bottom, :partial => "hooks/usability/issues_show_description_bottom")      
     end
   end
 end
