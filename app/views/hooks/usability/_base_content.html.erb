@@ -55,7 +55,6 @@
 
 <br>
 <div style="max-height: 250px; overflow-y: auto">
-<%# projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq %>
 <% projects = User.current.projects.active %>
 <% project_tree(projects) do |project, level| %>
   <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item)  %></div>
