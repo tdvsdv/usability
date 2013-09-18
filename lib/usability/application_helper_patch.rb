@@ -17,16 +17,16 @@ module Usability
     end
 
     module ClassMethods   
-      def render_project_list
-        s = ''
-        projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq
-        if projects.any?
-          project_tree(projects) do |project, level|
+      # def render_project_list
+      #   s = ''
+      #   projects = User.current.memberships.collect(&:project).compact.select(&:active?).uniq
+      #   if projects.any?
+      #     project_tree(projects) do |project, level|
 
-          end
-        end
-        s.html_safe
-      end
+      #     end
+      #   end
+      #   s.html_safe
+      # end
     end
 
     module InstanceMethods 
