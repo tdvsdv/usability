@@ -33,9 +33,6 @@ $(document).ready(function(){
     $(this).parent().html($(this).html());
   });
 
-  
-  $('tr.hascontextmenu').removeClass('hascontextmenu');
-
   $('#ajax-indicator').remove();
 
   $('#sidebar').children('a[href$="issues?set_filter=1"]').each(function(index){
