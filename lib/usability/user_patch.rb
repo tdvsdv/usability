@@ -16,7 +16,14 @@ module Usability
   
   module InstanceMethods
     def favourite_project
-      fav_project = Project.find(User.current.preference.favourite_project_id) if User.current.preference.favourite_project_id
+      if User.current.preference.favourite_project_id
+        fav_project_arr = Project.where(:id => User.current.preference.favourite_project_id)
+        if fav_project_arr == []
+          fav_project = get_favourite_project
+        else
+          fav_project = fav_project_arr.first
+        end
+      end
       fav_project ||= get_favourite_project
     end
 
