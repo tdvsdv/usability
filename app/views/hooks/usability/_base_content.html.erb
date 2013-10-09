@@ -28,9 +28,7 @@
 
     <div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
 
-    <% if favourite_project.shared_versions.any? %>
-     <div><%= link_to l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project }  %></div>
-    <% end %>
+    <%= content_tag(:div, link_to(l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project })) rescue ""  %>
 
     <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
 
