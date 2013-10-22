@@ -37,7 +37,7 @@
     <% end %>
 
     <% if favourite_project.module_enabled?("dmsf") %>
-      <div><%= link_to l(:documents), { :controller => 'dmsf', :action => 'show', :id => favourite_project }  %></div>
+      <%= content_tag(:div, link_to(l(:documents), { :controller => 'dmsf', :action => 'show', :id => favourite_project })) rescue "" %>
     <% end %>
 
     </div>
