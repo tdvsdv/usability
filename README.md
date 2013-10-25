@@ -13,17 +13,26 @@ Also plugin moves "Search" to main-menu and made it expandable.
 ![Interface](https://github.com/tdvsdv/usability/raw/master/screenshots/interface.png "Interface")![Interface2](https://github.com/tdvsdv/usability/raw/master/screenshots/interface2.png "Interface2")
 ![Interface3](https://github.com/tdvsdv/usability/raw/master/screenshots/interface3.png "Interface3")
 
+===========
+
 Plugin implements a new entity "Favourite project".
 You can specify project as Favourite in your account settings. 
 Favourite project will be marked with a star in projects list and in project menu you will have quick access to your favourite project tabs (New issue, Issues, Wiki).
 
 ![Interface4](https://github.com/tdvsdv/usability/raw/master/screenshots/interface4.png "Interface4")![Interface5](https://github.com/tdvsdv/usability/raw/master/screenshots/interface5.png "Interface5")
 
+===========
+
 Plugin implements a functionality of changing standart "Help" menu-item to a custom link.
 
 ![Settings](https://github.com/tdvsdv/usability/raw/master/screenshots/settings.png "Settings")
 
-Attention! Plugin "Usability" requires plugin "a_common_libs" to correct work. https://github.com/dkuk/a_common_libs
+==========
+
+Attention! Plugin "Usability" requires plugin "a_common_libs" to correct work. 
+https://github.com/dkuk/a_common_libs
+
+=========
 
 #### Installation
 To install plugin, go to the folder "plugins" in root directory of Redmine.
