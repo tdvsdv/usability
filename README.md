@@ -28,9 +28,10 @@ Plugin implements a functionality of changing standart "Help" menu-item to a cus
 ![Settings](https://github.com/tdvsdv/usability/raw/master/screenshots/settings.png "Settings")
 
 ==========
+[skin]: https://github.com/tdvsdv/redmine_alex_skin.git
+[common_libs]: https://github.com/dkuk/a_common_libs
+Attention! Plugin "Usability" requires plugin ["a_common_libs"][common_libs] and skin [Redmine Alex Skin][skin] to correct work. 
 
-Attention! Plugin "Usability" requires plugin "a_common_libs" to correct work. 
-https://github.com/dkuk/a_common_libs
 
 =========
 
@@ -41,6 +42,11 @@ Clone plugins in that folder.
 		git clone https://github.com/tdvsdv/usability.git
 		git clone https://github.com/dkuk/a_common_libs.git
 
+To install skin, go to the folder "../public/themes" in root directory of Redmine.
+Clone skin in that folder.
+
+		git clone https://github.com/tdvsdv/redmine_alex_skin.git
+
 Perform plugin migrations (make sure performing command in the root installation folder of «Redmine»):
 
 		rake redmine:plugins:migrate NAME=usability
@@ -48,6 +54,7 @@ Perform plugin migrations (make sure performing command in the root installation
 Restart your web-server.
 
 Go to the «A common libs» plugin settings and make sure that library «Bootstrap» is enabled.
+Go to Redmine settings, tab "Display" and change theme to "Redmine alex skin".
 
 #### Supported Redmine, Ruby and Rails versions.
 
