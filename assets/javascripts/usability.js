@@ -73,29 +73,25 @@ $(document).ready(function(){
 /* ----- from a_small_things ends ---- */
 
   var close_sidebar = $('<a/>', {href: '#',
+                                 id: 'close_sidebar_icon',
                                  class: 'R close_sidebar icon',
                                  click: function(){
                                   if($(this).hasClass('close_sidebar'))
-                                    {
-                                    $('#sidebar').hide()
-                                    $(this).addClass('show_sidebar')
-                                    $(this).removeClass('close_sidebar')
-                                    $('#content').data('margin-right', $('#content').css('margin-right'))
-                                    $('#content').css('margin-right', '16px')
-                                    $('#sidebar').before($(this))
+                                    {                                    
+                                    hide_sidebar($(this))    
                                     }
                                   else
                                     {
-                                    $('#sidebar').show()
-                                    $(this).removeClass('show_sidebar')
-                                    $(this).addClass('close_sidebar')
-                                    $('#content').css('margin-right',  $('#content').data('margin-right'))
-                                    $('#sidebar').prepend($(this))                                      
+                                    show_sidebar($(this))                                    
                                     }
 
                                   }
                                 })
   $('#sidebar').prepend(close_sidebar)
+  $('#sidebar').dblclick(function(){                               
+      hide_sidebar($('#close_sidebar_icon'))    
+                                  
+    })
 
   var loc = location.href.split('#')
   if(loc.length>1)
@@ -115,7 +111,7 @@ $(document).ready(function(){
 
 
   var user_preferences = []
-  user_preferences['top_menu_event'] = 'mouseover'
+  user_preferences['top_menu_event'] = 'mouseclick'
   $('#usability_user_preferences div').each(function(){
       user_preferences[$(this).attr('class')]=$(this).html()
       })
@@ -213,6 +209,24 @@ $(document).ready(function(){
 });
 
 /* ----- from a_small_things starts ---- */
+
+function hide_sidebar(t)
+  {
+    $('#sidebar').hide()
+    t.addClass('show_sidebar')
+    t.removeClass('close_sidebar')
+    $('#content').data('margin-right', $('#content').css('margin-right'))
+    $('#content').css('margin-right', '16px')
+    $('#sidebar').before(t)
+  }
+function show_sidebar(t)
+  {
+    $('#sidebar').show()
+    t.removeClass('show_sidebar')
+    t.addClass('close_sidebar')
+    $('#content').css('margin-right',  $('#content').data('margin-right'))
+    $('#sidebar').prepend(t)    
+  }
 
 // walk-around for non-working rails confirm in some cases (like for a.show_loader[data-remote="true"] - return false does not stop event)
 function hard_confirm(label,event) {
