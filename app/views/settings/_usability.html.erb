@@ -1,8 +1,27 @@
 <table cellspacing="15">
-<tr>
-<td><%=l(:custom_help_url)%>: </td>
-<td>
-<%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 60 %>
-</td>
-</tr>
+  <tr>
+    <td><%= l(:custom_help_url) %>: </td>
+    <td>
+      <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 60 %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_enable_custom_details) %>: </td>
+    <td>
+      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on], :size=> "50" %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_url_for_custom_details) %>: </td>
+    <td>
+      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 60 %>
+    </td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_custom_details_id_field) %>: </td>
+    <td>
+      <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 20 %>
+    </td>
+  </tr>
 </table>
+<%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>

@@ -9,3 +9,6 @@ ru:
   appearance_and_usability: "Внешний вид и удобство использования"
   select_an_event_to_open_the_pop_up_menu: "Выберите событие для открытия вспомогательного меню"
   go_to_project_issues: "Перейти к заданиям проекта"
+  settings_enable_custom_details: "Своя страничка о пользователе"
+  settings_url_for_custom_details: "Ссылка на внешнюю информацию о пользователе"
+  settings_custom_details_id_field: "Атрибут пользователя для поиска во внешнем источнике"

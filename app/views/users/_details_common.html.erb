@@ -1,0 +1,3 @@
+<% detail_url = Setting.plugin_usability['custom_details_url'] %>
+<% detail_id = Setting.plugin_usability['custom_details_id_field'] %>
+<iframe hspace="0" src="<%= detail_url %><%= @user.respond_to?(detail_id.to_sym) ? @user.send(detail_id.to_sym) : '' %>" style="border: 0px none; width: 100%; height: 92%;"></iframe>
