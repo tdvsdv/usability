@@ -8,7 +8,7 @@ module Usability
 
       # Same as typing in the class
       base.class_eval do
-        before_filter :require_admin, :except => [:show, :edit_usability_preferences, :update_usability_preferences]
+        before_filter :require_admin, :except => [:show, :edit_usability_preferences, :update_usability_preferences, :show_user_details]
       end
 
     end
