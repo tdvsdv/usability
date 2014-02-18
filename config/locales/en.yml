@@ -10,6 +10,7 @@ en:
   select_an_event_to_open_the_pop_up_menu: "Select an event to open pop-up menu"
   go_to_project_issues: "Go to project issues"
   plugin_test_usability: "usability"
+  close_window: "Close"
   settings_enable_custom_details: "Custom user info link"
   settings_url_for_custom_details: "Url for external user-details"
   settings_custom_details_id_field: "User attr for find external details"
