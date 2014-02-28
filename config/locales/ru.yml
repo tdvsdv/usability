@@ -12,3 +12,4 @@ ru:
   settings_enable_custom_details: "Своя страничка о пользователе"
   settings_url_for_custom_details: "Ссылка на внешнюю информацию о пользователе"
   settings_custom_details_id_field: "Атрибут пользователя для поиска во внешнем источнике"
+  settings_default_page: "Страница по умолчанию"

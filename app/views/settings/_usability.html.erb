@@ -23,5 +23,9 @@
       <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 20 %>
     </td>
   </tr>
+  <tr>
+    <td><%= l(:settings_default_page) %>:</td>
+    <td><%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 60 %></td>
+  </tr>
 </table>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>

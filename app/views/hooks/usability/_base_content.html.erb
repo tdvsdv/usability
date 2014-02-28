@@ -46,18 +46,20 @@
 
 <%= link_to(l(:all_projects), { :controller => 'projects', :action => 'index' }) %>
 
-<div class="menu_block_title">
-  <div class="title"><%= l(:go_to_project_issues) %></div>
-  <div class="grad">&nbsp;</div>
-</div>
-
-<br>
-<div style="max-height: 250px; overflow-y: auto">
 <% projects = User.current.projects.active %>
-<% project_tree(projects) do |project, level| %>
-  <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item) %></div>
+<% unless (projects[0].nil?) %>
+  <div class="menu_block_title">
+    <div class="title"><%= l(:go_to_project_issues) %></div>
+    <div class="grad">&nbsp;</div>
+  </div>
+
+  <br>
+  <div style="max-height: 250px; overflow-y: auto">
+  <% project_tree(projects) do |project, level| %>
+    <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item) %></div>
+  <% end %>
+  </div>
 <% end %>
-</div>
 
 
 </div>

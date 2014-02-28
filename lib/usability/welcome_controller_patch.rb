@@ -4,15 +4,15 @@ module Usability
 	    base.extend(ClassMethods)
 	    base.send(:include, InstanceMethods)
 
-		# Same as typing in the class 
+		# Same as typing in the class
 	    base.class_eval do
 	    	alias_method_chain :index, :usability
-		end	
-	    
+		end
+
 
 	  end
 
-	  module ClassMethods   
+	  module ClassMethods
 	    # Methods to add to the Issue class
 	  end
 
@@ -20,7 +20,13 @@ module Usability
 	    # Methods to add to specific issue objects
 	    def index_with_usability
 	    	index_without_usability
-	    	redirect_to url_for(:controller => 'my', :action => 'page')
+	    	def_page = Setting.plugin_usability['default_page']
+	    	if (def_page.nil? || def_page == '')
+	    		redirect_to url_for(controller: 'my', action: 'page')
+	    		return
+	    	end
+
+	    	redirect_to def_page
 	    end
 	  end
 	end
