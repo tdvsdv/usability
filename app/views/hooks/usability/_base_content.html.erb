@@ -3,18 +3,18 @@
 </div>
 
 <div class="I my_name_popover_content">
-<%= link_to(l(:label_settings), { :controller => 'my', :action => 'account' }) %><br/>
-<%= link_to(l(:appearance_and_usability), 
-      {:controller => 'users', :action => 'edit_usability_preferences', :id => User.current.id},
-      :remote => true,
-      :method => 'get', :class => 'in_link') %>
+  <%= link_to(l(:label_settings), { :controller => 'my', :action => 'account' }) %><br/>
+  <%= link_to(l(:appearance_and_usability),
+        {:controller => 'users', :action => 'edit_usability_preferences', :id => User.current.id},
+        :remote => true,
+        :method => 'get', :class => 'in_link') %><br/>
+  <%= link_to(content_tag(:span, l(:label_logout)), '/logout', :class => 'logout', :data => {:method => 'post'}, :rel => 'nofollow') %>
 </div>
-
 
 <div class="I projects_popover_content">
 
 <% if User.current.logged? %>
-  <% favourite_project = User.current.favourite_project %>  
+  <% favourite_project = User.current.favourite_project %>
 
   <% if not favourite_project.nil? %>
 
@@ -28,7 +28,7 @@
 
     <div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
 
-    <%= content_tag(:div, link_to(l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project })) rescue ""  %>
+    <%= content_tag(:div, link_to(l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project })) rescue ''  %>
 
     <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
 
@@ -37,7 +37,7 @@
     <% end %>
 
     <% if favourite_project.module_enabled?("dmsf") %>
-      <%= content_tag(:div, link_to(l(:documents), { :controller => 'dmsf', :action => 'show', :id => favourite_project })) rescue "" %>
+      <%= content_tag(:div, link_to(l(:documents), { :controller => 'dmsf', :action => 'show', :id => favourite_project })) rescue '' %>
     <% end %>
 
     </div>
@@ -55,7 +55,7 @@
 <div style="max-height: 250px; overflow-y: auto">
 <% projects = User.current.projects.active %>
 <% project_tree(projects) do |project, level| %>
-  <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item)  %></div>
+  <div style="padding-left: <%= level*20 %>px;"><%= link_to project.name, project_path(:id => project, :jump => current_menu_item) %></div>
 <% end %>
 </div>
 

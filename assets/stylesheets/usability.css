@@ -3,7 +3,7 @@
 div.loader {
   width: 16px;
   height: 16px;
-  background-image: url(../images/loader.gif); 
+  background-image: url(../images/loader.gif);
   background-repeat: no-repeat;
   display: inline-block;
   margin-bottom: -4px;
@@ -21,48 +21,96 @@ div.loader {
 
 /* ----- from a_small_things ends ---- */
 
-div.menu_block
-  {
+.us_dropdown_menu {
+  position: absolute;
+  z-index: 999;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  padding: 10px;
+  list-style: none;
+}
+
+.us_dropdown_menu:before {
+  position: absolute;
+  top: -7px;
+  left: 9px;
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.us_dropdown_menu:after {
+  position: absolute;
+  top: -6px;
+  left: 10px;
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
+}
+
+.us_dropdown_menu li {
+  padding: 2px;
+}
+
+#top-menu a.icon-expand, #top-menu a.icon-expand:hover {
+  /*background-image: url(../images/glyphicons-halflings-white.png);*/
+  /*background-position: -264px 0;*/
+  background-image: url(../images/list_white.png);
+  background-position: 0 0;
+  height: 16px;
+  width: 16px;
+  margin: 50% 0;
+  padding: 0;
+}
+
+div.menu_block {
   border-bottom: 1px solid #ccc;
   margin: 0px 0px 10px 0px;
   padding: 0px 0px 10px 0px;
-  }
+}
 
-.popover-content
-  {
+.popover-content {
   line-height: 1.5em;
-  }
+}
 
-.popover-content div.menu_block_title
-  {
+.popover-content div.menu_block_title {
   white-space: nowrap;
-  
-  
-  }
-.popover-content div.menu_block_title div.title
-  {
+}
+
+.popover-content div.menu_block_title div.title {
   float: left;
   font-weight: bold;
   width: 240px;
   overflow: hidden;
-  }
+}
 
-.popover-content div.menu_block_title div.grad
-  {
+.popover-content div.menu_block_title div.grad {
   float: left;
   width: 20px;
   margin-left: -20px;
   background-image: url(../images/grad_24px.png);
-  }
+}
 
 .modal h4
   {
-   border-bottom: none; 
+   border-bottom: none;
   }
 
 a.close_sidebar, a.show_sidebar
   {
-  
+
   background-repeat: no-repeat;
   background-position: 100% 0%;
   width: 16px;
@@ -77,4 +125,3 @@ a.show_sidebar
   {
   background-image: url(../images/diamonds.png);
   }
-  
