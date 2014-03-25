@@ -17,12 +17,7 @@ module Usability
   module InstanceMethods
     def favourite_project
       if User.current.preference.favourite_project_id
-        fav_project_arr = Project.where(:id => User.current.preference.favourite_project_id)
-        if fav_project_arr == []
-          fav_project = get_favourite_project
-        else
-          fav_project = fav_project_arr.first
-        end
+        fav_project = Project.where(:id => User.current.preference.favourite_project_id).first
       end
       fav_project ||= get_favourite_project
     end
@@ -35,11 +30,9 @@ module Usability
                            .order("count DESC")
                            .try(:first)
 
-      if (fav_project.nil?)
-        fav_project = Project.all.first
-      end
+      fav_project = Project.all.first unless fav_project
 
-      if User.current.preference.favourite_project_id.nil? and not fav_project.nil?
+      if User.current.preference.favourite_project_id.nil? && !fav_project.nil?
         User.current.preference.favourite_project_id = fav_project.id
         User.current.preference.save
       end
