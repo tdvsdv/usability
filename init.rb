@@ -1,5 +1,12 @@
 require 'application_helper'
 
+# hard patch Redmine Application
+module RedmineApp
+  class Application
+    config.exceptions_app = self.routes
+  end
+end
+
 Redmine::Plugin.register :usability do
   name 'Usability plugin'
   author 'Vladimir Pitin, Danil Kukhlevskiy'
@@ -29,7 +36,7 @@ Rails.application.config.to_prepare do
   Redmine::Info.send(:include, Usability::InfoPatch::Redmine::Info)
 
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
-  IssuesHelper.send(:include, Usability::IssuesHelperPatch)  
+  IssuesHelper.send(:include, Usability::IssuesHelperPatch)
 end
 
 require 'usability/view_hooks'

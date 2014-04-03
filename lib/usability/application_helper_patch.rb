@@ -7,12 +7,12 @@ module Usability
 
       base.send(:include, InstanceMethods)
 
-      # Same as typing in the class
-      base.class_eval do
-      alias_method_chain :page_header_title, :usability
-      alias_method_chain :progress_bar, :usability
-      alias_method_chain :render_project_jump_box, :usability
-      alias_method_chain :link_to_user, :usability
+        # Same as typing in the class
+        base.class_eval do
+        alias_method_chain :page_header_title, :usability
+        alias_method_chain :progress_bar, :usability
+        alias_method_chain :render_project_jump_box, :usability
+        alias_method_chain :link_to_user, :usability
       end
 
     end
