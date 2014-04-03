@@ -13,3 +13,10 @@ ru:
   settings_url_for_custom_details: "Ссылка на внешнюю информацию о пользователе"
   settings_custom_details_id_field: "Атрибут пользователя для поиска во внешнем источнике"
   settings_default_page: "Страница по умолчанию"
+  settings_ask_users_at_error: "К кому обратиться при ошибке"
+  settings_new_request_to_department: "При создании заявки пользователем выбрать следующие параметры"
+
+  warning_error_occured: "Redmine. Ошибка %{status}"
+  label_create_request: "Создать заявку"
+  label_go_back: "Назад"
+  label_error_log: "Лог ошибки"

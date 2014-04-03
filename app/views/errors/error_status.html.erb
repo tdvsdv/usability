@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title><%=h html_title %></title>
+<meta name="description" content="<%= Redmine::Info.app_name %>" />
+<meta name="keywords" content="issue,bug,tracker" />
+<%= csrf_meta_tag %>
+<%= favicon %>
+<%= javascript_heads %>
+<% if Redmine::Plugin::registered_plugins.include?(:ldap_users_sync) %>
+  <%= stylesheet_link_tag 'ldap_users_sync.css', :plugin => :ldap_users_sync %>
+<% end %>
+<% if Redmine::Plugin::registered_plugins.include?(:a_common_libs) %>
+  <%= stylesheet_link_tag 'a_common_styles.css', :plugin => :a_common_libs %>
+<% end %>
+<%= stylesheet_link_tag 'bootstrap_buttons_alerts.css', :plugin => :usability %>
+</head>
+
+<% href = '/sd_requests/new?sd_request[title]='+l(:warning_error_occured, :status => @status)+'. '+@err_msg
+   href << '&sd_request[description]='+@err_info.strip[0..300]
+   href << '&sd_request[sd_request_type_id]='+Setting.plugin_usability['request_type']
+   href << '&sd_request[target_department_id]='+Setting.plugin_usability['target_department']
+   href << '&sd_request[sd_request_priority_id]=4'
+   href << '&sd_request[due_date]='+Date.today.to_s
+%>
+<body>
+<div style="width: 100%; top:50px; position: absolute;">
+  <div style="margin: 0 50%; min-width: 800px;">
+    <div class="alert alert-warning H" style="margin: 0 -50%; width: 100%;">
+      <h2><%= l(:warning_error_occured, :status => @status) %></h2>
+      <div style="float:left;"><%= image_tag('global_error.png', :plugin => :usability) %></div>
+      <div style="padding-left: 140px;">
+        <strong><%= @err_msg %></strong>
+        <br><br>
+        <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+          <a id="us_req_link" class="btn btn-warning bt20" href="<%= href %>">
+            <span><%= l(:label_create_request) %></span>
+          </a>
+        <% end %>
+        <a id="us_back_link" class="btn btn-warning bt20" href="javascript:history.back()">
+          <span><%= l(:label_go_back) %></span>
+        </a>
+        <br><br>
+
+        <% if @users.any? %>
+          <% if Redmine::Plugin::registered_plugins.include?(:ldap_users_sync) %>
+            <div class="us_ask_label"><%= l(:label_ask_for) %>:</div>
+            <% @users.each do |u| %>
+              <div class="us_ask_user">
+                <%= show_user_info(u, [:name,:phones,:email]) %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="uc_ask_label"><%= l(:label_ask_for) %>: <%= @users.each{|u| link_to_user(u)}.join(', ').html_safe %></div>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+  <div class="alert alert-danger us_error_details H" style="margin: 10px -50%; width: 100%;">
+    <h3><%= l(:label_error_log) %></h3>
+    <pre>
+      <%= @err_info.lstrip %>
+    </pre>
+  </div>
+</div>
+<style type="text/css">
+  .bt20, .bt20:link, .bt20:visited {
+    height: 20px;
+    border-color: #eea236;
+  }
+  .us_error_details {
+    margin: 10px 0;
+  }
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+  // $("#logout_link_uc").click(function() {
+  //   jQuery.ajax({ type: 'POST',
+  //                 url: '/logout' });
+  // })
+});
+</script>
+</body>
+</html>
