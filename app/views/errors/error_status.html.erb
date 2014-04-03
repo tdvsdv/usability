@@ -45,7 +45,7 @@
 
         <% if @users.any? %>
           <% if Redmine::Plugin::registered_plugins.include?(:ldap_users_sync) %>
-            <div class="us_ask_label"><%= l(:label_ask_for) %>:</div>
+            <div class="us_ask_label"><strong><%= l(:label_iform_admin) %>:</strong></div>
             <% @users.each do |u| %>
               <div class="us_ask_user">
                 <%= show_user_info(u, [:name,:phones,:email]) %>
