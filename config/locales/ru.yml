@@ -20,3 +20,4 @@ ru:
   label_create_request: "Создать заявку"
   label_go_back: "Назад"
   label_error_log: "Лог ошибки"
+  label_iform_admin: "Пожалуйста, сообщите об ошибке администратору"
