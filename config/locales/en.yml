@@ -15,3 +15,9 @@ en:
   settings_url_for_custom_details: "Url for external user-details"
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
+
+  warning_error_occured: "Redmine. Error %{status}"
+  label_create_request: "Create request"
+  label_go_back: "Back"
+  label_error_log: "Error log"
+  label_iform_admin: "Please infrom administrator"
