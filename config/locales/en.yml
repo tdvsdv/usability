@@ -15,3 +15,4 @@ en:
   settings_url_for_custom_details: "Url for external user-details"
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
+  settings_disable_default_preloader: "Disable default redmine ajax preloader"

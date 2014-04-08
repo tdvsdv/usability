@@ -1,24 +1,27 @@
+<% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
+<% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
+
 <table cellspacing="15">
   <tr>
-    <td><%= l(:custom_help_url) %>: </td>
+    <td><%= l(:custom_help_url) %>:</td>
     <td>
       <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 60 %>
     </td>
   </tr>
   <tr>
-    <td><%= l(:settings_enable_custom_details) %>: </td>
+    <td><%= l(:settings_enable_custom_details) %>:</td>
     <td>
-      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on], :size=> "50" %>
+      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on], :size=> 50 %>
     </td>
   </tr>
   <tr>
-    <td><%= l(:settings_url_for_custom_details) %>: </td>
+    <td><%= l(:settings_url_for_custom_details) %>:</td>
     <td>
       <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 60 %>
     </td>
   </tr>
   <tr>
-    <td><%= l(:settings_custom_details_id_field) %>: </td>
+    <td><%= l(:settings_custom_details_id_field) %>:</td>
     <td>
       <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 20 %>
     </td>
@@ -26,6 +29,11 @@
   <tr>
     <td><%= l(:settings_default_page) %>:</td>
     <td><%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 60 %></td>
+  </tr>
+
+  <tr>
+    <td><%= l(:settings_disable_default_preloader) %>:</td>
+    <td><%= check_box_tag 'settings[disable_ajax_preloader]', true, @settings[:disable_ajax_preloader], :size => 60 %></td>
   </tr>
 </table>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>

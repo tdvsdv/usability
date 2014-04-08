@@ -8,8 +8,12 @@ Redmine::Plugin.register :usability do
   url 'http://rmplus.pro/'
   author_url 'http://rmplus.pro/'
 
-  settings :default => {:custom_help_url => ''},
-           :partial => 'settings/usability'
+  settings :partial => 'settings/usability',
+           :default => {:custom_help_url => '',
+                        :disable_ajax_loader => false,
+
+                        }
+
 
   delete_menu_item :top_menu, :help
   delete_menu_item :account_menu, :login
@@ -29,7 +33,7 @@ Rails.application.config.to_prepare do
   Redmine::Info.send(:include, Usability::InfoPatch::Redmine::Info)
 
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
-  IssuesHelper.send(:include, Usability::IssuesHelperPatch)  
+  IssuesHelper.send(:include, Usability::IssuesHelperPatch)
 end
 
 require 'usability/view_hooks'

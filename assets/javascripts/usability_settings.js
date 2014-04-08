@@ -1,4 +1,3 @@
-// Passing plugin settings from server to client
 var RMPlus = (function(my){
   return my;
 })(RMPlus || {});
@@ -6,6 +5,7 @@ var RMPlus = (function(my){
 RMPlus.Utils = (function(my){
   var my = my || {};
 
+  // function checks existence of the property in the RMPlus namespace recursively
   my.exists = function(prop) {
     obj = RMPlus;
     var parts = prop.split('.');
@@ -23,11 +23,3 @@ RMPlus.Utils = (function(my){
 
   return my;
 })(RMPlus.Utils || {});
-
-RMPlus.Usability = (function(my){
-  var my = my || {};
-
-  my.settings = <%= settings.to_json.html_safe %>;
-
-  return my;
-})(RMPlus.Usability || {});
