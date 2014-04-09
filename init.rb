@@ -9,8 +9,7 @@ Redmine::Plugin.register :usability do
   author_url 'http://rmplus.pro/'
 
   settings :partial => 'settings/usability',
-           :default => {:custom_help_url => '',
-                        :disable_ajax_loader => false,
+           :default => {:custom_help_url => ''
 
                         }
 

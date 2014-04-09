@@ -1,7 +1,8 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
 <% settings = Setting.plugin_usability %>
-<% settings = settings.each{|name, value| settings[name] = settings[name] || defaults[name]} %>
-
+<% all_settings = {} %>
+<% defaults.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
+<% settings.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
 <%= javascript_include_tag 'usability_settings', :plugin => :usability %>
 
 <%# Passing plugin settings from server to client %>
@@ -10,7 +11,7 @@
   RMPlus.Usability = (function(my){
     var my = my || {};
 
-    my.settings = <%= settings.to_json.html_safe %>;
+    my.settings = <%= all_settings.to_json.html_safe %>;
 
     return my;
   })(RMPlus.Usability || {});

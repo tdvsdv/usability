@@ -1,11 +1,11 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
 <% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
 
-<table cellspacing="15">
+<table id="usability-settings" cellspacing="15">
   <tr>
     <td><%= l(:custom_help_url) %>:</td>
     <td>
-      <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 60 %>
+      <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 50 %>
     </td>
   </tr>
   <tr>
@@ -17,7 +17,7 @@
   <tr>
     <td><%= l(:settings_url_for_custom_details) %>:</td>
     <td>
-      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 60 %>
+      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 50 %>
     </td>
   </tr>
   <tr>
@@ -33,7 +33,21 @@
 
   <tr>
     <td><%= l(:settings_disable_default_preloader) %>:</td>
-    <td><%= check_box_tag 'settings[disable_ajax_preloader]', true, @settings[:disable_ajax_preloader], :size => 60 %></td>
+    <td><%= check_box_tag 'settings[disable_redmine_ajax_preloader]', true, @settings[:disable_redmine_ajax_preloader], :size => 50 %></td>
   </tr>
+
+  <tr>
+    <td><%= l(:settings_enable_rmplus_preloader) %>:</td>
+    <td><%= check_box_tag 'settings[enable_rmplus_ajax_preloader]', true, @settings[:enable_rmplus_ajax_preloader], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_disable_project_links_in_tables) %>:</td>
+    <td><%= check_box_tag 'settings[disable_project_links_in_tables]', true, @settings[:disable_project_links_in_tables], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_show_sidebar_close_button) %>:</td>
+    <td><%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button], :size => 50 %></td>
+  </tr>
+
 </table>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>

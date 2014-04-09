@@ -16,3 +16,5 @@ en:
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
   settings_disable_default_preloader: "Disable default redmine ajax preloader"
+  settings_enable_rmplus_preloader: "Enable RMPlus ajax preloader"
+  settings_disable_project_links_in_tables: "Disable project link in \"project\" column in tables in pages \"View all issues\", \"Overall spent time\""

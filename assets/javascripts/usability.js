@@ -1,5 +1,6 @@
 $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
+
   $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
 
   var contextual = $('#update').prev('.contextual');
@@ -7,7 +8,6 @@ $(document).ready(function () {
     $('<div/>', {'class': 'H'}).insertBefore('#history').append($('#issue-changesets'), $('#history'));
     $('<div/>', {'class': 'H'}).insertBefore('#update').append(contextual);
   }
-
 
   $('#add_filter_select, #available_columns, #group_by, #query_sort_criteria_attribute_0, #query_sort_criteria_attribute_1, #query_sort_criteria_attribute_2').each(function () {
     $this = $(this);
@@ -27,81 +27,68 @@ $(document).ready(function () {
     selected.attr('selected', 'selected')  //Only for firefox
   });
 
-/*
-  $(document.body).on('click', 'input.issue_due_date', function () {
-    $(this).data('set_auto_val', false);
-    $(this).removeClass('highlight');
-  });*/
-
-
-/*
-  $('td.project>a').each(function (index) {
-    $(this).parent().html($(this).html());
-  });
-*/
-
+  if (RMPlus.Utils.exists('Usability.settings.disable_project_links_in_tables')){
+    if (RMPlus.Usability.settings.disable_project_links_in_tables){
+      $('td.project>a').each(function (index) {
+        $(this).parent().html($(this).html());
+      });
+    }
+  }
 
   // Disables standart redmine ajax preloader
-  if (RMPlus.Utils.exists('Usability.settings.disable_ajax_preloader')){
-    if (RMPlus.Usability.settings.disable_ajax_preloader) {
+  if (RMPlus.Utils.exists('Usability.settings.disable_redmine_ajax_preloader')){
+    if (RMPlus.Usability.settings.disable_redmine_ajax_preloader) {
       $('#ajax-indicator').remove();
     }
   }
 
-  $('#sidebar').children('a[href$="issues?set_filter=1"]').each(function (index) {
-    $(this).prev('h3').remove();
-    $(this).remove();
-  });
-
-
-  $('#sidebar').children('a[href$="gantt"]').remove();
-  $('#sidebar').children('a[href$="report"]').next().remove();
-
-
-  $('#attributes select[name*=assigned_to_id] option:contains(" мне ")').each(function () {
-    $(this).remove();
-  });
-
-
-  $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
+  /*$(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
     jQuery(document.body).data('ajax_emmiter', jQuery(this))
-  });
+  });*/
 
-  $(document).ajaxStart(function () {
-    // alert('ajax started')
-    obj = jQuery(document.body).data('ajax_emmiter')
-    if(typeof obj != 'undefined') {
-      obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
-      obj.addClass('ajax_hidden_emmiter');
-      obj.hide();
-    }
-    jQuery(document.body).data('ajax_emmiter', undefined)
-  });
+if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
+  if (RMPlus.Usability.settings.enable_rmplus_ajax_preloader){
+    $(document).ajaxStart(function () {
+      // alert('ajax started')
+      obj = jQuery(document.body).data('ajax_emmiter')
+      if(typeof obj != 'undefined') {
+        obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
+        obj.addClass('ajax_hidden_emmiter');
+        obj.hide();
+      }
+      jQuery(document.body).data('ajax_emmiter', undefined)
+    });
 
-  $(document).ajaxStop(function () {
-    jQuery("div.loader:empty").remove();
-    jQuery('.ajax_hidden_emmiter').show();
-  });
-
+    $(document).ajaxStop(function () {
+      jQuery("div.loader:empty").remove();
+      jQuery('.ajax_hidden_emmiter').show();
+    });
+  }
+}
 
 /* ----- from a_small_things ends ---- */
 
-  var close_sidebar = $('<a/>', { href: '#',
-                                  id: 'close_sidebar_icon',
-                                  class: 'R close_sidebar icon',
-                                  click: function () {
-                                    if ($(this).hasClass('close_sidebar')) {
-                                      hide_sidebar($(this))
-                                    } else {
-                                      show_sidebar($(this))
-                                    }
-                                  }
-                      });
-  $('#sidebar').prepend(close_sidebar);
-  $('#sidebar').dblclick(function () {
-    hide_sidebar($('#close_sidebar_icon'));
-  });
+  if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button')){
+    if (RMPlus.Usability.settings.show_sidebar_close_button){
+      var close_sidebar = $('<a/>', { href: '#',
+                                      id: 'close_sidebar_icon',
+                                      class: 'R close_sidebar icon',
+                                      click: function () {
+                                        if ($(this).hasClass('close_sidebar')) {
+                                          hide_sidebar($(this))
+                                        } else {
+                                          show_sidebar($(this))
+                                        }
+                                      }
+                          });
+      $('#sidebar').prepend(close_sidebar);
+      $('#sidebar').dblclick(function () {
+        hide_sidebar($('#close_sidebar_icon'));
+      });
+    }
+  }
 
+  // now browser history remembers opened tab. Useful for refresh and back/forward
   var loc = location.href.split('#');
   if (loc.length > 1 && $('#tab-'+loc[1]).length == 1) {
     showTab(loc[1])

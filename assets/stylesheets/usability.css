@@ -125,3 +125,7 @@ a.show_sidebar
   {
   background-image: url(../images/diamonds.png);
   }
+
+table#usability-settings td{
+  width: 300px;
+}
