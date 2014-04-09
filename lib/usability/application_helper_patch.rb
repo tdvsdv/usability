@@ -44,13 +44,15 @@ module Usability
 
 
       def page_header_title_with_usability
+        return page_header_title_without_usability unless Setting.plugin_usability[:modify_page_header]
+
         s = ''
         s << '<span>'
-        if @project.nil? || @project.new_record?
-          s << h(Setting.app_title)
-        else
-          s << h(@project.name.html_safe)
-        end
+         if @project.nil? || @project.new_record?
+           s << h(Setting.app_title)
+         else
+           s << h(@project.name.html_safe)
+         end
         s << '</span>'
         s.html_safe
       end

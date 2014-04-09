@@ -28,7 +28,7 @@
   </tr>
   <tr>
     <td><%= l(:settings_default_page) %>:</td>
-    <td><%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 60 %></td>
+    <td><%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 50 %></td>
   </tr>
 
   <tr>
@@ -47,6 +47,14 @@
   <tr>
     <td><%= l(:settings_show_sidebar_close_button) %>:</td>
     <td><%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_enable_underlined_links) %>:</td>
+    <td><%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_remove_project_page_header_breadcrumb) %>:</td>
+    <td><%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb], :size => 50 %></td>
   </tr>
 
 </table>

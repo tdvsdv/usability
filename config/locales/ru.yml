@@ -16,3 +16,6 @@ ru:
   settings_disable_default_preloader: "Отключить в redmine анимацию загрузки по умолчанию"
   settings_enable_rmplus_preloader: "Включить анимацию загрузки RMPlus"
   settings_disable_project_links_in_tables: "Отключить ссылку на проект в колонке «Проект» страниц «Просмотреть все задачи», «Всего затрачено времени»"
+  settings_show_sidebar_close_button: "Показывать иконку закрытия бокового меню"
+  settings_enable_underlined_links: "Делать ссылки подчеркнутыми"
+  settings_remove_project_page_header_breadcrumb: "Убирать хлебные крошки из заголовка страницы проекта"

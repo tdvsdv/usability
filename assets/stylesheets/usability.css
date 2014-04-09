@@ -129,3 +129,7 @@ a.show_sidebar
 table#usability-settings td{
   width: 300px;
 }
+
+#header a {
+  color: #295200;
+}

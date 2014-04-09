@@ -42,12 +42,12 @@ $(document).ready(function () {
     }
   }
 
-  /*$(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
-    jQuery(document.body).data('ajax_emmiter', jQuery(this))
-  });*/
-
 if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
   if (RMPlus.Usability.settings.enable_rmplus_ajax_preloader){
+    $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
+      jQuery(document.body).data('ajax_emmiter', jQuery(this))
+    });
+
     $(document).ajaxStart(function () {
       // alert('ajax started')
       obj = jQuery(document.body).data('ajax_emmiter')
@@ -88,8 +88,8 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
     }
   }
 
-  // now browser history remembers opened tab. Useful for refresh and back/forward
-  var loc = location.href.split('#');
+  // now browser history remembers opened tab. Useful for refresh and back/forwards
+ /* var loc = location.href.split('#');
   if (loc.length > 1 && $('#tab-'+loc[1]).length == 1) {
     showTab(loc[1])
   }
@@ -98,13 +98,15 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
     var url = $(this).attr('href').split('?tab=');
     var loc = location.href.split('#');
     location.href = loc[0] + '#' + url[1];
-  });
+  }); */
 
+  // for user preferences
   var user_preferences = []
   user_preferences['top_menu_event'] = 'mouseclick';
   $('#usability_user_preferences div').each(function () {
     user_preferences[$(this).attr('class')] = $(this).html();
   });
+
 
   $(document).scroll(function () {
     $('.sub_menu').popover('hide');
@@ -127,7 +129,7 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
                              content: function () { return $('.'+$(this).attr('data-content-class')).map(function () { return $(this).html(); }).get().join('') }
     });
 
-    $('.sub_menu, a.my-name').click(function () { return false });
+    $('.sub_menu, a.my-name').click(function () { return false; });
   }
 
   if (user_preferences['top_menu_event'] == 'mouseover') {
@@ -139,20 +141,21 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
                content: function () {return $('.'+$(this).attr('data-content-class')).map(function () {return $(this).html()}).get().join('')}
     })
     .mouseenter(function (e) {
-       var t = $(this);
-       window.setTimeout(function () {
-                           if (typeof $(document).data('popover_enter') == 'undefined' || !$(document).data('popover_enter')) {
-                             t.popover('show');
-                             $('.sub_menu').not(t).popover('hide')
-                           }
-                         }, 100);
+      var t = $(this);
+      window.setTimeout(function () {
+        if (typeof $(document).data('popover_enter') == 'undefined' || !$(document).data('popover_enter')) {
+          t.popover('show');
+          $('.sub_menu').not(t).popover('hide')
+        }
+      }, 100);
     })
     .mouseleave(function (e) {
       var t = $(this)
       window.setTimeout(function () {
-                             if (typeof $(document).data('popover_enter') == 'undefined' || !$(document).data('popover_enter'))
-                                 t.popover('hide')
-                         }, 100);
+        if (typeof $(document).data('popover_enter') == 'undefined' || !$(document).data('popover_enter')) {
+          t.popover('hide')
+        }
+      }, 100);
     });
     $(document.body).on('mouseenter', 'div.popover', function () { $(document).data('popover_enter', true) });
     $(document.body).on('mouseleave', 'div.popover', function () { $(document).data('popover_enter', false), $(this).hide() });
@@ -164,27 +167,32 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
       $(this).remove();
   });
 
+  if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')){
+    if (RMPlus.Usability.settings.enable_underlined_links){
+      $('a.icon, #main-menu li a, #top-menu li a:not(:has(span))').each(function(index){
+        if ($(this).html() == $(this).text()) {
+          $(this).html('<span>'+$(this).html()+'</span>');
+        }
+      });
+      $('#admin-menu ul li a, a.repository').each(function(index){
+        $(this).addClass('no_line');
+        $(this).html('<span>'+$(this).html()+'</span>');
+      });
 
-  $('a.icon, #main-menu li a, #top-menu li a:not(:has(span))').each(function(index){
-    if ($(this).html() == $(this).text())
-      $(this).html('<span>'+$(this).html()+'</span>');
-  });
+      $('div.tabs ul li a').each(function(index) {
+        $(this).addClass('no_line in_link');
+        $(this).html('<span>'+$(this).html()+'</span>');
+      });
+    }
+  }
 
-  $('#admin-menu ul li a, a.repository').each(function(index){
-    $(this).addClass('no_line');
-    $(this).html('<span>'+$(this).html()+'</span>');
-  });
-
-
+  // places search field in the top menu to the left of username button
   $('#q').attr('placeholder', $('label[for=q] a').text());
   $('label[for=q]').remove();
   $('#quick-search').insertAfter('#loggedas');
 
-  $('div.tabs ul li a').each(function(index) {
-    $(this).addClass('no_line in_link');
-    $(this).html('<span>'+$(this).html()+'</span>');
-  });
 
+  // expands search field on gaining focus if possible
   $('#q').focus(function(index) {
     expand_q_if_possible();
   });
