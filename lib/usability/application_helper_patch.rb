@@ -39,6 +39,9 @@ module Usability
 
 
       def render_project_jump_box_with_usability
+        if Setting.plugin_usability[:render_project_jump_box]
+          return render_project_jump_box_without_usability
+        end
         return
       end
 
@@ -59,6 +62,8 @@ module Usability
 
 
       def progress_bar_with_usability(pcts, options={})
+        return progress_bar_without_usability(pcts, options) unless Setting.plugin_usability[:enable_usability_progress_bar]
+
         styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
         lablel_styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
         width = options[:width] || '60px;'

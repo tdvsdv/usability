@@ -1,6 +1,7 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
 <% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
 
+
 <table id="usability-settings" cellspacing="15">
   <tr>
     <td><%= l(:custom_help_url) %>:</td>
@@ -30,12 +31,14 @@
     <td><%= l(:settings_default_page) %>:</td>
     <td><%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 50 %></td>
   </tr>
-
+  <tr>
+    <td><%= l(:settings_enable_custom_default_page) %>:</td>
+    <td><%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page], :size => 50 %></td>
+  </tr>
   <tr>
     <td><%= l(:settings_disable_default_preloader) %>:</td>
     <td><%= check_box_tag 'settings[disable_redmine_ajax_preloader]', true, @settings[:disable_redmine_ajax_preloader], :size => 50 %></td>
   </tr>
-
   <tr>
     <td><%= l(:settings_enable_rmplus_preloader) %>:</td>
     <td><%= check_box_tag 'settings[enable_rmplus_ajax_preloader]', true, @settings[:enable_rmplus_ajax_preloader], :size => 50 %></td>
@@ -56,6 +59,17 @@
     <td><%= l(:settings_remove_project_page_header_breadcrumb) %>:</td>
     <td><%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb], :size => 50 %></td>
   </tr>
-
+  <tr>
+    <td><%= l(:settings_render_project_jump_box) %>:</td>
+    <td><%= check_box_tag 'settings[render_project_jump_box]', true, @settings[:render_project_jump_box], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_enable_usability_progress_bar) %>:</td>
+    <td><%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar], :size => 50 %></td>
+  </tr>
+  <tr>
+    <td><%= l(:settings_render_custom_fields_usability) %>:</td>
+    <td><%= check_box_tag 'settings[render_custom_fields_usability]', true, @settings[:render_custom_fields_usability], :size => 50 %></td>
+  </tr>
 </table>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>
