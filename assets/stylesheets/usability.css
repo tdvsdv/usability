@@ -129,3 +129,11 @@ a.show_sidebar
 #header a {
   color: #295200;
 }
+
+.bt20, .bt20:link, .bt20:visited {
+  height: 20px;
+  border-color: #eea236;
+}
+.us_error_details {
+  margin: 10px 0;
+}

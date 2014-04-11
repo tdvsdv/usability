@@ -1,10 +1,17 @@
 require 'application_helper'
 
+# hard patch Redmine Application
+module RedmineApp
+  class Application
+    config.exceptions_app = self.routes
+  end
+end
+
 Redmine::Plugin.register :usability do
   name 'Usability plugin'
   author 'Vladimir Pitin, Danil Kukhlevskiy'
   description 'This is a plugin for Redmine improving behaviour'
-  version '0.0.2'
+  version '0.0.3'
   url 'http://rmplus.pro/'
   author_url 'http://rmplus.pro/'
 

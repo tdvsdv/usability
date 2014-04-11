@@ -15,6 +15,7 @@ en:
   settings_url_for_custom_details: "Url for external user-details"
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
+
   settings_disable_default_preloader: "Disable default redmine ajax preloader"
   settings_enable_rmplus_preloader: "Enable RMPlus ajax preloader"
   settings_disable_project_links_in_tables: "Disable project link in \"project\" column in tables in pages \"View all issues\", \"Overall spent time\""
@@ -25,3 +26,9 @@ en:
   settings_enable_usability_progress_bar: "Enhance looks of the progress bar"
   settings_render_custom_fields_usability: "Enhance looks of custom fields in issues"
   settings_enable_custom_default_page: "Enable custom default page"
+
+  warning_error_occured: "Redmine. Error %{status}"
+  label_create_request: "Create request"
+  label_go_back: "Back"
+  label_error_log: "Error log"
+  label_iform_admin: "Please infrom administrator"

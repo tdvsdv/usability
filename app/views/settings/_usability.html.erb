@@ -5,27 +5,19 @@
 <table id="usability-settings" cellspacing="15">
   <tr>
     <td><%= l(:custom_help_url) %>:</td>
-    <td>
-      <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 50 %>
-    </td>
+    <td><%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 50 %></td>
   </tr>
   <tr>
     <td><%= l(:settings_enable_custom_details) %>:</td>
-    <td>
-      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on], :size=> 50 %>
-    </td>
+    <td><%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on], :size=> 50 %></td>
   </tr>
   <tr>
     <td><%= l(:settings_url_for_custom_details) %>:</td>
-    <td>
-      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 50 %>
-    </td>
+    <td><%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 50 %></td>
   </tr>
   <tr>
     <td><%= l(:settings_custom_details_id_field) %>:</td>
-    <td>
-      <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 20 %>
-    </td>
+    <td><%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 20 %></td>
   </tr>
   <tr>
     <td><%= l(:settings_default_page) %>:</td>
@@ -71,5 +63,56 @@
     <td><%= l(:settings_render_custom_fields_usability) %>:</td>
     <td><%= check_box_tag 'settings[render_custom_fields_usability]', true, @settings[:render_custom_fields_usability], :size => 50 %></td>
   </tr>
+  <tr>
+    <td><%= l(:settings_ask_users_at_error) %>:</td>
+    <td><%= select_tag( 'settings[users_at_error]',
+                        options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
+                        {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %></td>
+  </tr>
+
+<% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+  <tr><td colspan="2"><%= l(:settings_new_request_to_department) %></td></tr>
+  <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
+  <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
+  <% if @settings[:target_department] && settings_department_id.nil? %>
+    <% dep = UserDepartment.find(@settings[:target_department]) %>
+    <% department = UserDepartment.joins(:node)
+                                  .where("head_of_branch=? AND lft<=? AND rgt>=?",true, dep.node.lft, dep.node.rgt)
+                                  .order('lft DESC').limit(1).try(:first) %>
+    <% settings_department_id = department.id if department %>
+  <% end %>
+  <tr id="req_department">
+    <td><%= l(:field_to_department) %>:</td>
+    <td><%= select_tag( :sd_request_department_id,
+                        SdRequestsController.new.options_for_departments(settings_department_id),
+                        {:id => 'sd_request_department_id'}) %></td>
+  </tr>
+  <tr id="req_target_department_field" class="I">
+    <td><%= l(:field_target_department) %>:</td>
+    <td><%= select_tag( 'settings[target_department]',
+                        '',
+                        {:id => 'target_department_id'}) %>
+        <%= select_tag('target_departments_all',
+                        SdRequestsController.new.options_for_target_departments(@settings[:target_department].to_i),
+                        {:style => "display:none;"}) %></td>
+  </tr>
+  <tr id="req_type">
+    <td><%= l(:field_request_type) %>:</td>
+    <td><%= select_tag( 'settings[request_type]',
+                        '',
+                        {:id => 'sd_request_type_id', :style => 'min-width:220px;'}) %>
+        <%= select_tag( 'req_types_all',
+                        SdRequestsController.new.options_for_flat_request_types(@settings[:request_type].to_i),
+                        {:style => 'display:none;', :id => 'req_types_all'}) %></td>
+  </tr>
+<% end %>
 </table>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    show_target_departments();
+    select_original_branch_and_type();
+  });
+</script>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>
