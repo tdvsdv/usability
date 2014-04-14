@@ -1,3 +1,16 @@
+RMPlus.Usability = (function(my){
+  var my = my || {};
+
+  my.underlineTabs = function(){
+    $('div.tabs ul li a').each(function(index) {
+      $(this).addClass('no_line in_link');
+      $(this).html('<span>'+$(this).html()+'</span>');
+    });
+  }
+
+  return my;
+})(RMPlus.Usability || {});
+
 $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
 
@@ -167,6 +180,8 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
       $(this).remove();
   });
 
+
+
   if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')){
     if (RMPlus.Usability.settings.enable_underlined_links){
       $('a.icon, #main-menu li a, #top-menu li a:not(:has(span))').each(function(index){
@@ -179,10 +194,11 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
         $(this).html('<span>'+$(this).html()+'</span>');
       });
 
-      $('div.tabs ul li a').each(function(index) {
-        $(this).addClass('no_line in_link');
-        $(this).html('<span>'+$(this).html()+'</span>');
-      });
+      RMPlus.Usability.underlineTabs();
+      //$('div.tabs ul li a').each(function(index) {
+      //  $(this).addClass('no_line in_link');
+      //  $(this).html('<span>'+$(this).html()+'</span>');
+      //});
     }
   }
 
