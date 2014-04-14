@@ -12,19 +12,19 @@ module Usability
       end
     end
 
-    module ClassMethods   
+    module ClassMethods
     end
 
-    module InstanceMethods 
+    module InstanceMethods
         def render_menu_with_usability(menu, project=nil)
           rendered_menu = render_menu_without_usability(menu, project)
           if rendered_menu.nil? and User.current.logged?
-            if User.current.preference.favourite_project_id.nil? 
+            if User.current.preference.favourite_project_id.nil?
               User.current.preference.favourite_project_id = User.current.get_favourite_project.id unless User.current.get_favourite_project.nil?
               User.current.preference.save
             end
             if  User.current.memberships != []
-              rendered_menu = render_menu_without_usability(:project_menu, User.current.pref.favourite_project_id.nil?  ? User.current.memberships.last.project : Project.find(User.current.pref.favourite_project_id)) 
+              rendered_menu = render_menu_without_usability(:project_menu, User.current.pref.favourite_project_id.nil?  ? User.current.memberships.last.project : Project.find(User.current.pref.favourite_project_id))
             end
           end
           rendered_menu

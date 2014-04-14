@@ -39,24 +39,31 @@ module Usability
 
 
       def render_project_jump_box_with_usability
+        if Setting.plugin_usability[:render_project_jump_box]
+          return render_project_jump_box_without_usability
+        end
         return
       end
 
 
       def page_header_title_with_usability
+        return page_header_title_without_usability unless Setting.plugin_usability[:modify_page_header]
+
         s = ''
         s << '<span>'
-        if @project.nil? || @project.new_record?
-          s << h(Setting.app_title)
-        else
-          s << h(@project.name.html_safe)
-        end
+         if @project.nil? || @project.new_record?
+           s << h(Setting.app_title)
+         else
+           s << h(@project.name.html_safe)
+         end
         s << '</span>'
         s.html_safe
       end
 
 
       def progress_bar_with_usability(pcts, options={})
+        return progress_bar_without_usability(pcts, options) unless Setting.plugin_usability[:enable_usability_progress_bar]
+
         styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
         lablel_styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
         width = options[:width] || '60px;'
