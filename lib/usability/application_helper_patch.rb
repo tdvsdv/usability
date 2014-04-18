@@ -39,7 +39,7 @@ module Usability
 
 
       def render_project_jump_box_with_usability
-        if Setting.plugin_usability[:render_project_jump_box]
+        unless Setting.plugin_usability[:dont_render_project_jump_box]
           return render_project_jump_box_without_usability
         end
         return

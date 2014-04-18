@@ -36,35 +36,33 @@ $(document).ready(function () {
   }
 
   // Disables standart redmine ajax preloader
-  if (RMPlus.Utils.exists('Usability.settings.disable_redmine_ajax_preloader')){
-    if (RMPlus.Usability.settings.disable_redmine_ajax_preloader) {
+  if (RMPlus.Utils.exists('Usability.settings.select_ajax_preloader')){
+    if (RMPlus.Usability.settings.select_ajax_preloader === 'redmine_preloader') {
       $('#ajax-indicator').remove();
     }
+
+    else if (RMPlus.Usability.settings.select_ajax_preloader === 'rmplus_preloader'){
+      $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
+        jQuery(document.body).data('ajax_emmiter', jQuery(this))
+      });
+
+      $(document).ajaxStart(function () {
+        // alert('ajax started')
+        obj = jQuery(document.body).data('ajax_emmiter')
+        if(typeof obj != 'undefined') {
+          obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
+          obj.addClass('ajax_hidden_emmiter');
+          obj.hide();
+        }
+        jQuery(document.body).data('ajax_emmiter', undefined)
+      });
+
+      $(document).ajaxStop(function () {
+        jQuery("div.loader:empty").remove();
+        jQuery('.ajax_hidden_emmiter').show();
+      });
+    }
   }
-
-if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
-  if (RMPlus.Usability.settings.enable_rmplus_ajax_preloader){
-    $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
-      jQuery(document.body).data('ajax_emmiter', jQuery(this))
-    });
-
-    $(document).ajaxStart(function () {
-      // alert('ajax started')
-      obj = jQuery(document.body).data('ajax_emmiter')
-      if(typeof obj != 'undefined') {
-        obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
-        obj.addClass('ajax_hidden_emmiter');
-        obj.hide();
-      }
-      jQuery(document.body).data('ajax_emmiter', undefined)
-    });
-
-    $(document).ajaxStop(function () {
-      jQuery("div.loader:empty").remove();
-      jQuery('.ajax_hidden_emmiter').show();
-    });
-  }
-}
 
 /* ----- from a_small_things ends ---- */
 

@@ -6,18 +6,16 @@ module Usability
 
 	    # Same as typing in the class
 	    base.class_eval do
-			alias_method_chain :render_custom_fields_rows, :usability
+				alias_method_chain :render_custom_fields_rows, :usability
 	    end
 
 	  end
 
 	  module ClassMethods
-
 	  end
 
 	  module InstanceMethods
 	  	def render_custom_fields_rows_with_usability(issue)
-	  		return render_custom_fields_rows_without_usability(issue) if Setting.plugin_usability[:render_custom_fields_usability]
 	  		custom_field_values=issue.custom_field_values.reject {|value| value.custom_field.field_format=='text'}
 		    return if custom_field_values.empty?
 		    ordered_values = []
