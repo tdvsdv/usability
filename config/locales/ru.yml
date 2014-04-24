@@ -17,7 +17,7 @@ ru:
   settings_ask_users_at_error: "К кому обратиться при ошибке"
 
   label_usability_settings_new_request_params: "Параметры новых заявок пользователей"
-  settings_new_request_to_department: "При создании заявки пользователем выбрать следующие параметры"
+  settings_new_request_to_department: "Параметры автоматически создаваемых заявок со страницы ошибок Redmine"
 
   settings_disable_default_preloader: "Отключить штатный прелоадер Redmine."
 
@@ -37,4 +37,4 @@ ru:
   label_usability_settings_user_custom_details: "Настройки своей странички о пользователе"
   label_usability_settings_default_page: "Настройки страницы по умолчанию"
   label_usability_settings_select_ajax_preloader: "Выбор прелоадера для AJAX-запросов"
-
+  label_usability_settings_common: "Общие настройки"
