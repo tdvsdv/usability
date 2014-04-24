@@ -16,6 +16,8 @@ en:
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
 
+  settings_new_request_to_department:"Settings for new requests created for Redmine error pages"
+
   settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
 
   label_usability_settings_new_request_params: "Settings for new requests"
@@ -38,3 +40,4 @@ en:
   label_usability_settings_user_custom_details: "Settings for user's \"my\" page"
   label_usability_settings_default_page: "Settings for default page"
   label_usability_settings_select_ajax_preloader: "Select preloader for AJAX"
+  label_usability_settings_common: "Common settings"
