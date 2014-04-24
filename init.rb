@@ -10,8 +10,7 @@ Redmine::Plugin.register :usability do
 
   settings :partial => 'settings/usability',
            :default => {:custom_help_url => ''
-
-                        }
+                       }
 
 
   delete_menu_item :top_menu, :help

@@ -8,113 +8,116 @@
       <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 30 %>
   </label>
   </p>
-  <fieldset><legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
+  <fieldset style="width: 45%;"><legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
     <label for="settings_custom_details_url">
       <%= l(:settings_url_for_custom_details) %>:
       <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 30 %>
     </label>
-    <label for="settings_custom_details_on" class="for-checkbox">
+    <label for="settings_custom_details_on">
       <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on] %> &mdash; <%= l(:settings_enable_custom_details) %>
     </label>
-  </fieldset>
-  <p>
     <label for="settings_custom_details_id_field">
       <%= l(:settings_custom_details_id_field) %>:
       <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 30 %>
     </label>
-  </p>
-  <fieldset><legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
+  </fieldset>
+  <fieldset style="width: 45%;"><legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
     <label for="settings_default_page" class="for-checkbox">
       <span><%= l(:settings_default_page) %>:</span>
       <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
     </label>
-    <label for="settings_enable_custom_default_page" class="for-checkbox">
-      <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page], :size => 30 %> &mdash; <%= l(:settings_enable_custom_default_page) %>
-    </label>
-  </fieldset>
-  <fieldset><legend><strong><%= l(:label_usability_settings_select_ajax_preloader) %></strong></legend>
-    <label for="settings_select_ajax_preloader_redmine_preloader" class="for-checkbox">
-      <%= radio_button_tag 'settings[select_ajax_preloader]', 'redmine_preloader', @settings[:select_ajax_preloader] == 'redmine_preloader' %> &mdash; <%= l(:settings_disable_default_preloader) %>
-    </label>
-    <label for="settings_select_ajax_preloader_rmplus_preloader" class="for-checkbox">
-      <%= radio_button_tag 'settings[select_ajax_preloader]', 'rmplus_preloader', @settings[:select_ajax_preloader] == 'rmplus_preloader' %> &mdash; <%= l(:settings_enable_rmplus_preloader) %>
+    <label for="settings_enable_custom_default_page">
+      <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
     </label>
   </fieldset>
   <p>
-    <label for="settings_disable_project_links_in_tables">
-      <span><%= check_box_tag 'settings[disable_project_links_in_tables]', true, @settings[:disable_project_links_in_tables], :size => 30 %> &mdash; <%= l(:settings_disable_project_links_in_tables) %></span>
+    <label for="settings_disable_ajax_preloader">
+      <%= check_box_tag 'settings[disable_ajax_preloader]', true, @settings[:disable_ajax_preloader] %> &mdash; <%= l(:settings_disable_default_preloader) %>
     </label>
   </p>
+<!--   <p>
+    <label for="settings_disable_project_links_in_tables">
+      <span><%= check_box_tag 'settings[disable_project_links_in_tables]', true, @settings[:disable_project_links_in_tables] %> &mdash; <%= l(:settings_disable_project_links_in_tables) %></span>
+    </label>
+  </p> -->
   <p>
     <label for="settings_show_sidebar_close_button">
-      <%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button], :size => 30 %> &mdash; <%= l(:settings_show_sidebar_close_button) %>
+      <%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button] %> &mdash; <%= l(:settings_show_sidebar_close_button) %>
     </label>
   </p>
   <p>
     <label for="settings_enable_underlined_links">
-      <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links], :size => 30 %> &mdash; <%= l(:settings_enable_underlined_links) %>
+      <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links] %> &mdash; <%= l(:settings_enable_underlined_links) %>
     </label>
   </p>
   <p>
     <label for="settings_remove_project_page_header_breadcrumb">
-      <%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb], :size => 30 %> &mdash; <%= l(:settings_remove_project_page_header_breadcrumb) %>
+      <%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb] %> &mdash; <%= l(:settings_remove_project_page_header_breadcrumb) %>
     </label>
   </p>
   <p>
     <label for="settings_dont_render_project_jump_box">
-      <%= check_box_tag 'settings[dont_render_project_jump_box]', true, @settings[:dont_render_project_jump_box], :size => 30 %> &mdash; <%= l(:settings_dont_render_project_jump_box) %>
+      <%= check_box_tag 'settings[dont_render_project_jump_box]', true, @settings[:dont_render_project_jump_box] %> &mdash; <%= l(:settings_dont_render_project_jump_box) %>
     </label>
   </p>
   <p>
     <label for="settings_enable_usability_progress_bar">
-      <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar], :size => 50 %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
+      <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
     </label>
   </p>
-</div>
-
-<table id="usability-settings" cellspacing="15">
-  <tr>
-    <td><%= l(:settings_ask_users_at_error) %>:</td>
-    <td><%= select_tag( 'settings[users_at_error]',
+  <p>
+    <label for="settings_users_at_error">
+      <%= l(:settings_ask_users_at_error) %>:
+      <%= select_tag( 'settings[users_at_error]',
                         options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
-                        {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %></td>
-  </tr>
+                        {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %>
+    </label>
+  </p>
+  <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
 
-<% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
-  <tr><td colspan="2"><%= l(:settings_new_request_to_department) %></td></tr>
-  <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
-  <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
-  <% if @settings[:target_department] && settings_department_id.nil? %>
-    <% dep = UserDepartment.find(@settings[:target_department]) %>
-    <% department = UserDepartment.joins(:node)
-                                  .where("head_of_branch=? AND lft<=? AND rgt>=?",true, dep.node.lft, dep.node.rgt)
-                                  .order('lft DESC').limit(1).try(:first) %>
-    <% settings_department_id = department.id if department %>
+      <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
+      <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
+      <% if @settings[:target_department] && settings_department_id.nil? %>
+        <% dep = UserDepartment.find(@settings[:target_department]) %>
+        <% department = UserDepartment.joins(:node)
+                                      .where("head_of_branch=? AND lft<=? AND rgt>=?",true, dep.node.lft, dep.node.rgt)
+                                      .order('lft DESC').limit(1).try(:first) %>
+        <% settings_department_id = department.id if department %>
+      <% end %>
+    <fieldset style="width: 45%;">
+      <legend><strong><%= l(:label_usability_settings_new_request_params) %></strong></legend>
+      <%= l(:settings_new_request_to_department) %>:
+      <p>
+        <label for="sd_request_department_id" class="settings-indent">
+          <%= l(:field_to_department) %>:
+          <%= select_tag( :sd_request_department_id,
+                          SdRequestsController.new.options_for_departments(settings_department_id),
+                          {:id => 'sd_request_department_id'}) %>
+        </label>
+      </p>
+      <p id="req_target_department_field" class="I">
+        <label for="settings_target_department" >
+          <%= l(:field_target_department) %>:
+          <%= select_tag( 'settings[target_department]',
+                          '',
+                          {:id => 'target_department_id'}) %>
+          <%= select_tag( 'target_departments_all',
+                          SdRequestsController.new.options_for_target_departments(@settings[:target_department].to_i),
+                          {:style => "display:none;"}) %>
+        </label>
+      </p>
+      <p id="req_type">
+        <label for="settings_request_type" class="settings-indent">
+          <%= l(:field_request_type) %>:
+          <%= select_tag( 'settings[request_type]',
+                          '',
+                          {:id => 'sd_request_type_id', :style => 'min-width:220px;'}) %>
+          <%= select_tag( 'req_types_all',
+                          SdRequestsController.new.options_for_flat_request_types(@settings[:request_type].to_i),
+                          {:style => 'display:none;', :id => 'req_types_all'}) %>
+        </label>
+      </p>
+    </fieldset>
   <% end %>
-  <tr id="req_department">
-    <td><%= l(:field_to_department) %>:</td>
-    <td><%= select_tag( :sd_request_department_id,
-                        SdRequestsController.new.options_for_departments(settings_department_id),
-                        {:id => 'sd_request_department_id'}) %></td>
-  </tr>
-  <tr id="req_target_department_field" class="I">
-    <td><%= l(:field_target_department) %>:</td>
-    <td><%= select_tag( 'settings[target_department]',
-                        '',
-                        {:id => 'target_department_id'}) %>
-        <%= select_tag('target_departments_all',
-                        SdRequestsController.new.options_for_target_departments(@settings[:target_department].to_i),
-                        {:style => "display:none;"}) %></td>
-  </tr>
-  <tr id="req_type">
-    <td><%= l(:field_request_type) %>:</td>
-    <td><%= select_tag( 'settings[request_type]',
-                        '',
-                        {:id => 'sd_request_type_id', :style => 'min-width:220px;'}) %>
-        <%= select_tag( 'req_types_all',
-                        SdRequestsController.new.options_for_flat_request_types(@settings[:request_type].to_i),
-                        {:style => 'display:none;', :id => 'req_types_all'}) %></td>
-  </tr>
-<% end %>
-</table>
+</div>
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>
