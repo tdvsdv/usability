@@ -69,7 +69,7 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
         obj.addClass('ajax_hidden_emmiter');
         obj.hide();
       }
-      jQuery(document.body).data('ajax_emmiter', undefined)
+      jQuery(document.body).removeData('ajax_emmiter');
     });
 
     $(document).ajaxStop(function () {
