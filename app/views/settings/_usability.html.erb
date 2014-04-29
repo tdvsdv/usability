@@ -1,8 +1,7 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
 <% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
 
-<div>
-  <fieldset style="width: 50%;">
+  <fieldset class="splitcontentleft">
     <legend><strong><%= l(:label_usability_settings_common) %></strong></legend>
     <label for="settings_custom_help_url">
         <%= l(:custom_help_url) %>:
@@ -27,30 +26,7 @@
       <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
     </label>
   </fieldset>
-  <fieldset style="width: 50%;">
-    <legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
-    <label for="settings_custom_details_url">
-      <%= l(:settings_url_for_custom_details) %>:
-      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 30 %>
-    </label>
-    <label for="settings_custom_details_on">
-      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on] %> &mdash; <%= l(:settings_enable_custom_details) %>
-    </label>
-    <label for="settings_custom_details_id_field">
-      <%= l(:settings_custom_details_id_field) %>:
-      <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 30 %>
-    </label>
-  </fieldset>
-  <fieldset style="width: 50%;"><legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
-    <label for="settings_default_page" class="for-checkbox">
-      <span><%= l(:settings_default_page) %>:</span>
-      <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
-    </label>
-    <label for="settings_enable_custom_default_page">
-      <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
-    </label>
-  </fieldset>
-  <fieldset style="width: 50%;">
+  <fieldset class="splitcontentright">
     <legend><strong><%= l(:settings_new_request_to_department) %></strong></legend>
     <label for="settings_users_at_error">
       <%= l(:settings_ask_users_at_error) %>:
@@ -70,7 +46,7 @@
         <% settings_department_id = department.id if department %>
       <% end %>
       <p>
-        <label for="sd_request_department_id" class="settings-indent">
+        <label for="sd_request_department_id">
           <%= l(:field_to_department) %>:
           <%= select_tag( :sd_request_department_id,
                           SdRequestsController.new.options_for_departments(settings_department_id),
@@ -89,7 +65,7 @@
         </label>
       </p>
       <p id="req_type">
-        <label for="settings_request_type" class="settings-indent">
+        <label for="settings_request_type">
           <%= l(:field_request_type) %>:
           <%= select_tag( 'settings[request_type]',
                           '',
@@ -99,7 +75,40 @@
                           {:style => 'display:none;', :id => 'req_types_all'}) %>
         </label>
       </p>
-    </fieldset>
   <% end %>
-</div>
+  </fieldset>
+  <fieldset class="splitcontentright">
+    <legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
+    <label for="settings_custom_details_url">
+      <%= l(:settings_url_for_custom_details) %>:
+      <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 30 %>
+    </label>
+    <label for="settings_custom_details_on">
+      <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on] %> &mdash; <%= l(:settings_enable_custom_details) %>
+    </label>
+    <label for="settings_custom_details_id_field">
+      <%= l(:settings_custom_details_id_field) %>:
+      <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 30 %>
+    </label>
+  </fieldset>
+  <fieldset class="splitcontentleft">
+    <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
+    <label for="settings_default_page" class="for-checkbox">
+      <span><%= l(:settings_default_page) %>:</span>
+      <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
+    </label>
+    <label for="settings_enable_custom_default_page">
+      <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
+    </label>
+  </fieldset>
+
+<script type="text/javascript">
+  jQuery(document).ready(function(){
+    show_target_departments();
+    select_original_branch_and_type();
+    $('div.box.tabular.settings').addClass('H');
+    $('div.box.tabular.settings fieldset').css({ width: "48%" });
+  });
+</script>
+
 <%# http://phones.prp.ru/newwin.php?menu_marker=si_employeeview&dn=<%= @user.ldap_dn %>
