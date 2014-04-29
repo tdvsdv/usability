@@ -26,7 +26,7 @@ ru:
   settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок."
   settings_remove_project_page_header_breadcrumb: "Не показывать родительские проекты в заголовке страницы проекта."
   settings_dont_render_project_jump_box: "Убрать встроенную возможность быстрого перехода в проект."
-  settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
+  settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (напр. задачи) (Требует Bootstrap!)."
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
 
   warning_error_occured: "Redmine. Ошибка %{status}"
