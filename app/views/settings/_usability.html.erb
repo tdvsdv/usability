@@ -25,6 +25,9 @@
     <label for="settings_enable_usability_progress_bar">
       <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
     </label>
+    <label for="settings_enable_easy_rm_tasks">
+      <%= check_box_tag 'settings[enable_easy_rm_tasks]', true, @settings[:enable_easy_rm_tasks] %> &mdash; <%= l(:settings_enable_easy_rm_tasks) %>
+    </label>
   </fieldset>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:settings_new_request_to_department) %></strong></legend>

@@ -28,6 +28,7 @@ ru:
   settings_dont_render_project_jump_box: "Убрать встроенную возможность быстрого перехода в проект."
   settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
+  settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
