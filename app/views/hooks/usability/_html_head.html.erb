@@ -20,3 +20,7 @@
 
 <%= javascript_include_tag 'usability.js', :plugin => :usability %>
 <%= stylesheet_link_tag 'usability.css', :plugin => :usability %>
+
+<% if (!controller.nil? && controller.controller_name == 'settings' && controller.action_name == 'plugin') && params[:id] == 'usability' %>
+  <%= stylesheet_link_tag 'settings', :plugin => 'a_common_libs', :media => 'screen' %>
+<% end %>

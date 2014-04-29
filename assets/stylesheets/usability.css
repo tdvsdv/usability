@@ -103,31 +103,22 @@ div.menu_block {
   background-image: url(../images/grad_24px.png);
 }
 
-.modal h4
-  {
-   border-bottom: none;
-  }
+.modal h4 {
+  border-bottom: none;
+}
 
-a.close_sidebar, a.show_sidebar
-  {
-
+a.close_sidebar, a.show_sidebar{
   background-repeat: no-repeat;
   background-position: 100% 0%;
   width: 16px;
   height: 16px;
-  }
+}
 
-a.close_sidebar
-  {
+a.close_sidebar {
   background-image: url(../images/close.png);
-  }
-a.show_sidebar
-  {
+}
+a.show_sidebar {
   background-image: url(../images/diamonds.png);
-  }
-
-#header a {
-  color: #295200;
 }
 
 .bt20, .bt20:link, .bt20:visited {
@@ -136,4 +127,13 @@ a.show_sidebar
 }
 .us_error_details {
   margin: 10px 0;
+}
+
+#header a {
+  color: #295200;
+}
+
+.usability-settings-input {
+  clear: both;
+  float: left;
 }

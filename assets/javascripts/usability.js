@@ -6,7 +6,7 @@ RMPlus.Usability = (function(my){
       $(this).addClass('no_line in_link');
       $(this).html('<span>'+$(this).html()+'</span>');
     });
-  }
+  };
 
   return my;
 })(RMPlus.Usability || {});
@@ -40,53 +40,42 @@ $(document).ready(function () {
     selected.attr('selected', 'selected')  //Only for firefox
   });
 
-  if (RMPlus.Utils.exists('Usability.settings.disable_project_links_in_tables')){
-    if (RMPlus.Usability.settings.disable_project_links_in_tables){
-      $('td.project>a').each(function (index) {
-        $(this).parent().html($(this).html());
-      });
-    }
-  }
+  $('td.project>a').each(function(index) {
+    $(this).parent().html($(this).html());
+  });
 
   // Disables standart redmine ajax preloader
-  if (RMPlus.Utils.exists('Usability.settings.disable_redmine_ajax_preloader')){
-    if (RMPlus.Usability.settings.disable_redmine_ajax_preloader) {
+  if (RMPlus.Utils.exists('Usability.settings.disable_ajax_preloader')){
+    if (RMPlus.Usability.settings.disable_ajax_preloader === 'true'){
       $('#ajax-indicator').remove();
     }
   }
 
-if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
-  if (RMPlus.Usability.settings.enable_rmplus_ajax_preloader){
-    $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
-      jQuery(document.body).data('ajax_emmiter', jQuery(this))
-    });
+  $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
+    jQuery(document.body).data('ajax_emmiter', jQuery(this));
+  });
 
-    $(document).ajaxStart(function () {
-      // alert('ajax started')
-      obj = jQuery(document.body).data('ajax_emmiter')
-      if(typeof obj != 'undefined') {
-        obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
-        obj.addClass('ajax_hidden_emmiter');
-        obj.hide();
-      }
-      jQuery(document.body).removeData('ajax_emmiter');
-    });
+  $(document).ajaxStart(function() {
+    obj = jQuery(document.body).data('ajax_emmiter')
+    if(typeof obj != 'undefined') {
+      obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
+      obj.addClass('ajax_hidden_emmiter');
+      obj.hide();
+    }
+    jQuery(document.body).removeData('ajax_emmiter');
+  });
 
-    $(document).ajaxStop(function () {
-      jQuery("div.loader:empty").remove();
-      jQuery('.ajax_hidden_emmiter').show();
-    });
-  }
-}
-
-/* ----- from a_small_things ends ---- */
+  $(document).ajaxStop(function() {
+    jQuery("div.loader:empty").remove();
+    jQuery('.ajax_hidden_emmiter').show();
+  });
 
   if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button')){
     if (RMPlus.Usability.settings.show_sidebar_close_button){
       var close_sidebar = $('<a/>', { href: '#',
                                       id: 'close_sidebar_icon',
                                       class: 'R close_sidebar icon',
-                                      click: function () {
+                                      click: function() {
                                         if ($(this).hasClass('close_sidebar')) {
                                           hide_sidebar($(this))
                                         } else {
@@ -95,7 +84,7 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
-      $('#sidebar').dblclick(function () {
+      $('#sidebar').dblclick(function() {
         hide_sidebar($('#close_sidebar_icon'));
       });
     }
@@ -180,8 +169,6 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
       $(this).remove();
   });
 
-
-
   if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')){
     if (RMPlus.Usability.settings.enable_underlined_links){
       $('a.icon, #main-menu li a, #top-menu li a:not(:has(span))').each(function(index){
@@ -195,10 +182,6 @@ if (RMPlus.Utils.exists('Usability.settings.enable_rmplus_ajax_preloader')){
       });
 
       RMPlus.Usability.underlineTabs();
-      //$('div.tabs ul li a').each(function(index) {
-      //  $(this).addClass('no_line in_link');
-      //  $(this).html('<span>'+$(this).html()+'</span>');
-      //});
     }
   }
 
