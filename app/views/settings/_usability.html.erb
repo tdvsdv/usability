@@ -34,8 +34,8 @@
     <label for="settings_users_at_error">
       <%= l(:settings_ask_users_at_error) %>:
       <%= select_tag( 'settings[users_at_error]',
-                        options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
-                        {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %>
+                      options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
+                      {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %>
     </label>
   <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
 

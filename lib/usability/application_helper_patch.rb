@@ -47,7 +47,7 @@ module Usability
 
 
       def page_header_title_with_usability
-        return page_header_title_without_usability unless Setting.plugin_usability[:modify_page_header]
+        return page_header_title_without_usability unless Setting.plugin_usability[:remove_project_page_header_breadcrumb]
 
         s = ''
         s << '<span>'
