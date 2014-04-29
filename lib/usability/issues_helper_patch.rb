@@ -4,18 +4,17 @@ module Usability
 	    base.extend(ClassMethods)
 	    base.send(:include, InstanceMethods)
 
-	    # Same as typing in the class 
+	    # Same as typing in the class
 	    base.class_eval do
-			alias_method_chain :render_custom_fields_rows, :usability
+				alias_method_chain :render_custom_fields_rows, :usability
 	    end
 
 	  end
 
-	  module ClassMethods   
-
+	  module ClassMethods
 	  end
 
-	  module InstanceMethods 
+	  module InstanceMethods
 	  	def render_custom_fields_rows_with_usability(issue)
 	  		custom_field_values=issue.custom_field_values.reject {|value| value.custom_field.field_format=='text'}
 		    return if custom_field_values.empty?
@@ -33,7 +32,7 @@ module Usability
 		      n += 1
 		    end
 		    s << "</tr>\n"
-		    s.html_safe	  		
+		    s.html_safe
 	  	end
 	  end
 	end
