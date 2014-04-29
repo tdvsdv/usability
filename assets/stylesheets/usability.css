@@ -137,3 +137,8 @@ a.show_sidebar
 #header a {
   color: #295200;
 }
+
+.usability-settings-input{
+  clear: both;
+  float: left;
+}
