@@ -17,9 +17,7 @@
 <%= stylesheet_link_tag 'bootstrap_buttons_alerts.css', :plugin => :usability %>
 <%= stylesheet_link_tag 'usability.css', :plugin => :usability %>
 </head>
-
 <style type="text/css">
-
 img.gravatar {
   padding: 2px;
   border: 1px solid #D5D5D5;
@@ -27,10 +25,27 @@ img.gravatar {
   vertical-align: middle;
 }
 
+.btn {
+  height: auto;
+}
+.us_ask_user {
+  margin-top: 15px;
+}
+a.in_link {
+  text-decoration: underline;
+}
+.ld_user_inf {
+  margin: 0;
+  line-height: 1.3;
+}
+.ld_user_name {
+  margin: 0;
+  line-height: 1.3;
+}
 </style>
 
 <body>
-<div style="width: 100%; top:50px; position: absolute;">
+<div id="err_usability_warn" style="width: 100%; top:50px; position: absolute;">
   <div style="margin: 0 50%; min-width: 800px;">
     <div class="alert alert-warning H" style="margin: 0 -50%; width: 100%;">
       <h2><%= l(:warning_error_occured, :status => @status) %></h2>
@@ -88,12 +103,24 @@ img.gravatar {
 </style>
 
 <script type="text/javascript">
-$(document).ready(function(){
+$(document).ready(function () {
+  uc_center_warn();
+
   $('#us_req_link').click(function () {
     $('#new_request_form').submit();
     return false;
-  })
+  });
 });
+
+function uc_center_warn () {
+  var warn_height = $('#err_usability_warn').outerHeight();
+  var w_height = $(window).height();
+  var top = 0
+  if(w_height > warn_height){
+    top = (w_height-warn_height)/2;
+  }
+  $('#err_usability_warn').css('top', top.toString()+'px');
+}
 </script>
 </body>
 </html>
