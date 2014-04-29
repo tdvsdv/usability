@@ -36,7 +36,6 @@ Rails.application.config.to_prepare do
   User.send(:include, Usability::UserPatch)
   UsersController.send(:include, Usability::UsersControllerPatch)
   Redmine::Info.send(:include, Usability::InfoPatch::Redmine::Info)
-  IssuesHelper.send(:include, Usability::IssuesHelperPatch)
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
 end
 
