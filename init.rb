@@ -16,8 +16,7 @@ Redmine::Plugin.register :usability do
   author_url 'http://rmplus.pro/'
 
   settings :partial => 'settings/usability',
-           :default => {:custom_help_url => ''
-                       }
+           :default => {:custom_help_url => ''}
 
 
   delete_menu_item :top_menu, :help
