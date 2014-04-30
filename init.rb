@@ -27,7 +27,7 @@ Redmine::Plugin.register :usability do
 
   menu :account_menu, :my_name, {:controller => 'my', :action => 'account'}, :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'my_name_popover_content'}}
   menu :top_menu, :projects, {:controller => 'projects', :action => 'index'}, :caption => :label_project_plural, :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'projects_popover_content'}}
-
+  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: :label_usability_easy_perplex_menu, if: Proc.new { Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? }, html: { class: 'in_link show_loader', remote: true }
 end
 
 Rails.application.config.to_prepare do
@@ -38,6 +38,7 @@ Rails.application.config.to_prepare do
   Redmine::Info.send(:include, Usability::InfoPatch::Redmine::Info)
   IssuesHelper.send(:include, Usability::IssuesHelperPatch)
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
+  IssuesController.send(:include, Usability::IssuesControllerPatch)
 end
 
 require 'usability/view_hooks'

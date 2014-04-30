@@ -1,5 +1,8 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
-<% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
+<%
+  @settings = { } unless(@settings) # settings may be false
+  @settings.each { |name, value| @settings[name] = @settings[name] || defaults[name] }
+%>
 
   <fieldset class="splitcontentleft">
     <legend><strong><%= l(:label_usability_settings_common) %></strong></legend>
@@ -25,9 +28,6 @@
     <label for="settings_enable_usability_progress_bar">
       <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
     </label>
-    <label for="settings_enable_easy_rm_tasks">
-      <%= check_box_tag 'settings[enable_easy_rm_tasks]', true, @settings[:enable_easy_rm_tasks] %> &mdash; <%= l(:settings_enable_easy_rm_tasks) %>
-    </label>
   </fieldset>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:settings_new_request_to_department) %></strong></legend>
@@ -37,7 +37,7 @@
                       options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
                       {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %>
     </label>
-  <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+    <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
 
       <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
       <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
@@ -78,7 +78,7 @@
                           {:style => 'display:none;', :id => 'req_types_all'}) %>
         </label>
       </p>
-  <% end %>
+    <% end %>
   </fieldset>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
@@ -102,6 +102,16 @@
     </label>
     <label for="settings_enable_custom_default_page">
       <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
+    </label>
+  </fieldset>
+  <fieldset class="splitcontentleft">
+    <legend><strong><%= l(:label_usability_settings_easy_perplex) %></strong></legend>
+    <label for="settings_enable_easy_rm_tasks">
+      <%= check_box_tag 'settings[enable_easy_rm_tasks]', true, @settings[:enable_easy_rm_tasks] %> &mdash; <%= l(:settings_enable_easy_rm_tasks) %>
+    </label>
+    <label>
+      <span><%= l(:settings_easy_perplex_executor_roles) %>:</span>
+      <%= select_tag 'settings[easy_perplex_executor_roles]', options_for_select([['---', nil]] + Role.order('name').givable.collect { |it| [it.name, it.id] }, @settings[:easy_perplex_executor_roles]), multiple: true %>
     </label>
   </fieldset>
 

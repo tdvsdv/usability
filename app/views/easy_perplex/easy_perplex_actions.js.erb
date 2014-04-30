@@ -1,0 +1,8 @@
+RMPlus.Usability.show_flashes('<%= flash[:error] %>', '<%= flash[:notice] %>')
+<% if (flash[:error] || flash[:notice]) %>
+  $('#easy-perplex-modal-window').modal('hide');
+  $('#easy-perplex-modal-window').remove( );
+<% else %>
+  $('#us-perplex-actions').html("<%= escape_javascript(render partial: 'easy_perplex_actions') %>");
+<% end %>
+<% flash.delete(:error); flash.delete(:notice) %>

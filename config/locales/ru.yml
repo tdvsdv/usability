@@ -28,6 +28,7 @@ ru:
   settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
+  settings_easy_perplex_executor_roles: 'Роли, использующиеся в качестве определения исполнителя в проекте'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
@@ -39,3 +40,25 @@ ru:
   label_usability_settings_default_page: "Настройки страницы по умолчанию"
   label_usability_settings_select_ajax_preloader: "Выбор прелоадера для AJAX-запросов"
   label_usability_settings_common: "Общие настройки"
+
+  label_usability_settings_easy_perplex: 'Настройки упрощенного механизма создания задания подчиненному'
+
+  label_usability_easy_perplex_menu: 'Озадачить'
+  label_usability_easy_perplex_modal_header: 'Озадачить своего подчиненного'
+  label_usability_easy_perplex_modal_cancel: 'Отмена'
+  label_usability_easy_perplex_select_subordinate: 'Выберите подчиненного'
+  label_usability_easy_perplex_subordinate: 'Подчиненный, которого необходимо озадачить'
+  label_usability_easy_perplex_issues_header: 'Запланировать ограниченную по времени задачу со сроками исполнения на %{user} (создать задачу)'
+  label_usability_easy_perplex_sd_requests_header: 'Запросить хотелку у %{user} и позволить ему (eй) запланировать задачу самому (создать заявку)'
+  label_usability_easy_perplex_create_issue: 'Создать задачу в проекте %{project}'
+  label_usability_easy_perplex_create_request: 'Создать заявку в депртаменте: %{department}'
+
+
+
+  text_usability_easy_perplex_no_subordinates: 'К сожалению, в данный момент у вас нет подчиненных, но у вас все еще впереди!'
+  text_usability_easy_perplex_ldap_was_not_installed: 'Функциональность недоступна, необходимо установить плагин «ldap_users_sync»'
+  text_usability_easy_perplex_wrong_user: 'Сотрудник не найден'
+  text_usability_easy_perplex_does_not_subordinate: 'Сотрудник %{user} не является вашим непосредственным подчиненным.'
+  text_usability_easy_perplex_you_are_not_participant_of_any_project: 'Вы не являетесь участником ни в одном проекте, в котором %{user} может быть исполнителем'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Сотрудник %{user} не является участником какого-либо проекта. Для настройки участников проекта.'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к системному администратору для настройки обслуживающего подразделения.'

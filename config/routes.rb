@@ -9,3 +9,5 @@ put 'users/:id/update_usability_preferences', :controller => 'users', :action =>
 
 get 'users/:id/show_user_details', :controller => 'users', :action => 'show_user_details', :id => /\d+/, :as => "show_user_details"
 
+get 'easy_perplex', controller: :easy_perplex, action: :easy_perplex
+get 'easy_perplex_actions(/:user_id)', controller: :easy_perplex, action: :easy_perplex_actions, user_id: /\d+/
