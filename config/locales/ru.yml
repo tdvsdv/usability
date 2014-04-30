@@ -21,7 +21,6 @@ ru:
 
   settings_disable_default_preloader: "Отключить штатный прелоадер Redmine."
 
-  #settings_disable_project_links_in_tables: "Отключить ссылку на проект в колонке «Проект» страниц «Просмотреть все задачи», «Всего затрачено времени»."
   settings_show_sidebar_close_button: "Позволить скрывать боковое меню."
   settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок."
   settings_remove_project_page_header_breadcrumb: "Не показывать родительские проекты в заголовке страницы проекта."

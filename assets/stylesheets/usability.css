@@ -103,28 +103,23 @@ div.menu_block {
   background-image: url(../images/grad_24px.png);
 }
 
-.modal h4
-  {
-   border-bottom: none;
-  }
+.modal h4 {
+  border-bottom: none;
+}
 
-a.close_sidebar, a.show_sidebar
-  {
-
+a.close_sidebar, a.show_sidebar{
   background-repeat: no-repeat;
   background-position: 100% 0%;
   width: 16px;
   height: 16px;
-  }
+}
 
-a.close_sidebar
-  {
+a.close_sidebar {
   background-image: url(../images/close.png);
-  }
-a.show_sidebar
-  {
+}
+a.show_sidebar {
   background-image: url(../images/diamonds.png);
-  }
+}
 
 .bt20, .bt20:link, .bt20:visited {
   height: 20px;
@@ -138,7 +133,7 @@ a.show_sidebar
   color: #295200;
 }
 
-.usability-settings-input{
+.usability-settings-input {
   clear: both;
   float: left;
 }
