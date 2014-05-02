@@ -104,7 +104,7 @@
       <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
     </label>
   </fieldset>
-  <fieldset class="splitcontentleft">
+  <fieldset class="splitcontentright">
     <legend><strong><%= l(:label_usability_settings_easy_perplex) %></strong></legend>
     <label for="settings_enable_easy_rm_tasks">
       <%= check_box_tag 'settings[enable_easy_rm_tasks]', true, @settings[:enable_easy_rm_tasks] %> &mdash; <%= l(:settings_enable_easy_rm_tasks) %>
@@ -112,6 +112,10 @@
     <label>
       <span><%= l(:settings_easy_perplex_executor_roles) %>:</span>
       <%= select_tag 'settings[easy_perplex_executor_roles]', options_for_select([['---', nil]] + Role.order('name').givable.collect { |it| [it.name, it.id] }, @settings[:easy_perplex_executor_roles]), multiple: true %>
+    </label>
+    <label>
+      <span><%= l(:settings_easy_perplex_cf_customer_id) %>:</span>
+      <%= select_tag 'settings[easy_perplex_cf_customer_id]', options_for_select([['---', nil]] + CustomField.order(:name).where(type: 'IssueCustomField', field_format: 'user').collect { |e| [e.name, e.id] }, @settings[:easy_perplex_cf_customer_id]) %>
     </label>
   </fieldset>
 

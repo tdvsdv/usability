@@ -29,6 +29,7 @@ ru:
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
   settings_easy_perplex_executor_roles: 'Роли, использующиеся в качестве определения исполнителя в проекте'
+  settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"

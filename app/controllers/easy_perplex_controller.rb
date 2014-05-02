@@ -45,7 +45,7 @@ class EasyPerplexController < ApplicationController
   def prepare_projects_for_actions
     roles = Setting.plugin_usability[:easy_perplex_executor_roles]
     if (roles && roles.is_a?(Array) && roles.any?)
-      @projects = Project.joins({ memberships: :roles }) .where("#{Member.table_name}.user_id = ? and #{Role.table_name}.id in (?)", @subordinate.id, roles)
+      @projects = Project.joins({ memberships: :roles }).where("#{Member.table_name}.user_id = ? and #{Role.table_name}.id in (?)", @subordinate.id, roles)
     else
       @projects = @subordinate.projects
     end
