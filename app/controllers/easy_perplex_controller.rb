@@ -44,10 +44,10 @@ class EasyPerplexController < ApplicationController
 
   def prepare_projects_for_actions
     roles = Setting.plugin_usability[:easy_perplex_executor_roles]
-    if (roles && roles.is_a?(Array) && roles.any?)
-      @projects = Project.joins({ memberships: :roles }).where("#{Member.table_name}.user_id = ? and #{Role.table_name}.id in (?)", @subordinate.id, roles)
+    if (roles && roles.is_a?(Array) && roles.any? && !roles[0].blank?)
+      @projects = Project.active.joins({ memberships: :roles }).where("#{Member.table_name}.user_id = ? and #{Role.table_name}.id in (?)", @subordinate.id, roles)
     else
-      @projects = @subordinate.projects
+      @projects = @subordinate.projects.active.visible
     end
     @projects = @projects.joins("LEFT JOIN #{Member.table_name} m on m.project_id = #{Project.table_name}.id and m.user_id = #{User.current.id}")
                          .select("#{Project.table_name}.*, case when m.id is null then 0 else 1 end as is_participant")
