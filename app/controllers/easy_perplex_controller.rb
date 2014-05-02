@@ -30,7 +30,7 @@ class EasyPerplexController < ApplicationController
     end
 
     prepare_projects_for_actions
-    prepare_departments_for_actions
+    prepare_departments_and_types_for_actions
   end
 
   private
@@ -54,16 +54,19 @@ class EasyPerplexController < ApplicationController
                          .uniq
   end
 
-  def prepare_departments_for_actions
+  def prepare_departments_and_types_for_actions
     @department = false
     return unless (Redmine::Plugin.installed?(:service_desk))
+
     @department = nil
-    if (SdRequestType.exists?(['user_department_id = ?', @subordinate.user_department.id]))
-      @department = { head: @subordinate.user_department }
-    elsif (!@subordinate.user_department.head_of_branch && SdRequestTypeBranch.exists?(['user_department_id = ?', @subordinate.user_department.id]))
+
+
+    if ((sd = SdRequestType.where('user_department_id = ?', @subordinate.user_department.id)) != [ ])
+      @department = { head: @subordinate.user_department, types: sd }
+    elsif (!@subordinate.user_department.head_of_branch && (sd = SdRequestType.joins(:branches).where("#{SdRequestTypeBranch.table_name}.user_department_id = ?", @subordinate.user_department.id).uniq) != [ ])
       head = @subordinate.top_department
       if (SdRequestType.exists?(['user_department_id = ?', head.id]))
-        @department = { head: head, branch: @subordinate.user_department }
+        @department = { head: head, branch: @subordinate.user_department, types: sd }
       end
     end
   end

@@ -51,7 +51,7 @@ ru:
   label_usability_easy_perplex_issues_header: 'Запланировать ограниченную по времени задачу со сроками исполнения на %{user} (создать задачу)'
   label_usability_easy_perplex_sd_requests_header: 'Запросить хотелку у %{user} и позволить ему (eй) запланировать задачу самому (создать заявку)'
   label_usability_easy_perplex_create_issue: 'Создать задачу в проекте %{project}'
-  label_usability_easy_perplex_create_request: 'Создать заявку в депртаменте: %{department}'
+  label_usability_easy_perplex_create_request: 'Создать %{type} в %{department}'
 
 
 
