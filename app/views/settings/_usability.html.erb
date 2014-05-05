@@ -1,5 +1,7 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
-<% @settings.each{|name, value| @settings[name] = @settings[name] || defaults[name]} %>
+<% settings = Setting.plugin_usability %>
+<% @settings = defaults.merge(settings) %>
+<% @settings = settings.merge(defaults) %>
 
   <fieldset class="splitcontentleft">
     <legend><strong><%= l(:label_usability_settings_common) %></strong></legend>

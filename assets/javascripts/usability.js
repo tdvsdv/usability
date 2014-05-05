@@ -14,6 +14,17 @@ RMPlus.Usability = (function(my){
 $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
 
+  if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
+    if (RMPlus.Usability.settings.enable_usability_progress_bar){
+      $('.pie-chart').each(function(){
+        var radius = parseInt(this.getAttribute('data-radius'));
+        var pcts = JSON.parse(this.getAttribute('data-pcts'));
+        var labels = [];
+        Raphael(this, radius*2, radius*2).pieChart(radius, radius, radius, pcts, labels);
+      });
+    }
+  }
+
   $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
 
   var contextual = $('#update').prev('.contextual');

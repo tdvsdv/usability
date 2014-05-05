@@ -64,26 +64,20 @@ module Usability
       def progress_bar_with_usability(pcts, options={})
         return progress_bar_without_usability(pcts, options) unless Setting.plugin_usability[:enable_usability_progress_bar]
 
-        styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
-        lablel_styles = ['bar-info', 'bar-stripped', 'bar-warning', 'bar-success', 'bar-danger']
-        width = options[:width] || '60px;'
-        legend = options[:legend] || ''
-        pcts = [pcts] unless pcts.is_a?(Array)
-        pcts = pcts.collect(&:round)
-        s = ''
-        s << '<div class="H">'
-        s << '<div class="L">'
-        s << "<div class=\"progress progress-striped\" style=\"width:#{width}\">"
-        i=0
-        pcts.each do |v|
-          s << '<div class="bar '+styles[i]+'" style="width: '+v.to_s+'%;"></div>'
-          i+=1
+
+        unless pcts.is_a?(Array)
+          pcts = [pcts]
+          pcts << 100 - pcts[0]
         end
-        s << '</div>'
-        s << '</div>'
-        s << '<div class="L">'
-        s << legend
-        s << '</div>'
+        pcts = pcts.collect(&:round)
+
+        radius = options[:radius] || 10
+        legend = options[:legend] || ''
+        font_size = options[:font_size] || 13
+
+        s = ''
+        s << "<div class='pie-chart' data-radius='#{radius}' data-pcts='#{pcts}' data-font-size='#{font_size}'>"
+        s << content_tag('span', legend, :style => "font-size: #{font_size}px; line-height: #{radius*2}px; vertical-align: top; margin-left: 5px;").html_safe
         s << '</div>'
         s.html_safe
       end
