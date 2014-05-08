@@ -71,17 +71,17 @@ module Usability
         end
         pcts = pcts.collect(&:round)
 
-        radius = options[:radius] || 10
-        legend = options[:legend] || ''
+        radius = options[:radius] || 9
+        legend = options[:legend] || "#{pcts[0]}%"
         font_size = options[:font_size] || 13
+        border_width = options[:border_width] || 0.7
 
         s = ''
-        s << "<div class='pie-chart' data-radius='#{radius}' data-pcts='#{pcts}' data-font-size='#{font_size}'>"
-        s << content_tag('span', legend, :style => "font-size: #{font_size}px; line-height: #{radius*2}px; vertical-align: top; margin-left: 5px;").html_safe
-        s << '</div>'
+        s << "<nobr><div class='pie-chart' data-radius='#{radius}' data-border-width='#{border_width}' data-pcts='#{pcts}' data-font-size='#{font_size}'>"
+        s << "<span style='font-size: #{font_size}px; line-height: #{radius*2}px; vertical-align: top; margin-left: 5px;'>&mdash; #{legend}"
+        s << '</div></nobr>'
         s.html_safe
       end
-
     end
   end
 end
