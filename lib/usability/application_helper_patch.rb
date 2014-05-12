@@ -77,9 +77,10 @@ module Usability
         border_width = options[:border_width] || 0.7
 
         s = ''
-        s << "<nobr><div class='pie-chart' data-radius='#{radius}' data-border-width='#{border_width}' data-pcts='#{pcts}' data-font-size='#{font_size}'>"
+        s << "<div class='pie-chart' data-radius='#{radius}' data-border-width='#{border_width}' data-pcts='#{pcts}' data-font-size='#{font_size}'>"
+        s << '<nobr>'
         s << "<span style='font-size: #{font_size}px; line-height: #{radius*2}px; vertical-align: top; margin-left: 5px;'>&mdash; #{legend}"
-        s << '</div></nobr>'
+        s << '</nobr></div>'
         s.html_safe
       end
     end

@@ -3,16 +3,10 @@ Raphael.fn.pieChart = function (cx, cy, r, values, border_width, labels) {
         rad = Math.PI / 180,
         chart = this.set();
     function sector(cx, cy, r, startAngle, endAngle, params) {
-         // if (endAngle < 90)
-         //     endAngle = 90 - endAngle;
-         // else if (endAngle > 90)
-         //     endAngle = endAngle - 180;
-
         var x1 = cx + r * Math.cos(-startAngle * rad),
             x2 = cx + r * Math.cos(-endAngle * rad),
             y1 = cy + r * Math.sin(-startAngle * rad),
             y2 = cy + r * Math.sin(-endAngle * rad);
-
         return paper.path(["M", cx, cy, "L", x1, y1, "A", r, r, 0, +(endAngle - startAngle > 180), 0, x2, y2, "z"]).attr(params);
     }
     if (values[0] !== 100 && values[0] !== 0){
@@ -37,6 +31,14 @@ Raphael.fn.pieChart = function (cx, cy, r, values, border_width, labels) {
                     else {
                         p.transform("S-1,1");
                     }
+                    if (value === 60){
+                        if (j === 0){
+                            p.transform("...T" + (2 + 2*Math.ceil(border_width)) + ",0");
+                        }
+                        else if (j === 1){
+                            p.transform("...T" + (-2 - 2*Math.ceil(border_width)) + ",0");
+                        }
+                    }
                 }
                 angle += angle_value;
                 chart.push(p);
@@ -48,7 +50,7 @@ Raphael.fn.pieChart = function (cx, cy, r, values, border_width, labels) {
             process(i);
         }
     }
-    else{
+    else {
         if (values[0] === 100){
             color = '#82C528';
             bcolor = '#63AD15';
