@@ -28,6 +28,9 @@
     <label for="settings_enable_usability_progress_bar">
       <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
     </label>
+    <label>
+      <%= check_box_tag 'settings[enable_download_attachments_all_in_one]', true, @settings[:enable_download_attachments_all_in_one] %> &mdash; <%= l(:settings_enable_download_attachments_all_in_one) %>
+    </label>
   </fieldset>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:settings_new_request_to_department) %></strong></legend>

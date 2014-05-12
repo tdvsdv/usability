@@ -39,6 +39,8 @@ Rails.application.config.to_prepare do
   IssuesHelper.send(:include, Usability::IssuesHelperPatch)
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
   IssuesController.send(:include, Usability::IssuesControllerPatch)
+  AttachmentsHelper.send(:include, Usability::AttachmentsHelperPatch)
+  AttachmentsController.send(:include, Usability::AttachmentsControllerPatch)
 end
 
 require 'usability/view_hooks'

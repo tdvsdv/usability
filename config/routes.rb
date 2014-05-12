@@ -11,3 +11,5 @@ get 'users/:id/show_user_details', :controller => 'users', :action => 'show_user
 
 get 'easy_perplex', controller: :easy_perplex, action: :easy_perplex
 get 'easy_perplex_actions(/:user_id)', controller: :easy_perplex, action: :easy_perplex_actions, user_id: /\d+/
+
+get 'attachments/download/all/:id', controller: :attachments, action: :download_all

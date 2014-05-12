@@ -148,3 +148,7 @@ a.show_sidebar {
 {
   margin-top: 15px;
 }
+.icon-us-download-all
+{
+  background-image: url(../images/download_all.png);
+}

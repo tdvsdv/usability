@@ -30,6 +30,7 @@ ru:
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
   settings_easy_perplex_executor_roles: 'Роли, использующиеся в качестве определения исполнителя в проекте'
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
+  settings_enable_download_attachments_all_in_one: 'Загружать вложения одним архивом'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
@@ -63,3 +64,6 @@ ru:
   text_usability_easy_perplex_you_are_not_participant_of_any_project: 'Вы не являетесь участником ни в одном проекте, в котором %{user} может быть исполнителем'
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Сотрудник %{user} не является участником какого-либо проекта. Для настройки участников проекта.'
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к системному администратору для настройки обслуживающего подразделения.'
+
+  label_usability_download_all_in_one: 'Скачать вложения одним архивом'
+
