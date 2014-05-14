@@ -1,0 +1,28 @@
+<% unless (@subordinate.nil?) %>
+  <fieldset>
+    <legend><strong><%= l(:label_usability_easy_perplex_issues_header, user: link_to_user(@subordinate)).html_safe %></strong></legend>
+    <% projects = @projects.select { |it| it.attributes['is_participant'].to_i == 1 } || [ ] %>
+    <% if (@projects == [ ]) %>
+      <div class="nodata" style="margin-bottom: 0px;"><%= l(:text_usability_easy_perplex_subordinate_is_not_participant_of_any_project, user: link_to_user(@subordinate)).html_safe %></div>
+    <% elsif (projects == [ ]) %>
+      <div class="nodata" style="margin-bottom: 0px;"><%= l(:text_usability_easy_perplex_you_are_not_participant_of_any_project, user: link_to_user(@subordinate)).html_safe %></div>
+    <% else %>
+      <% projects.each do |it| %>
+        <div><%= link_to "<span>#{l(:label_usability_easy_perplex_create_issue, project: it.name, user: @subordinate)}</span>".html_safe, { controller: :issues, action: :new, project_id: it.identifier, executor_id: @subordinate.id, easy_perplex: true } %></div>
+      <% end %>
+    <% end %>
+  </fieldset>
+  <% if (@department != false) %>
+    <fieldset>
+      <legend><strong><%= l(:label_usability_easy_perplex_sd_requests_header, user: link_to_user(@subordinate)).html_safe %></strong></legend>
+
+      <% if (!@department.nil? && !@department[:types].nil?) %>
+        <% @department[:types].each do |it| %>
+          <div><%= link_to "<span>#{l(:label_usability_easy_perplex_create_request, type: it.name, department: @department[:head].name)}</span>".html_safe, { controller: :sd_requests, action: :new, easy_perplex: true, executor_id: @subordinate.id, head_id: @department[:head].id, branch_id: @department[:branch].try(:id), type_id: it.id } %></div>
+        <% end %>
+      <% else %>
+        <div class="nodata" style="margin-bottom: 0px;"><%= l(:text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk, user: link_to_user(@subordinate)).html_safe %></div>
+      <% end %>
+    </fieldset>
+  <% end %>
+<% end %>

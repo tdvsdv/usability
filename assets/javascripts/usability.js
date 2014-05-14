@@ -8,6 +8,19 @@ RMPlus.Usability = (function(my){
     });
   };
 
+  my.show_flashes = function(message_error, message_notice) {
+    $('.flash').remove( );
+    if (typeof message_error != 'undefined' && message_error != '') {
+        $('#content').prepend('<div id="flash_error" class="flash error">' + message_error + '</div>');
+        window.scrollTo(0, 0);
+    }
+    if (typeof message_notice != 'undefined' && message_notice != '') {
+        $('#content').prepend('<div id="flash_notice" class="flash notice">' + message_notice + '</div>');
+        window.scrollTo(0, 0);
+    }
+  }
+
+
   return my;
 })(RMPlus.Usability || {});
 
@@ -238,6 +251,10 @@ $(document).ready(function () {
     return false;
   });
 
+  $(document.body).on('change', '#us-subordinates-select2', function( ) {
+    us_easy_perplex_actions_submit( );
+  });
+
 });
 
 function usability_reallocate_top_menu () {
@@ -342,3 +359,9 @@ function hard_confirm (label,event) {
 }
 
 /* ----- from a_small_things ends ---- */
+
+function us_easy_perplex_actions_submit( )
+{
+  $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
+  $("#us_subordinate_form").submit( );
+}

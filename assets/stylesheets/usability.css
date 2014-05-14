@@ -137,3 +137,18 @@ a.show_sidebar {
   clear: both;
   float: left;
 }
+.us-perplex-tabular label
+{
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.us-perplex-actions fieldset
+{
+  margin-top: 15px;
+}
+.icon-us-download-all
+{
+  background-image: url(../images/download_all.png);
+}
