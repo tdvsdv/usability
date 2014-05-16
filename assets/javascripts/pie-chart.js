@@ -21,7 +21,7 @@ Raphael.fn.pieChart = function (cx, cy, r, values, border_width, labels) {
                 }
                 else if (j === 1){
                     color = '#F6B3B3';
-                    bcolor = '#FF3030';
+                    bcolor = '#FF4A4A';
                 }
                 if (value !== 0) {
                     p = sector(cx, cy, r, angle, angle + angle_value, {fill: "90-" + bcolor + "-" + color, stroke: "#fff", "stroke-width": border_width, "stroke-linejoin": "round", "stroke-opacity": 1})
@@ -52,12 +52,12 @@ Raphael.fn.pieChart = function (cx, cy, r, values, border_width, labels) {
     }
     else {
         if (values[0] === 100){
-            color = '#82C528';
+            color = '#AFE4AD';
             bcolor = '#63AD15';
         }
         else if (values[0] === 0) {
-            color = '#FF3F3F';
-            bcolor = '#FF3030';
+            color = '#F6B3B3';
+            bcolor = '#FF4A4A';
         }
         var circle = paper.circle(r, r, r).attr({fill: "90-" + bcolor + "-" + color, stroke: "#fff", "stroke-width": border_width, "stroke-linejoin": "round", "stroke-opacity": 1});
         chart.push(circle);
