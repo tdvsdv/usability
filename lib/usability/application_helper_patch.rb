@@ -23,7 +23,7 @@ module Usability
     module InstanceMethods
 
       def link_to_user_with_usability(user, options={})
-        return link_to_user_without_usability(user, options={}) unless Setting.plugin_usability['custom_details_on']
+        return link_to_user_without_usability(user, options) unless Setting.plugin_usability['custom_details_on']
 
         if user.is_a?(User)
           name = h(user.name(options[:format]))
