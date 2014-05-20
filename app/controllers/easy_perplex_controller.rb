@@ -1,6 +1,11 @@
 class EasyPerplexController < ApplicationController
   before_filter :check_ldap_installed, only: [:easy_perplex, :easy_perplex_actions]
 
+  if (Redmine::Plugin.installed?(:ldap_users_sync))
+    include LdapCommonHelper
+    helper LdapCommonHelper
+  end
+
   def easy_perplex
     @unders = User.current.subordinates(true).sorted
     if (User.current.id == 69)

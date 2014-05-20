@@ -255,6 +255,21 @@ $(document).ready(function () {
     us_easy_perplex_actions_submit( );
   });
 
+  $('#us-easy-perplex-link').click(function( ) {
+    $('#easy-perplex-modal-window').html('<div class="us-big-loader"></div>');
+    $('#easy-perplex-modal-window').modal('hide');
+    $('#easy-perplex-modal-window').data('modal', null);
+    $('#easy-perplex-modal-window').modal({
+      keyboard: true
+    });
+
+    $.ajax({
+      type: 'GET',
+      url: this.href
+    });
+    return false;
+  });
+
 });
 
 function usability_reallocate_top_menu () {

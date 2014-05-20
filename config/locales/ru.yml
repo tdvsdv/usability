@@ -28,7 +28,7 @@ ru:
   settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
-  settings_easy_perplex_executor_roles: 'Роли, использующиеся в качестве определения исполнителя в проекте'
+  settings_easy_perplex_executor_roles: 'Роли, использующиеся для определения исполнителя в проекте'
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
   settings_enable_download_attachments_all_in_one: 'Загружать вложения одним архивом'
 
@@ -46,24 +46,30 @@ ru:
   label_usability_settings_easy_perplex: 'Настройки упрощенного механизма создания задания подчиненному'
 
   label_usability_easy_perplex_menu: 'Озадачить'
-  label_usability_easy_perplex_modal_header: 'Озадачить своего подчиненного'
+  label_usability_easy_perplex_modal_header: 'Озадачить своего непосредственного подчиненного'
   label_usability_easy_perplex_modal_cancel: 'Отмена'
   label_usability_easy_perplex_select_subordinate: 'Выберите подчиненного'
-  label_usability_easy_perplex_subordinate: 'Подчиненный, которого необходимо озадачить'
-  label_usability_easy_perplex_issues_header: 'Запланировать ограниченную по времени задачу со сроками исполнения на %{user} (создать задачу)'
-  label_usability_easy_perplex_sd_requests_header: 'Запросить хотелку у %{user} и позволить ему (eй) запланировать задачу самому (создать заявку)'
-  label_usability_easy_perplex_create_issue: 'Создать задачу в проекте %{project}'
-  label_usability_easy_perplex_create_request: 'Создать %{type} в %{department}'
+  label_usability_easy_perplex_subordinate: 'Кого вы хотите озадачить?'
+  label_usability_easy_perplex_subordinate_description: 'Начните набирать фамилию и выберите подчиненного из списка'
+  label_usability_easy_perplex_issues_header: 'Создать задание'
+  label_usability_easy_perplex_issues_description: 'Назначить ограниченное во времени (с конкретными сроками) на выбранного исполнителя (%{user}) задание.'
+  label_usability_easy_perplex_sd_requests_header: 'Создать заявку'
+  label_usability_easy_perplex_sd_requests_description: 'Отправить свою хотелку выбранному сотруднику (%{user}), позволить сотруднику самому запланировать сроки, определить приоритеты и назначить исполнителей.'
+  label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Создать задачу.'
+  label_usability_easy_perplex_create_request: '%{department}. Создать заявку'
+  label_usability_settings_easy_perplex_user_for_help: 'Контактное лицо по широкому спектру вопросов'
+  label_usability_easy_perplex_contact_to: 'Обратитесь к'
 
 
 
-  text_usability_easy_perplex_no_subordinates: 'К сожалению, в данный момент у вас нет подчиненных, но у вас все еще впереди!'
+  text_usability_easy_perplex_no_subordinates: 'К сожалению, в данный момент у вас нет подчиненных!'
   text_usability_easy_perplex_ldap_was_not_installed: 'Функциональность недоступна, необходимо установить плагин «ldap_users_sync»'
   text_usability_easy_perplex_wrong_user: 'Сотрудник не найден'
   text_usability_easy_perplex_does_not_subordinate: 'Сотрудник %{user} не является вашим непосредственным подчиненным.'
   text_usability_easy_perplex_you_are_not_participant_of_any_project: 'Вы не являетесь участником ни в одном проекте, в котором %{user} может быть исполнителем'
-  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Сотрудник %{user} не является участником какого-либо проекта. Для настройки участников проекта.'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Вы не можете назначить задачу на сотрдника %{user}, поскульку сотрудник не является исполнителем ни в одном проекте.'
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к системному администратору для настройки обслуживающего подразделения.'
 
   label_usability_download_all_in_one: 'Скачать вложения одним архивом'
+
 

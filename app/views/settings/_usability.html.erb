@@ -120,6 +120,10 @@
       <span><%= l(:settings_easy_perplex_cf_customer_id) %>:</span>
       <%= select_tag 'settings[easy_perplex_cf_customer_id]', options_for_select([['---', nil]] + CustomField.order(:name).where(type: 'IssueCustomField', field_format: 'user').collect { |e| [e.name, e.id] }, @settings[:easy_perplex_cf_customer_id]) %>
     </label>
+    <label>
+      <span><%= l(:label_usability_settings_easy_perplex_user_for_help) %>:</span>
+      <%= select_tag 'settings[easy_perplex_user_for_help]', options_for_select([['---', nil]] + User.active.sorted.collect { |it| [it.name, it.id] }, @settings[:easy_perplex_user_for_help]) %>
+    </label>
   </fieldset>
 
 <script type="text/javascript">

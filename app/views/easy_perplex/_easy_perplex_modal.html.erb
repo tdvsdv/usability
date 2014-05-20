@@ -5,7 +5,8 @@
 <div class='modal-body'>
   <%= form_tag url_for({ action: :easy_perplex_actions }), id: 'us_subordinate_form', method: :get, remote: true do %>
     <div class='us-perplex-tabular'>
-      <label for='user_id'><%= l(:label_usability_easy_perplex_subordinate) %>:</label>
+      <label for='user_id'><%= l(:label_usability_easy_perplex_subordinate) %></label>
+      <span><%= l(:label_usability_easy_perplex_subordinate_description) %>:</span>
       <%= select_tag 'user_id', options_for_select(@unders.collect { |it| [it.name, it.id] }), prompt: l(:label_usability_easy_perplex_select_subordinate), id: 'us-subordinates-select2', style: 'width: 100%' %>
       <!-- <div id="us-perplex-loader" style="display: inline;">&nbsp;&nbsp;&nbsp;&nbsp;</div> -->
     </div>

@@ -1,0 +1,7 @@
+<% if (Redmine::Plugin.installed?(:ldap_users_sync)) %>
+  <% user = (Setting.plugin_usability || { })[:easy_perplex_user_for_help].to_i %>
+  <% if (user != 0) %>
+    <%= l(:label_usability_easy_perplex_contact_to) %>:
+    <%= show_user_info(User.find(user)) %>
+  <% end %>
+<% end %>

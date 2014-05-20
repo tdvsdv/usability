@@ -1,18 +1,13 @@
-$('#easy-perplex-modal-window').modal('hide');
-$('#easy-perplex-modal-window').remove( );
 RMPlus.Usability.show_flashes('<%= flash[:error] %>', '<%= flash[:notice] %>')
 <% flash.delete(:error); flash.delete(:notice) %>
 
 <% if (!@unders.nil? && @unders != [ ]) %>
-  $('body').prepend('<div id="easy-perplex-modal-window" class="modal hide fade" style="width: 500px; z-index: 1061; display: none;" data-width="500px" data-height="90%" aria-hidden="true" role="dialog" tabindex="-1"></div>');
   $('#easy-perplex-modal-window').html("<%= escape_javascript(render partial: 'easy_perplex_modal') %>");
-  $('#easy-perplex-modal-window').modal({
-    keyboard: true
-  });
   $('#us-subordinates-select2').select2({
     placeholderOption: 'first',
     allowClear: true
   });
+  $(window).trigger("resize");
   // $('#group-set-modal-window').on('hidden', function ( ) {
 
   // });
