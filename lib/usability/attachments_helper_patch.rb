@@ -16,7 +16,7 @@ module Usability
         if ((Setting.plugin_usability || { })['enable_download_attachments_all_in_one'])
           if (container.attachments != [ ])
             default << '<br>'.html_safe
-            default << link_to(l(:label_usability_download_all_in_one), { controller: :attachments, action: :download_all, id: container.attachments[0].id }, class: 'icon icon-us-download-all').html_safe
+            default << link_to(l(:label_usability_download_all_in_one), { controller: :attachments, action: :download_all, id: container.attachments[0].id }, class: 'icon icon-us-download-all in_link').html_safe
           end
         end
 
