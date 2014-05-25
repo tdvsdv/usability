@@ -28,7 +28,7 @@ module Usability
         if user.is_a?(User)
           name = h(user.name(options[:format]))
           if user.active?
-            link_to name, show_user_details_path(user.id), 'data-toggle' => 'modal', 'data-iframe' => true, 'data-show-loader' => true, 'data-keyboard' => true, 'data-modal-width' => '70%', 'data-modal-height' => '80%', 'data-close-label' => l(:button_close_window), :class => "in_link modal_user"
+            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:button_close_window)}, :class => 'in_link data-show-loader'
           else
             name
           end
