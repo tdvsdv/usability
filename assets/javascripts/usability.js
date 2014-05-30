@@ -24,11 +24,14 @@ RMPlus.Usability = (function(my){
     if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
       if (RMPlus.Usability.settings.enable_usability_progress_bar){
         $('.pie-chart', $(element)).each(function(){
-          var radius = parseInt(this.getAttribute('data-radius'));
-          var pcts = JSON.parse(this.getAttribute('data-pcts'));
-          var border_width = parseFloat(this.getAttribute('data-border-width'));
-          var labels = [];
-          Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
+          if (!this.hasAttribute('data-piecharted')){
+            var radius = parseInt(this.getAttribute('data-radius'));
+            var pcts = JSON.parse(this.getAttribute('data-pcts'));
+            var border_width = parseFloat(this.getAttribute('data-border-width'));
+            var labels = [];
+            Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
+            this.setAttribute('data-piecharted', 'true');
+          }
         });
       }
     }
