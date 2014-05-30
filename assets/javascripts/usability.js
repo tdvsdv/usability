@@ -377,12 +377,9 @@ function hard_confirm (label,event) {
 }
 
 /* ----- from a_small_things ends ---- */
-<<<<<<< HEAD
 
 function us_easy_perplex_actions_submit( )
 {
   $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
   $("#us_subordinate_form").submit( );
 }
-=======
->>>>>>> i18962
