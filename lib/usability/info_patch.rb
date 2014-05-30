@@ -15,7 +15,7 @@ module Usability
         class << self
           def help_url
             if !Setting.plugin_usability['custom_help_url'].blank?
-              Setting.plugin_usability['custom_help_url']
+              Setting.plugin_usability[:custom_help_url]
             else
               'http://www.redmine.org/guide'
             end
