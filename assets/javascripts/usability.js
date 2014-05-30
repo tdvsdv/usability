@@ -18,8 +18,21 @@ RMPlus.Usability = (function(my){
         $('#content').prepend('<div id="flash_notice" class="flash notice">' + message_notice + '</div>');
         window.scrollTo(0, 0);
     }
-  }
+  };
 
+  my.makePieCharts = function(element){
+    if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
+      if (RMPlus.Usability.settings.enable_usability_progress_bar){
+        $('.pie-chart', $(element)).each(function(){
+          var radius = parseInt(this.getAttribute('data-radius'));
+          var pcts = JSON.parse(this.getAttribute('data-pcts'));
+          var border_width = parseFloat(this.getAttribute('data-border-width'));
+          var labels = [];
+          Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
+        });
+      }
+    }
+  };
 
   return my;
 })(RMPlus.Usability || {});
@@ -27,17 +40,7 @@ RMPlus.Usability = (function(my){
 $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
 
-  if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
-    if (RMPlus.Usability.settings.enable_usability_progress_bar){
-      $('.pie-chart').each(function(){
-        var radius = parseInt(this.getAttribute('data-radius'));
-        var pcts = JSON.parse(this.getAttribute('data-pcts'));
-        var border_width = parseFloat(this.getAttribute('data-border-width'));
-        var labels = [];
-        Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
-      });
-    }
-  }
+  RMPlus.Usability.makePieCharts(document.body);
 
   $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
 
@@ -374,9 +377,12 @@ function hard_confirm (label,event) {
 }
 
 /* ----- from a_small_things ends ---- */
+<<<<<<< HEAD
 
 function us_easy_perplex_actions_submit( )
 {
   $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
   $("#us_subordinate_form").submit( );
 }
+=======
+>>>>>>> i18962
