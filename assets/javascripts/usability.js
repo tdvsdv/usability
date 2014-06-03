@@ -24,7 +24,7 @@ RMPlus.Usability = (function(my){
     if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
       if (RMPlus.Usability.settings.enable_usability_progress_bar){
         $('.pie-chart', $(element)).each(function(){
-          if (!this.hasAttribute('data-piecharted')){
+          if (!$(this).attr('data-piecharted')){
             var radius = parseInt(this.getAttribute('data-radius'));
             var pcts = JSON.parse(this.getAttribute('data-pcts'));
             var border_width = parseFloat(this.getAttribute('data-border-width'));
