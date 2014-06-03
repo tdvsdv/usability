@@ -3,7 +3,6 @@
 <% all_settings = {} %>
 <% defaults.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
 <% settings.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
-<%= javascript_include_tag 'usability_settings', :plugin => :usability %>
 
 <%# Passing plugin settings from server to client %>
 <script type="text/javascript">
