@@ -66,14 +66,10 @@ class EasyPerplexController < ApplicationController
 
     @department = nil
 
+    top_department = @subordinate.user_department.head_of_branch ? @subordinate.user_department : @subordinate.top_department
 
-    if ((sd = SdRequestType.where('user_department_id = ?', @subordinate.user_department.id)) != [ ])
-      @department = { head: @subordinate.user_department, types: sd }
-    elsif (!@subordinate.user_department.head_of_branch && (sd = SdRequestType.joins(:branches).where("#{SdRequestTypeBranch.table_name}.user_department_id = ?", @subordinate.user_department.id).uniq) != [ ])
-      head = @subordinate.top_department
-      if (SdRequestType.exists?(['user_department_id = ?', head.id]))
-        @department = { head: head, branch: @subordinate.user_department, types: sd }
-      end
+    if ((sd = SdRequestType.where('user_department_id = ?', top_department.id)) != [ ])
+      @department = { head: top_department, branch: @subordinate.user_department, types: sd }
     end
   end
 end

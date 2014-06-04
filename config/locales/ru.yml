@@ -68,7 +68,7 @@ ru:
   text_usability_easy_perplex_does_not_subordinate: 'Сотрудник %{user} не является вашим непосредственным подчиненным.'
   text_usability_easy_perplex_you_are_not_participant_of_any_project: 'Вы не являетесь участником ни в одном проекте, в котором %{user} может быть исполнителем'
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Вы не можете назначить задачу на сотрдника %{user}, поскульку сотрудник не является исполнителем ни в одном проекте.'
-  text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к системному администратору для настройки обслуживающего подразделения.'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к администратору Redmine для настройки обслуживающего подразделения.'
 
   label_usability_download_all_in_one: 'Скачать вложения одним архивом'
 
