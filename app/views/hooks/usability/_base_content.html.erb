@@ -29,7 +29,10 @@
     <div><%= link_to l(:label_issue_new), { :controller => 'issues', :action => 'new', :copy_from => nil, :project_id => favourite_project }  %></div>
 
     <%= content_tag(:div, link_to(l(:label_roadmap), { :controller => 'user_roadmaps', :action => 'index', :project_id => favourite_project })) rescue '' if (Redmine::Plugin.installed?(:advanced_roadmap)) %>
-    <%= content_tag(:div, link_to(l('clear_plan.label_roadmap'), { :controller => 'clear_plan', :action => 'index_by_project', :project_id => favourite_project })) rescue '' if (Redmine::Plugin.installed?(:clear_plan)) %>
+    <% if (Redmine::Plugin.installed?(:clear_plan)) %>
+      <%= content_tag(:div, link_to(l('clear_plan.label_roadmap'), { :controller => 'clear_plan', :action => 'index_by_project', :project_id => favourite_project })) rescue '' %>
+      <%= content_tag(:div, link_to(l('clear_plan.wip_diagram'), { :controller => 'clear_plan', :action => 'wip', :project_id => favourite_project })) rescue '' %>
+    <% end %>
 
     <div><%= link_to l(:label_issue_plural), { :controller => 'issues', :action => 'index', :project_id => favourite_project }  %></div>
 
