@@ -40,3 +40,5 @@ en:
   label_usability_settings_default_page: "Settings for default page"
   label_usability_settings_select_ajax_preloader: "Select preloader for AJAX"
   label_usability_settings_common: "Common settings"
+
+  label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
