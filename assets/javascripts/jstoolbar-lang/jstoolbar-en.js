@@ -1,0 +1,1 @@
+jsToolBar.strings['Cut'] = 'Hide the content';
