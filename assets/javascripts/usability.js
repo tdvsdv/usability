@@ -166,12 +166,13 @@ $(document).ready(function () {
   }
 
   if (user_preferences['top_menu_event'] == 'mouseover') {
-    $('.sub_menu')
-    .popover({ html: 'true',
-               trigger: 'manual',
-               placement: 'bottom',
-               container: 'body',
-               content: function () {return $('.'+$(this).attr('data-content-class')).map(function () {return $(this).html()}).get().join('')}
+    $('.sub_menu').popover({ html: 'true',
+                   trigger: 'manual',
+                   placement: 'bottom',
+                   container: 'body',
+                   content: function () {
+                     return $('.'+$(this).attr('data-content-class')).map(function () {return $(this).html()}).get().join('');
+                   }
     })
     .mouseenter(function (e) {
       var t = $(this);
@@ -183,10 +184,10 @@ $(document).ready(function () {
       }, 100);
     })
     .mouseleave(function (e) {
-      var t = $(this)
+      var t = $(this);
       window.setTimeout(function () {
         if (typeof $(document).data('popover_enter') == 'undefined' || !$(document).data('popover_enter')) {
-          t.popover('hide')
+          t.popover('hide');
         }
       }, 100);
     });
@@ -196,7 +197,7 @@ $(document).ready(function () {
 
 
   $('.splitcontentleft ul').each(function() {
-    if ($(this).children().length==0)
+    if ($(this).children().length == 0)
       $(this).remove();
   });
 
@@ -265,10 +266,7 @@ $(document).ready(function () {
     $('#easy-perplex-modal-window').html('<div class="us-big-loader"></div>');
     $('#easy-perplex-modal-window').modal('hide');
     $('#easy-perplex-modal-window').data('modal', null);
-    $('#easy-perplex-modal-window').modal({
-      keyboard: true
-    });
-
+    $('#easy-perplex-modal-window').modal({ keyboard: true });
     $.ajax({
       type: 'GET',
       url: this.href
@@ -343,8 +341,6 @@ function rebuild_menu () {
 
 function show_dropdown (dropdown, obj) {
   var link = $(obj).offset();
-  // link.top = link.top - $(document).scrollTop();
-  // link.left = link.left - $(document).scrollLeft();
   link.width = $(obj).outerWidth();
   link.height = $(obj).outerHeight();
   dropdown.css('left', link.left - 5 +'px');
@@ -366,7 +362,7 @@ function show_sidebar (t) {
     $('#sidebar').show();
     t.removeClass('show_sidebar');
     t.addClass('close_sidebar');
-    $('#content').css('margin-right',  $('#content').data('margin-right'));
+    $('#content').css('margin-right', $('#content').data('margin-right'));
     $('#sidebar').prepend(t);
 }
 
