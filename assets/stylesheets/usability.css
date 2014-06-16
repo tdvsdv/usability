@@ -178,3 +178,11 @@ a.show_sidebar {
   border-bottom-color: #fff !important;
 }
 .us-big-loader { background: url("../images/big_loader.gif") no-repeat scroll; width: 60px; height: 60px; margin-left: auto; margin-right: auto; }
+
+.wiki.wiki-page a.collapsible {
+  border-bottom-style: dotted;
+}
+
+.wiki.wiki-page .collapsed-text {
+  text-indent: 9pt;
+}

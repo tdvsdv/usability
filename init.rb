@@ -40,6 +40,7 @@ Rails.application.config.to_prepare do
   AttachmentsHelper.send(:include, Usability::AttachmentsHelperPatch)
   AttachmentsController.send(:include, Usability::AttachmentsControllerPatch)
   Redmine::WikiFormatting::Textile::Helper.send(:include, Usability::WikiPatch)
+  Redmine::WikiFormatting::Macros.send(:include, Usability::MacrosPatch)
 end
 
 require 'usability/view_hooks'
