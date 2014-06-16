@@ -184,5 +184,5 @@ a.show_sidebar {
 }
 
 .wiki.wiki-page .collapsed-text {
-  text-indent: 9pt;
+  padding-left: 9pt;
 }
