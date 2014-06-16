@@ -20,7 +20,6 @@
 <%= javascript_include_tag :raphael %>
 <%= javascript_include_tag 'pie-chart', :plugin => :usability %>
 <%= javascript_include_tag 'usability.js', :plugin => :usability %>
-<%= stylesheet_link_tag 'wiki-extentions.css', :plugin => :usability %>
 <%= stylesheet_link_tag 'usability.css', :plugin => :usability %>
 
 <% if (!controller.nil? && controller.controller_name == 'settings' && controller.action_name == 'plugin') && params[:id] == 'usability' %>
