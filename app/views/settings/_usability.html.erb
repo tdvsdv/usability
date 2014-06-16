@@ -2,10 +2,6 @@
 <% settings = Setting.plugin_usability || {}.with_indifferent_access %>
 <% @settings = settings.reverse_merge(defaults).with_indifferent_access %>
 
-<%= content_for :header_tags do %>
-  <%= stylesheet_link_tag 'rmplus-logo', :plugin => 'usability', :media => 'screen' %>
-<% end %>
-
   <fieldset class="splitcontentleft">
     <legend><strong><%= l(:label_usability_settings_common) %></strong></legend>
     <label for="settings_custom_help_url">
@@ -128,21 +124,7 @@
     </label>
   </fieldset>
 
-<div id="rmplus-logo">
-  <div>
-  <%= image_tag 'logo.png', :plugin => :single_auth, alt: l(:label_rmplus_logo), title: l(:label_rmplus_logo), width: 104, height: 39 %>
-  <span><%= l(:label_rmplus_logo) %>&nbsp<a href="http://rmplus.pro">http://rmplus.pro</a>.</span>
-  </div>
-</div>
-<script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
-  var logo = $('#rmplus-logo').clone();
-  $('#rmplus-logo').remove();
-  $('div#settings').append(logo);
-});
-//]]>
-</script>
+<%= render :file => File.join(File.dirname(__FILE__), "_rmplus_logo.html.erb") %>
 
 <script type="text/javascript">
   jQuery(document).ready(function(){
