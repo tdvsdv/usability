@@ -91,8 +91,10 @@ jsToolBar.prototype.draw_button = function(button_before, name, mode){
 
 
 $(document).ready(function(){
-  var cut = $('.jstb_cut').clone(true, true);
-  $('.jstb_cut').remove();
-  var code_button = document.getElementById('space1');
-  wikiToolbar.draw_button(code_button, 'cut');
+  if ($('.jstb_cut').length && wikiToolbar != undefined){
+      var cut = $('.jstb_cut').clone(true, true);
+      $('.jstb_cut').remove();
+      var code_button = document.getElementById('space1');
+      wikiToolbar.draw_button(code_button, 'cut');
+  }
 });
