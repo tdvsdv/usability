@@ -83,7 +83,8 @@ jsToolBar.prototype.draw_button = function(button_before, name, mode){
     if (tool) newTool = tool.draw();
     if (newTool) {
       this.toolNodes[name] = newTool;
-      this.toolbar.insertBefore(newTool, button_before);
+      $(button_before).before(newTool);
+      //this.toolbar.insertBefore(newTool, button_before);
     }
   }
 };
