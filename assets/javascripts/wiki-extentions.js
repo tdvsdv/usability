@@ -16,7 +16,7 @@ jsToolBar.prototype.encloseLineSelection_cut = function(prefix, suffix, fn) {
   suffix = suffix || '';
 
   var start, end, sel, scrollPos, subst, res;
-  var charLimit = 30;
+  var charLimit = 60;
 
   if (typeof(document["selection"]) != "undefined") {
     sel = document.selection.createRange().text;

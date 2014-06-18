@@ -186,3 +186,7 @@ a.show_sidebar {
 .wiki.wiki-page .collapsed-text {
   padding-left: 9pt;
 }
+
+#preview.wiki a.collapsible {
+  border-bottom-style: dotted;
+}

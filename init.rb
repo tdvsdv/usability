@@ -30,6 +30,11 @@ Redmine::Plugin.register :usability do
 end
 
 Rails.application.config.to_prepare do
+  # Redmine::WikiFormatting::Textile::Formatter.extend(Usability::CutTag)
+  # Redmine::WikiFormatting::Textile::Formatter.send(:include, Usability::CutTag)
+
+
+
   ApplicationHelper.send(:include, Usability::ApplicationHelperPatch)
   Redmine::MenuManager::MenuHelper.send(:include, Usability::MenuManagerPatch)
   User.send(:include, Usability::UserPatch)
@@ -40,7 +45,26 @@ Rails.application.config.to_prepare do
   AttachmentsHelper.send(:include, Usability::AttachmentsHelperPatch)
   AttachmentsController.send(:include, Usability::AttachmentsControllerPatch)
   Redmine::WikiFormatting::Textile::Helper.send(:include, Usability::WikiPatch)
-  Redmine::WikiFormatting::Macros.send(:include, Usability::MacrosPatch)
+
+  Redmine::WikiFormatting::Macros.register do
+    desc "Cut tag to hide big chunks of text under convenient spoiler"
+    macro :cut, :parse_args => false do |obj, args, text|
+      args = args.split('|')
+
+      html_id = "collapse-#{Redmine::Utils.random_hex(4)}"
+
+      show_label = args[0] || l(:button_show)
+      hide_label = args[1] || args[0] || l(:button_hide)
+      js = "$('##{html_id}-show, ##{html_id}-hide').toggle(); $('##{html_id}').fadeToggle(150);"
+      out = '<div class="wiki-cut">'
+      out << link_to_function(show_label, js, :id => "#{html_id}-show", :class => 'collapsible collapsed')
+      out << link_to_function(hide_label, js, :id => "#{html_id}-hide", :class => 'collapsible', :style => 'display:none;')
+      out << content_tag('div', textilizable(text, :object => obj, :headings => false), :id => html_id, :class => 'collapsed-text', :style => 'display:none;')
+      out << '</div>'
+      out.html_safe
+    end
+  end
+#  Redmine::WikiFormatting::Macros.send(:include, Usability::MacrosPatch)
 end
 
 require 'usability/view_hooks'
