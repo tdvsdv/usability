@@ -24,11 +24,12 @@ module Usability
 
       def link_to_user_with_usability(user, options={})
         return link_to_user_without_usability(user, options) unless Setting.plugin_usability['custom_details_on']
-
         if user.is_a?(User)
           name = h(user.name(options[:format]))
           if user.active?
-            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:button_close_window)}, :class => 'in_link data-show-loader'
+            options[:class] ||= ''
+            options[:style] ||= ''
+            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:button_close_window)}, :class => 'in_link data-show-loader ' + options[:class], :style => options[:style]
           else
             name
           end
