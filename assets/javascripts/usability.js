@@ -108,9 +108,9 @@ $(document).ready(function () {
                                       class: 'R close_sidebar icon',
                                       click: function() {
                                         if ($(this).hasClass('close_sidebar')) {
-                                          hide_sidebar($(this))
+                                          hide_sidebar($(this));
                                         } else {
-                                          show_sidebar($(this))
+                                          show_sidebar($(this));
                                         }
                                       }
                           });
@@ -118,6 +118,11 @@ $(document).ready(function () {
       $('#sidebar').dblclick(function() {
         hide_sidebar($('#close_sidebar_icon'));
       });
+      var closed = localStorage["sidebar_closed"] || false;
+      console.log("closed =", closed);
+      if (closed === "true") {
+        hide_sidebar($('#close_sidebar_icon'));
+      }
     }
   }
 
@@ -356,6 +361,7 @@ function hide_sidebar (t) {
     $('#content').data('margin-right', $('#content').css('margin-right'));
     $('#content').css('margin-right', '16px');
     $('#sidebar').before(t);
+    localStorage["sidebar_closed"] = true;
 }
 
 function show_sidebar (t) {
@@ -364,6 +370,7 @@ function show_sidebar (t) {
     t.addClass('close_sidebar');
     $('#content').css('margin-right', $('#content').data('margin-right'));
     $('#sidebar').prepend(t);
+    localStorage["sidebar_closed"] = false;
 }
 
 // walk-around for non-working rails confirm in some cases (like for a.show_loader[data-remote="true"] - return false does not stop event)
