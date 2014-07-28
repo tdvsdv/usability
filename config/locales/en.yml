@@ -10,25 +10,28 @@ en:
   select_an_event_to_open_the_pop_up_menu: "Select an event to open pop-up menu."
   go_to_project_issues: "Go to project issues"
   plugin_test_usability: "usability"
-  close_window: "Close"
   settings_enable_custom_details: "Use custom user \"my\" page"
   settings_url_for_custom_details: "Url for custom user \"my\" page"
   settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
 
+  settings_ask_users_at_error: "Who should I contact in case of error"
+
+  label_usability_settings_new_request_params: "Settings for new requests"
   settings_new_request_to_department: "Settings for new requests created for Redmine error pages"
 
   settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
 
-  label_usability_settings_new_request_params: "Settings for new requests"
-
   settings_show_sidebar_close_button: "Allow to close the sidebar."
   settings_enable_underlined_links: "Enhance underlining of links."
-  settings_modify_page_header: "Remove parent projects from the project page header."
+  settings_remove_project_page_header_breadcrumb: "Remove parent projects from the project page header."
   settings_dont_render_project_jump_box: "Show \"Go to project\" in top menu."
   settings_enable_usability_progress_bar: "Enhance looks of the progress bar."
-  settings_render_custom_fields_usability: "Enhance looks of custom fields in issues."
   settings_enable_custom_default_page: "Enable custom default page."
+  settings_enable_easy_rm_tasks: 'Enable easy mechanism for creating issues to subordinate'
+  settings_easy_perplex_executor_roles: 'Roles that are used to determine the executor in the project'
+  settings_easy_perplex_cf_customer_id: 'Custom field used as a customer in issue'
+  settings_enable_download_attachments_all_in_one: 'Download attachments in one archive'
 
   warning_error_occured: "Redmine. Error %{status}"
   label_create_request: "Create request"
@@ -40,5 +43,34 @@ en:
   label_usability_settings_default_page: "Settings for default page"
   label_usability_settings_select_ajax_preloader: "Select preloader for AJAX"
   label_usability_settings_common: "Common settings"
+
+  label_usability_settings_easy_perplex: 'Settings of easy mechanism for creation of issues to subordinates'
+
+  label_usability_easy_perplex_menu: 'Perplex'
+  label_usability_easy_perplex_modal_header: 'Perplex your immediate subordinate'
+  label_usability_easy_perplex_modal_cancel: 'Cancel'
+  label_usability_easy_perplex_select_subordinate: 'Select subordinate'
+  label_usability_easy_perplex_subordinate: 'Who do you want to perplex?'
+  label_usability_easy_perplex_subordinate_description: 'Start typing the name and select subordinate from the list'
+  label_usability_easy_perplex_issues_header: 'Create issue'
+  label_usability_easy_perplex_issues_description: 'Assign a time-limited (with timelines) issue on the selected executor (%{user}).'
+  label_usability_easy_perplex_sd_requests_header: 'Create request'
+  label_usability_easy_perplex_sd_requests_description: 'Send your wishlist to selected employee (%{user}), allow employee to schedule time, prioritize and assign executors himself.'
+  label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Create issue.'
+  label_usability_easy_perplex_create_request: '%{department}. Create request'
+  label_usability_settings_easy_perplex_user_for_help: 'Contact person for a wide range of questions'
+  label_usability_easy_perplex_contact_to: 'Please refer to'
+
+
+
+  text_usability_easy_perplex_no_subordinates: 'Unfortunately, you have no subordinates at this moment!'
+  text_usability_easy_perplex_ldap_was_not_installed: 'Functionality is not available, you need to install the plugin «ldap_users_sync»'
+  text_usability_easy_perplex_wrong_user: 'Employee was not found'
+  text_usability_easy_perplex_does_not_subordinate: 'Employee %{user} is not your immediate subordinate.'
+  text_usability_easy_perplex_you_are_not_participant_of_any_project: 'You are not a member of any project in which %{user} may be the executor'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'You can not assign an issue to an employee %{user}, because the employee is not the executor in any project.'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Employee %{user} can not receive and process requests. Contact Redmine administrator to configure service unit.'
+
+  label_usability_download_all_in_one: 'Download attachments in one archive'
 
   label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"

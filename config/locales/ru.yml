@@ -9,6 +9,7 @@ ru:
   appearance_and_usability: "Внешний вид и удобство использования"
   select_an_event_to_open_the_pop_up_menu: "Выберите событие для открытия вспомогательного меню"
   go_to_project_issues: "Перейти к заданиям проекта"
+
   settings_enable_custom_details: "Использовать свою страничку о пользователе."
   settings_url_for_custom_details: "Ссылка на страничку о пользователе"
   settings_custom_details_id_field: "Атрибут пользователя для поиска во внешнем источнике"
@@ -67,7 +68,7 @@ ru:
   text_usability_easy_perplex_wrong_user: 'Сотрудник не найден'
   text_usability_easy_perplex_does_not_subordinate: 'Сотрудник %{user} не является вашим непосредственным подчиненным.'
   text_usability_easy_perplex_you_are_not_participant_of_any_project: 'Вы не являетесь участником ни в одном проекте, в котором %{user} может быть исполнителем'
-  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Вы не можете назначить задачу на сотрдника %{user}, поскульку сотрудник не является исполнителем ни в одном проекте.'
+  text_usability_easy_perplex_subordinate_is_not_participant_of_any_project: 'Вы не можете назначить задачу на сотрудника %{user}, поскольку сотрудник не является исполнителем ни в одном проекте.'
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Сотрудник %{user} не может принимать и обрабатывать заявки. Обратитесь к администратору Redmine для настройки обслуживающего подразделения.'
 
   label_usability_download_all_in_one: 'Скачать вложения одним архивом'
