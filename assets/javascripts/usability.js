@@ -1,6 +1,8 @@
 RMPlus.Usability = (function(my){
   var my = my || {};
 
+  my.touch_scaling = false;
+
   my.underlineTabs = function(){
     $('div.tabs ul li a').each(function(index) {
       $(this).addClass('no_line in_link');
@@ -241,6 +243,19 @@ $(document).ready(function () {
 
   $(window).on('resize orientationchange gestureend', function () {
     usability_reallocate_top_menu();
+  });
+
+  $(window).on('touchstart', function (e) {
+    if (e.originalEvent.touches.length > 1) {
+      RMPlus.Usability.touch_scaling = true;
+    }
+  });
+
+  $(window).on('touchend', function (e) {
+    if (RMPlus.Usability.touch_scaling) {
+      usability_reallocate_top_menu();
+      RMPlus.Usability.touch_scaling = false;
+    }
   });
 
   // for ajax_counters plugin
