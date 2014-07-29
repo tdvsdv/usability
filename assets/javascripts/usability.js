@@ -239,12 +239,12 @@ $(document).ready(function () {
   $('<ul class="I us_dropdown_menu" id="dropdown_top_menu"></ul>').appendTo(document.body);
   rebuild_menu();
 
-  $(window).resize(function () {
+  $(window).on('resize orientationchange gestureend', function () {
     usability_reallocate_top_menu();
   });
 
   // for ajax_counters plugin
-  $(document.body).on('counters_refreshed', function () {
+  $(document.body).on('counters_refreshed one_counter_refreshed', function () {
     usability_reallocate_top_menu();
   });
 
