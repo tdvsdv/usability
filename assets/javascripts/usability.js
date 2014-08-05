@@ -117,9 +117,6 @@ $(document).ready(function () {
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
-      $('#sidebar').dblclick(function() {
-        hide_sidebar($('#close_sidebar_icon'));
-      });
       var closed = localStorage["sidebar_closed"] || false;
       console.log("closed =", closed);
       if (closed === "true") {
