@@ -1,6 +1,8 @@
 RMPlus.Usability = (function(my){
   var my = my || {};
 
+  my.touch_scaling = false;
+
   my.underlineTabs = function(){
     $('div.tabs ul li a').each(function(index) {
       $(this).addClass('no_line in_link');
@@ -37,6 +39,50 @@ RMPlus.Usability = (function(my){
     }
   };
 
+  my.add_total_sum_to_issue_queries = function () {
+    var totals = [];
+    var group_totals = [];
+    var table = $('#content div.autoscroll table.list.issues');
+
+    var add_totals = function(element, totals, before) {
+      if (totals.length == 0) { return; }
+      var html = '';
+      for (var sch = 0; sch < totals.length; sch ++) {
+        html += "<td>" + (totals[sch] && totals[sch] != 0 ? totals[sch] : '&nbsp;') + "</td>";
+      }
+      if (before) {
+        element.before('<tr><td class="us_row_divider" colspan="' + totals.length.toString( ) + '"></td></tr><tr>' + html + '</tr>');
+      }
+      else {
+        element.append('<tr><td class="us_row_divider" colspan="' + totals.length.toString( ) + '"></td></tr><tr>' + html + '</tr>');
+      }
+    };
+
+    var has_groups = false;
+    table.find('tr').each(function( ) {
+      var tr = $(this);
+      if (tr.hasClass('group'))
+      {
+        has_groups = true;
+        if (group_totals.length == 0) { return; }
+        add_totals.call(this, tr, group_totals, true);
+        group_totals = [];
+      }
+      tr.children( ).each(function(index) {
+        var val = this.innerHTML.replace(' ', '');
+        if (val == '' || val == 'x') { totals[index] = totals[index] || 0; return; }
+        if (isNaN(parseFloat(val)) || !isFinite(val)) { totals[index] = undefined; return; }
+        val = parseFloat(val);
+        if (totals[index]) { totals[index] += val; }
+        else { totals[index] = val; }
+        if (group_totals[index]) { group_totals[index] += val; }
+        else { group_totals[index] = val; }
+      });
+    });
+    if (has_groups) { add_totals.call(this, table, group_totals); }
+    add_totals.call(this, table, totals);
+  };
+
   return my;
 })(RMPlus.Usability || {});
 
@@ -44,6 +90,7 @@ $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
 
   RMPlus.Usability.makePieCharts(document.body);
+  RMPlus.Usability.add_total_sum_to_issue_queries( );
 
   $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
 
@@ -115,9 +162,6 @@ $(document).ready(function () {
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
-      $('#sidebar').dblclick(function() {
-        hide_sidebar($('#close_sidebar_icon'));
-      });
       var closed = localStorage["sidebar_closed"] || false;
       console.log("closed =", closed);
       if (closed === "true") {
@@ -244,12 +288,25 @@ $(document).ready(function () {
   $('<ul class="I us_dropdown_menu" id="dropdown_top_menu"></ul>').appendTo(document.body);
   rebuild_menu();
 
-  $(window).resize(function () {
+  $(window).on('resize orientationchange gestureend', function () {
     usability_reallocate_top_menu();
   });
 
+  $(window).on('touchstart', function (e) {
+    if (e.originalEvent.touches.length > 1) {
+      RMPlus.Usability.touch_scaling = true;
+    }
+  });
+
+  $(window).on('touchend', function (e) {
+    if (RMPlus.Usability.touch_scaling) {
+      usability_reallocate_top_menu();
+      RMPlus.Usability.touch_scaling = false;
+    }
+  });
+
   // for ajax_counters plugin
-  $(document.body).on('counters_refreshed', function () {
+  $(document.body).on('counters_refreshed one_counter_refreshed', function () {
     usability_reallocate_top_menu();
   });
 
