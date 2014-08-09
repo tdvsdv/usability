@@ -37,6 +37,11 @@ div.loader {
   list-style: none;
 }
 
+table td.us_row_divider {
+  padding: 1px 0px 0px 0px;
+  background-color: #DADADA;
+}
+
 .us_dropdown_menu:before {
   position: absolute;
   top: -7px;
