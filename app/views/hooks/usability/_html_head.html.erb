@@ -26,3 +26,7 @@
   <%= stylesheet_link_tag 'settings', :plugin => 'a_common_libs', :media => 'screen' %>
 <% end %>
 
+<% if controller.controller_name == 'issues' || controller.controller_name == 'sd_requests' %>
+  <%= javascript_include_tag 'jquery.magnific-popup.min.js', plugin: :usability %>
+  <%= stylesheet_link_tag 'magnific-popup.css', plugin: :usability %>
+<% end %>

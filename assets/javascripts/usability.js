@@ -39,11 +39,42 @@ RMPlus.Usability = (function(my){
     }
   };
 
+  my.galleryPopupSettings = {
+    type: 'image',
+    gallery: {
+      enabled: true,
+      preload: [0,2],
+      navigateByImgClick: true,
+      arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+      tPrev: 'Previous (Left arrow key)',
+      tNext: 'Next (Right arrow key)',
+      tCounter: '<span class="mfp-counter">%curr% of %total%</span>'
+    }
+  };
+
+  image_pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+
+  my.getFileExtention = function(string){
+    result = string.match(image_pattern);
+    if (result != null) {
+      return result[1];
+    }
+    return "";
+  };
+
   return my;
 })(RMPlus.Usability || {});
 
 $(document).ready(function () {
 /* ----- from a_small_things starts ---- */
+
+  $('a').each(function(){
+    if (this.href.indexOf('/attachments/') > 0) {
+      $(this).addClass('gallery-item');
+    }
+  });
+
+  $('.gallery-item').magnificPopup(RMPlus.Usability.galleryPopupSettings);
 
   RMPlus.Usability.makePieCharts(document.body);
 
