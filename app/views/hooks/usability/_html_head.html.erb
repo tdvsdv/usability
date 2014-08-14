@@ -12,6 +12,27 @@
 
     my.settings = <%= all_settings.to_json.html_safe %>;
 
+    my.galleryPopupSettings = {
+      type: 'image',
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+
+        arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+        tPrev: '<%= l(:magnificPopup_tPrev) %>',
+        tNext: '<%= l(:magnificPopup_tNext) %>',
+        tCounter: '<%= l(:magnificPopup_tCounter).html_safe %>'
+      },
+      image: {
+        tError: '<%= l(:magnificPopup_tError).html_safe %>'
+      },
+      ajax: {
+       tError: '<%= l(:magnificPopup_ajax_tError).html_safe %>'
+      },
+      tClose: '<%= l(:magnificPopup_tClose) %>',
+      tLoading: '<%= l(:magnificPopup_tLoading) %>'
+    };
+
     return my;
   })(RMPlus.Usability || {});
 // ]]>

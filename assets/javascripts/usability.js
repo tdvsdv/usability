@@ -1,3 +1,9 @@
+if (typeof String.prototype.contains === 'undefined') {
+  String.prototype.contains = function(substring) {
+   return this.indexOf(substring) != -1;
+  };
+}
+
 RMPlus.Usability = (function(my){
   var my = my || {};
 
@@ -39,42 +45,69 @@ RMPlus.Usability = (function(my){
     }
   };
 
-  my.galleryPopupSettings = {
-    type: 'image',
-    gallery: {
-      enabled: true,
-      preload: [0,2],
-      navigateByImgClick: true,
-      arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
-      tPrev: 'Previous (Left arrow key)',
-      tNext: 'Next (Right arrow key)',
-      tCounter: '<span class="mfp-counter">%curr% of %total%</span>'
-    }
-  };
-
   image_pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+  image_extentions = "bmp|gif|jpg|jpe|jpeg|png";
 
-  my.getFileExtention = function(string){
+  function getFileExtention(string) {
     result = string.match(image_pattern);
     if (result != null) {
       return result[1];
     }
-    return "";
+    return null;
   };
+
+  my.fileIsImage = function(string) {
+    var extention = getFileExtention(string);
+    return image_extentions.contains(extention);
+  };
+
+  my.galleryMap = [];
 
   return my;
 })(RMPlus.Usability || {});
 
 $(document).ready(function () {
-/* ----- from a_small_things starts ---- */
-
-  $('a').each(function(){
-    if (this.href.indexOf('/attachments/') > 0) {
-      $(this).addClass('gallery-item');
+  // Do images magic, if magnificPopup is enabled on the page
+  if ($.magnificPopup != null) {
+    // Get all image links and map them to gallery indexes in RMPlus.Usability.galleryMap
+    var image_index = 0;
+    $('a', $('#content')).each(function(){
+      if (RMPlus.Usability.fileIsImage(this.href)){
+        if (this.href.contains('/attachments/download/')) {
+          $(this).addClass('gallery-item');
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('download') + 1]
+          $(this).attr('data-id', id);
+          RMPlus.Usability.galleryMap[image_index] = this.href;
+          image_index ++;
+        }
+        // mark all thumbnail links
+        else if (this.href.contains('/attachments/')) {
+          $(this).addClass('gallery-thumbnail');
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('attachments') + 1]
+          $(this).attr('data-id', id);
+        }
+      }
+    });
+    // create gallery if there are images
+    if ($('.gallery-item').length > 0){
+      $('.gallery-item').magnificPopup(RMPlus.Usability.galleryPopupSettings);
     }
-  });
 
-  $('.gallery-item').magnificPopup(RMPlus.Usability.galleryPopupSettings);
+    // catch click on thumbnail and open gallery using href-index map
+    $('.gallery-thumbnail').on('click', function(){
+      var data_id = this.getAttribute('data-id');
+      var url_part = 'attachments/download/' + data_id;
+      for (i = 0, len = RMPlus.Usability.galleryMap.length; i < len; i++){
+        // null check necessary since array is sparse
+        if (RMPlus.Usability.galleryMap[i] != null && RMPlus.Usability.galleryMap[i].contains(url_part)) {
+          $('.gallery-item').magnificPopup('open', i);
+          return false;
+        }
+      }
+    });
+  }
 
   RMPlus.Usability.makePieCharts(document.body);
 
