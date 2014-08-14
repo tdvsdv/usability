@@ -96,7 +96,7 @@ $(document).ready(function () {
     }
 
     // catch click on thumbnail and open gallery using href-index map
-    $('.gallery-thumbnail').on('click', function(){
+    $('.gallery-item, .gallery-thumbnail').on('click', function(){
       var data_id = this.getAttribute('data-id');
       var url_part = 'attachments/download/' + data_id;
       for (i = 0, len = RMPlus.Usability.galleryMap.length; i < len; i++){
