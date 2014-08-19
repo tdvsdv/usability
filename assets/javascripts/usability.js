@@ -40,6 +40,7 @@ RMPlus.Usability = (function(my){
   };
 
   my.add_total_sum_to_issue_queries = function () {
+    if (!RMPlus.Utils.exists('Usability.settings.totals_in_queries') || !RMPlus.Usability.settings.totals_in_queries) { return; }
     var totals = [];
     var group_totals = [];
     var table = $('#content div.autoscroll table.list.issues');
