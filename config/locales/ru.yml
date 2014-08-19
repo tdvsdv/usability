@@ -74,3 +74,4 @@ ru:
   label_usability_download_all_in_one: 'Скачать вложения одним архивом'
 
   label_rmplus_logo: "Данный плагин разработан командой «RM+». Вы всегда можете найти другие наши плагины на сайте"
+  label_usability_settings_totals_in_queries: 'Выводить сумму по столбцам в запросах'

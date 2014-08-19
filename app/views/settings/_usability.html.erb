@@ -29,6 +29,9 @@
     <label>
       <%= check_box_tag 'settings[enable_download_attachments_all_in_one]', true, @settings[:enable_download_attachments_all_in_one] %> &mdash; <%= l(:settings_enable_download_attachments_all_in_one) %>
     </label>
+    <label>
+      <%= check_box_tag 'settings[totals_in_queries]', true, @settings[:totals_in_queries] %> &mdash; <%= l(:label_usability_settings_totals_in_queries) %>
+    </label>
   </fieldset>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:settings_new_request_to_department) %></strong></legend>
