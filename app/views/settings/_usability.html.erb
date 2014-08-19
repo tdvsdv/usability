@@ -98,16 +98,18 @@
       <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 30 %>
     </label>
   </fieldset>
-  <fieldset class="splitcontentleft">
-    <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
-    <label for="settings_default_page" class="for-checkbox">
-      <span><%= l(:settings_default_page) %>:</span>
-      <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
-    </label>
-    <label for="settings_enable_custom_default_page">
-      <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
-    </label>
-  </fieldset>
+  <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+    <fieldset class="splitcontentleft">
+      <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
+      <label for="settings_default_page" class="for-checkbox">
+        <span><%= l(:settings_default_page) %>:</span>
+        <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
+      </label>
+      <label for="settings_enable_custom_default_page">
+        <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
+      </label>
+    </fieldset>
+  <% end %>
   <fieldset class="splitcontentright">
     <legend><strong><%= l(:label_usability_settings_easy_perplex) %></strong></legend>
     <label for="settings_enable_easy_rm_tasks">
@@ -126,6 +128,18 @@
       <%= select_tag 'settings[easy_perplex_user_for_help]', options_for_select([['---', nil]] + User.active.sorted.collect { |it| [it.name, it.id] }, @settings[:easy_perplex_user_for_help]) %>
     </label>
   </fieldset>
+  <% if !Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+    <fieldset class="splitcontentleft">
+      <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
+      <label for="settings_default_page" class="for-checkbox">
+        <span><%= l(:settings_default_page) %>:</span>
+        <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
+      </label>
+      <label for="settings_enable_custom_default_page">
+        <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
+      </label>
+    </fieldset>
+  <% end %>
 
 <%= render :file => File.join(File.dirname(__FILE__), "_rmplus_logo.html.erb") %>
 

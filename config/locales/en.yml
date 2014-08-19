@@ -74,3 +74,11 @@ en:
   label_usability_download_all_in_one: 'Download attachments in one archive'
 
   label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
+
+  magnificPopup_tPrev: "Previous (Left arrow key)"
+  magnificPopup_tNext: "Next (Right arrow key)"
+  magnificPopup_tCounter: "<span class=\"mfp-counter\">%curr% of %total%</span>"
+  magnificPopup_tError: "<a href=\"%url%\">The image</a> could not be loaded."
+  magnificPopup_ajax_tError: "<a href=\"%url%\">The request</a> failed."
+  magnificPopup_tClose: "Close (Esc)"
+  magnificPopup_tLoading: "Loading..."

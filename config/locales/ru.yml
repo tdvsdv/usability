@@ -75,3 +75,10 @@ ru:
 
   label_rmplus_logo: "Данный плагин разработан командой «RM+». Вы всегда можете найти другие наши плагины на сайте"
   label_usability_settings_totals_in_queries: 'Выводить сумму по столбцам в запросах'
+  magnificPopup_tPrev: "Назад"
+  magnificPopup_tNext: "Вперед"
+  magnificPopup_tCounter: "<span class=\"mfp-counter\">%curr% из %total%</span>"
+  magnificPopup_tError: "<a href=\"%url%\">Изображение</a> не может быть загружено."
+  magnificPopup_ajax_tError: "Ошибка <a href=\"%url%\">запроса</a> к серверу."
+  magnificPopup_tClose: "Закрыть (Esc)"
+  magnificPopup_tLoading: "Загрузка..."
