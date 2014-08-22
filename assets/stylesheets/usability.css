@@ -206,7 +206,7 @@ a.show_sidebar {
 }
 
 .settings-right {
-  float: right;
+  float: left;
   margin-left: 20px;
   width: 49%;
 }
