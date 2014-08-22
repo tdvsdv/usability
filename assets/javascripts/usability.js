@@ -106,7 +106,49 @@ RMPlus.Usability = (function(my){
     return image_extentions.contains(extention);
   };
 
-  my.galleryMap = [];
+  my.createGallery = function(parent_element, gallery_name) {
+    var image_index = 0;
+    var galleryMap = [];
+    $('a', $(parent_element)).each(function() {
+      var $this = $(this);
+      if (my.fileIsImage(this.href)) {
+        if (this.href.contains('/attachments/download')) {
+          $this.addClass('gallery-item');
+          $this.attr('gallery-name', gallery_name);
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('download') + 1];
+          $this.attr('data-id', id);
+          galleryMap[image_index] = this.href;
+          image_index++;
+        } else if (this.href.contains('/attachments')) {
+          $this.addClass('gallery-thumbnail');
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('attachments') + 1];
+          $this.attr('data-id', id);
+        }
+      }
+    });
+
+    $(parent_element).attr('gallery-map', galleryMap);
+
+    // create gallery if there are any images
+    if (image_index > 0) {
+      $('.gallery-item', $(parent_element)).magnificPopup(my.galleryPopupSettings);
+    }
+
+    // catch click on thumbnail and open gallery using href-index map
+    $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function() {
+      var data_id = this.getAttribute('data-id');
+      var url_part = 'attachments/download/' + data_id;
+      for (i = 0, len = galleryMap.length; i < len; i++) {
+        // null check necessary since array is sparse
+        if (galleryMap[i] != null && galleryMap[i].contains(url_part)) {
+          $('.gallery-item', $(parent_element)).magnificPopup('open', i);
+          return false;
+        }
+      }
+    });
+  };
 
   return my;
 })(RMPlus.Usability || {});
@@ -114,44 +156,19 @@ RMPlus.Usability = (function(my){
 $(document).ready(function () {
   // Do images magic, if magnificPopup is enabled on the page
   if ($.magnificPopup != null) {
-    // Get all image links and map them to gallery indexes in RMPlus.Usability.galleryMap
-    var image_index = 0;
-    $('a', $('#content')).each(function(){
-      if (RMPlus.Usability.fileIsImage(this.href)){
-        if (this.href.contains('/attachments/download/')) {
-          $(this).addClass('gallery-item');
-          var path_segments = this.href.split('/');
-          var id = path_segments[path_segments.indexOf('download') + 1]
-          $(this).attr('data-id', id);
-          RMPlus.Usability.galleryMap[image_index] = this.href;
-          image_index ++;
-        }
-        // mark all thumbnail links
-        else if (this.href.contains('/attachments/')) {
-          $(this).addClass('gallery-thumbnail');
-          var path_segments = this.href.split('/');
-          var id = path_segments[path_segments.indexOf('attachments') + 1]
-          $(this).attr('data-id', id);
-        }
+    // let's create main gallery for issue or sd_request
+    if ($('div.issue').length > 0) {
+      RMPlus.Usability.createGallery($('div.issue').get(0), 'main');
+      // comments and history gallery for sd_request
+      if ($('div.sd_request').length > 0) {
+        RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'request-comments');
+        RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'request-history');
       }
-    });
-    // create gallery if there are images
-    if ($('.gallery-item').length > 0){
-      $('.gallery-item').magnificPopup(RMPlus.Usability.galleryPopupSettings);
     }
-
-    // catch click on thumbnail and open gallery using href-index map
-    $('.gallery-item, .gallery-thumbnail').on('click', function(){
-      var data_id = this.getAttribute('data-id');
-      var url_part = 'attachments/download/' + data_id;
-      for (i = 0, len = RMPlus.Usability.galleryMap.length; i < len; i++){
-        // null check necessary since array is sparse
-        if (RMPlus.Usability.galleryMap[i] != null && RMPlus.Usability.galleryMap[i].contains(url_part)) {
-          $('.gallery-item').magnificPopup('open', i);
-          return false;
-        }
-      }
-    });
+    // comments gallery for issue
+    if ($('div#history').length > 0) {
+      RMPlus.Usability.createGallery($('div#history').get(0), 'comments');
+    }
   }
 
   RMPlus.Usability.makePieCharts(document.body);
