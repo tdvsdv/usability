@@ -26,7 +26,7 @@ Redmine::Plugin.register :usability do
 
   menu :account_menu, :my_name, {:controller => 'my', :action => 'account'}, :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'my_name_popover_content'}}
   menu :top_menu, :projects, {:controller => 'projects', :action => 'index'}, :caption => :label_project_plural, :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'projects_popover_content'}}
-  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: :label_usability_easy_perplex_menu, if: Proc.new { Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && (User.current.first_under || User.current.id == 69) }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
+  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: :label_usability_easy_perplex_menu, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
 end
 
 Rails.application.config.to_prepare do
