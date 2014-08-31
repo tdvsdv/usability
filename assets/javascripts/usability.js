@@ -96,7 +96,7 @@ RMPlus.Usability = (function(my){
   function getFileExtention(string) {
     result = string.match(image_pattern);
     if (result != null) {
-      return result[1];
+      return result[1].toLowerCase();
     }
     return null;
   };
@@ -153,6 +153,12 @@ RMPlus.Usability = (function(my){
   return my;
 })(RMPlus.Usability || {});
 
+$(window).load(function(){
+  if ($('div.sd_request').length > 0) {
+    RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'request-comments');
+  }
+});
+
 $(document).ready(function () {
   // Do images magic, if magnificPopup is enabled on the page
   if ($.magnificPopup != null) {
@@ -161,7 +167,6 @@ $(document).ready(function () {
       RMPlus.Usability.createGallery($('div.issue').get(0), 'main');
       // comments and history gallery for sd_request
       if ($('div.sd_request').length > 0) {
-        RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'request-comments');
         RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'request-history');
       }
     }
