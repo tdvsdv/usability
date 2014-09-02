@@ -1,3 +1,9 @@
+if (typeof String.prototype.contains === 'undefined') {
+  String.prototype.contains = function(substring) {
+   return this.indexOf(substring) != -1;
+  };
+}
+
 RMPlus.Usability = (function(my){
   var my = my || {};
 
@@ -84,11 +90,91 @@ RMPlus.Usability = (function(my){
     add_totals.call(this, table, totals);
   };
 
+  image_pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i;
+  image_extentions = "bmp|gif|jpg|jpe|jpeg|png";
+
+  function getFileExtention(string) {
+    result = string.match(image_pattern);
+    if (result != null) {
+      return result[1].toLowerCase();
+    }
+    return null;
+  };
+
+  my.fileIsImage = function(string) {
+    var extention = getFileExtention(string);
+    return image_extentions.contains(extention);
+  };
+
+  my.createGallery = function(parent_element, gallery_name) {
+    var image_index = 0;
+    var galleryMap = [];
+    $('a', $(parent_element)).each(function() {
+      var $this = $(this);
+      if (my.fileIsImage(this.href)) {
+        if (this.href.contains('/attachments/download')) {
+          $this.addClass('gallery-item');
+          $this.attr('gallery-name', gallery_name);
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('download') + 1];
+          $this.attr('data-id', id);
+          galleryMap[image_index] = this.href;
+          image_index++;
+        } else if (this.href.contains('/attachments')) {
+          $this.addClass('gallery-thumbnail');
+          var path_segments = this.href.split('/');
+          var id = path_segments[path_segments.indexOf('attachments') + 1];
+          $this.attr('data-id', id);
+        }
+      }
+    });
+
+    $(parent_element).attr('gallery-map', galleryMap);
+
+    // create gallery if there are any images
+    if (image_index > 0) {
+      $('.gallery-item', $(parent_element)).magnificPopup(my.galleryPopupSettings);
+    }
+
+    // catch click on thumbnail and open gallery using href-index map
+    $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function() {
+      var data_id = this.getAttribute('data-id');
+      var url_part = 'attachments/download/' + data_id;
+      for (i = 0, len = galleryMap.length; i < len; i++) {
+        // null check necessary since array is sparse
+        if (galleryMap[i] != null && galleryMap[i].contains(url_part)) {
+          $('.gallery-item', $(parent_element)).magnificPopup('open', i);
+          return false;
+        }
+      }
+    });
+  };
+
   return my;
 })(RMPlus.Usability || {});
 
+$(window).load(function(){
+  if ($('div.sd_request').length > 0) {
+    RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'request-comments');
+  }
+});
+
 $(document).ready(function () {
-/* ----- from a_small_things starts ---- */
+  // Do images magic, if magnificPopup is enabled on the page
+  if ($.magnificPopup != null) {
+    // let's create main gallery for issue or sd_request
+    if ($('div.issue').length > 0) {
+      RMPlus.Usability.createGallery($('div.issue').get(0), 'main');
+      // comments and history gallery for sd_request
+      if ($('div.sd_request').length > 0) {
+        RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'request-history');
+      }
+    }
+    // comments gallery for issue
+    if ($('div#history').length > 0) {
+      RMPlus.Usability.createGallery($('div#history').get(0), 'comments');
+    }
+  }
 
   RMPlus.Usability.makePieCharts(document.body);
   RMPlus.Usability.add_total_sum_to_issue_queries( );

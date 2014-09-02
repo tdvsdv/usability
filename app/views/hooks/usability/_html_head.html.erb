@@ -12,6 +12,27 @@
 
     my.settings = <%= all_settings.to_json.html_safe %>;
 
+    my.galleryPopupSettings = {
+      type: 'image',
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+
+        arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+        tPrev: '<%= l(:magnificPopup_tPrev) %>',
+        tNext: '<%= l(:magnificPopup_tNext) %>',
+        tCounter: '<%= l(:magnificPopup_tCounter).html_safe %>'
+      },
+      image: {
+        tError: '<%= l(:magnificPopup_tError).html_safe %>'
+      },
+      ajax: {
+       tError: '<%= l(:magnificPopup_ajax_tError).html_safe %>'
+      },
+      tClose: '<%= l(:magnificPopup_tClose) %>',
+      tLoading: '<%= l(:magnificPopup_tLoading) %>'
+    };
+
     return my;
   })(RMPlus.Usability || {});
 // ]]>
@@ -26,3 +47,7 @@
   <%= stylesheet_link_tag 'settings', :plugin => 'a_common_libs', :media => 'screen' %>
 <% end %>
 
+<% if controller.controller_name == 'issues' || controller.controller_name == 'sd_requests' %>
+  <%= javascript_include_tag 'jquery.magnific-popup.min.js', plugin: :usability %>
+  <%= stylesheet_link_tag 'magnific-popup.css', plugin: :usability %>
+<% end %>
