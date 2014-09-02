@@ -195,3 +195,18 @@ a.show_sidebar {
 #preview.wiki a.collapsible {
   border-bottom-style: dotted;
 }
+
+.settings-main {
+  width: 100%;
+}
+
+.settings-left {
+  float: left;
+  width: 49%;
+}
+
+.settings-right {
+  float: left;
+  margin-left: 20px;
+  width: 49%;
+}
