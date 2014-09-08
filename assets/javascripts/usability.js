@@ -137,7 +137,17 @@ RMPlus.Usability = (function(my){
     }
 
     // catch click on thumbnail and open gallery using href-index map
-    $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function() {
+    $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function(event) {
+      if (event.which === 2) {
+        if ($(event.target).is('span')) {
+          window.location.href = event.target.parentNode.href;
+          return false;
+        }
+        else if ($(event.target).is('a')) {
+          window.location.href = event.target.href;
+          return false;
+        }
+      }
       var data_id = this.getAttribute('data-id');
       var url_part = 'attachments/download/' + data_id;
       for (i = 0, len = galleryMap.length; i < len; i++) {
@@ -175,6 +185,13 @@ $(document).ready(function () {
       RMPlus.Usability.createGallery($('div#history').get(0), 'comments');
     }
   }
+
+  $(document.body).on('mousedown', '.gallery-item', function(event) {
+    if (event.which === 2) {
+      return false;
+    }
+    console.log(event);
+  });
 
   RMPlus.Usability.makePieCharts(document.body);
   RMPlus.Usability.add_total_sum_to_issue_queries( );
