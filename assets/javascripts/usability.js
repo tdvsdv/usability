@@ -140,11 +140,11 @@ RMPlus.Usability = (function(my){
     $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function(event) {
       if (event.which === 2) {
         if ($(event.target).is('span')) {
-          window.location.href = event.target.parentNode.href;
+          window.open(event.target.parentNode.href);
           return false;
         }
         else if ($(event.target).is('a')) {
-          window.location.href = event.target.href;
+          window.open(event.target.href);
           return false;
         }
       }
