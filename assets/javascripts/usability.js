@@ -137,13 +137,13 @@ RMPlus.Usability = (function(my){
     }
 
     // catch click on thumbnail and open gallery using href-index map
-    $('.gallery-item, .gallery-thumbnail', $(parent_element)).on('click', function(event) {
+    $('.gallery-item, .gallery-thumbnail, .gallery-thumbnail', $(parent_element)).on('click', function(event) {
       if (event.which === 2) {
         if ($(event.target).is('span')) {
           window.open(event.target.parentNode.href);
           return false;
         }
-        else if ($(event.target).is('a')) {
+        else if ($(event.target).is('a, img'))) {
           window.open(event.target.href);
           return false;
         }
