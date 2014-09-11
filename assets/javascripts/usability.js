@@ -144,7 +144,7 @@ RMPlus.Usability = (function(my){
           return false;
         }
         else if ($(event.target).is('a, img')) {
-          window.open(event.target.href);
+          window.open(event.target.parentNode.href);
           return false;
         }
       }
