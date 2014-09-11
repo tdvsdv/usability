@@ -46,16 +46,6 @@
           <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
         </label>
       </fieldset>
-      <fieldset>
-        <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
-        <label for="settings_default_page" class="for-checkbox">
-          <span><%= l(:settings_default_page) %>:</span>
-          <%= text_field_tag 'settings[default_page]', @settings[:default_page], :size => 30 %>
-        </label>
-        <label for="settings_enable_custom_default_page">
-          <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
-        </label>
-      </fieldset>
     <% end %>
   </div>
 
