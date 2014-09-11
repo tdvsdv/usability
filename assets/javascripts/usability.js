@@ -143,7 +143,7 @@ RMPlus.Usability = (function(my){
           window.open(event.target.parentNode.href);
           return false;
         }
-        else if ($(event.target).is('a, img'))) {
+        else if ($(event.target).is('a, img')) {
           window.open(event.target.href);
           return false;
         }
