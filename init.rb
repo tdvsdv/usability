@@ -20,13 +20,17 @@ Redmine::Plugin.register :usability do
 
 
   delete_menu_item :top_menu, :help
-  delete_menu_item :account_menu, :login
-  delete_menu_item :account_menu, :my_account
-  delete_menu_item :top_menu, :projects
+  # delete_menu_item :account_menu, :login
 
-  menu :account_menu, :my_name, {:controller => 'my', :action => 'account'}, :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'my_name_popover_content'}}
-  menu :top_menu, :projects, {:controller => 'projects', :action => 'index'}, :caption => :label_project_plural, :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'projects_popover_content'}}
   menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: :label_usability_easy_perplex_menu, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
+
+  menu :custom_menu, :us_preferences, { controller: :users, action: :edit_usability_preferences, id: User.current.id }, caption: :appearance_and_usability, if: Proc.new { User.current.logged? }, html: { class: 'in_link', remote: true }
+  menu :custom_menu, :us_favourite_proj_name, nil, caption: Proc.new{ ('<div class="title">' + User.current.favourite_project.name + '</div>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_issues, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues">' + I18n.t(:label_issue_plural) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new">' + I18n.t(:label_issue_new) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_wiki, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/wiki">' + I18n.t(:label_wiki) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && User.current.favourite_project.module_enabled?(:wiki) }
+  menu :custom_menu, :us_favourite_proj_dmsf, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/dmsf">' + I18n.t(:label_wiki) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && !User.current.favourite_project.module_enabled?(:dmsf) }
+
 end
 
 Rails.application.config.to_prepare do

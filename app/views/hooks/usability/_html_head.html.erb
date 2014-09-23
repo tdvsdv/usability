@@ -1,5 +1,5 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
-<% settings = Setting.plugin_usability %>
+<% settings = Setting.plugin_usability || {} %>
 <% all_settings = {} %>
 <% defaults.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
 <% settings.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
@@ -45,8 +45,12 @@
 <%= javascript_include_tag 'usability.js', :plugin => :usability %>
 <%= stylesheet_link_tag 'usability.css', :plugin => :usability %>
 
+<% if settings[:enable_underlined_links] %>
+  <%= stylesheet_link_tag 'usability-links.css', :plugin => :usability %>
+<% end %>
+
 <% if (!controller.nil? && controller.controller_name == 'settings' && controller.action_name == 'plugin') && params[:id] == 'usability' %>
-  <%= stylesheet_link_tag 'settings', :plugin => 'a_common_libs', :media => 'screen' %>
+  <%= stylesheet_link_tag 'settings', plugin: 'a_common_libs', media: 'screen' %>
 <% end %>
 
 <% if controller.controller_name == 'issues' || controller.controller_name == 'sd_requests' %>

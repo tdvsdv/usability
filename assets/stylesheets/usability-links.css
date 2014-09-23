@@ -1,0 +1,28 @@
+a.no_line, a.no_line:hover {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+a.no_line > span, a.no_line > span:hover {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  text-decoration: none;
+}
+
+a.in_link, a.in_link:hover,
+a.in_link > span, a.in_link:hover > span {
+  border-bottom-style: dotted;
+  border-bottom-width: 1px;
+  text-decoration: none;
+}
+
+a.in_link.icon, a.in_link.icon:hover,
+ul.dropdown-menu a.in_link, ul.dropdown-menu a.in_link:hover {
+  border-bottom: none;
+  text-decoration: none;
+}
+
+a.in_link.icon, a.in_link.icon:hover {
+  border-bottom: none;
+  text-decoration: none;
+}
