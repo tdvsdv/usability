@@ -30,6 +30,7 @@ Redmine::Plugin.register :usability do
   menu :custom_menu, :us_favourite_proj_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new">' + I18n.t(:label_issue_new) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
   menu :custom_menu, :us_favourite_proj_wiki, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/wiki">' + I18n.t(:label_wiki) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && User.current.favourite_project.module_enabled?(:wiki) }
   menu :custom_menu, :us_favourite_proj_dmsf, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/dmsf">' + I18n.t(:label_wiki) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && !User.current.favourite_project.module_enabled?(:dmsf) }
+  menu :custom_menu, :us_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new">' + I18n.t(:us_of_issue) + '</a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
 
 end
 

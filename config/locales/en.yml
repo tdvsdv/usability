@@ -83,3 +83,4 @@ en:
   magnificPopup_ajax_tError: "<a href=\"%url%\">The request</a> failed."
   magnificPopup_tClose: "Close (Esc)"
   magnificPopup_tLoading: "Loading..."
+  us_of_issue: "Issue"
