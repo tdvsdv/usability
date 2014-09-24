@@ -17,7 +17,7 @@
         <%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button] %> &mdash; <%= l(:settings_show_sidebar_close_button) %>
       </label>
       <label for="settings_enable_underlined_links">
-        <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links] %> &mdash; <%= l(:settings_enable_underlined_links) %>
+        <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links] %> &mdash; <%= l(:settings_enable_underlined_links).html_safe %>
       </label>
       <label for="settings_remove_project_page_header_breadcrumb">
         <%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb] %> &mdash; <%= l(:settings_remove_project_page_header_breadcrumb) %>

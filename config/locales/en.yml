@@ -23,7 +23,7 @@ en:
   settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
 
   settings_show_sidebar_close_button: "Allow to close the sidebar."
-  settings_enable_underlined_links: "Enhance underlining of links."
+  settings_enable_underlined_links: "Enhance underlining of links (<a href='https://github.com/tdvsdv/redmine_alex_skin'>our Redmine theme</a> is required)."
   settings_remove_project_page_header_breadcrumb: "Remove parent projects from the project page header."
   settings_dont_render_project_jump_box: "Hide fast projects selection box."
   settings_enable_usability_progress_bar: "Enhance looks of the progress bar."

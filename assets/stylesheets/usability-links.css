@@ -1,9 +1,17 @@
-a.no_line, a.no_line:hover {
+@media all {
+  a, a:hover {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    text-decoration: none;
+  }
+}
+
+a.no_line, a.no_line:hover, a.icon, a.icon:hover {
   border-bottom: none;
   text-decoration: none;
 }
 
-a.no_line > span, a.no_line > span:hover {
+a > span, a > span:hover {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   text-decoration: none;
