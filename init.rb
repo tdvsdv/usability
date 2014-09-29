@@ -20,7 +20,6 @@ Redmine::Plugin.register :usability do
 
 
   delete_menu_item :top_menu, :help
-  # delete_menu_item :account_menu, :login
 
   menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: Proc.new{ ('<span>' + I18n.t(:label_usability_easy_perplex_menu)+'</span>').html_safe }, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
 
