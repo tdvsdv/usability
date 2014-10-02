@@ -8,13 +8,13 @@ RMPlus.Usability = (function(my){
   var my = my || {};
 
   my.underlineMenusAndIcons = function () {
-    $('a.icon:not(:has(span)), a.in_link:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function(index){
+    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon').each(function(index){
+      $(this).addClass('no_line');
+    });
+    $('a.no_line:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function(index){
       if ($(this).html() == $(this).text()) {
         $(this).html('<span>'+$(this).html()+'</span>');
       }
-    });
-    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a').each(function(index){
-      $(this).addClass('no_line');
     });
   };
 

@@ -4,38 +4,28 @@
     border-bottom-width: 1px;
     text-decoration: none;
   }
+  a > span.count {
+    border-bottom: none !important;
+  }
 }
 
-a.no_line, a.no_line:hover,
-a.icon, a.icon:hover,
-a.in_link, a.in_link:hover {
-  border-bottom: none;
-  text-decoration: none;
-}
-
-a > span, a > span:hover {
+a.icon > span, a.icon:hover > span {
   border-bottom-style: solid;
   border-bottom-width: 1px;
   text-decoration: none;
 }
 
-a.in_link > span, a.in_link:hover > span {
+a.in_link, a.in_link:hover,
+a.in_link.no_line > span, a.in_link.no_line:hover > span {
   border-bottom-style: dotted;
   border-bottom-width: 1px;
   text-decoration: none;
 }
 
+a.no_line, a.no_line:hover,
+a.icon, a.icon:hover,
 a.in_link.icon, a.in_link.icon:hover,
-ul.dropdown-menu a.in_link, ul.dropdown-menu a.in_link:hover {
-  border-bottom: none;
-  text-decoration: none;
-}
-
-a.in_link.icon, a.in_link.icon:hover {
-  border-bottom: none;
-  text-decoration: none;
-}
-
+ul.dropdown-menu a.in_link, ul.dropdown-menu a.in_link:hover,
 a.in_link > .count, a.in_link:hover > .count,
 a.no_line > .count, a.no_line:hover > .count {
   border-bottom: none;
