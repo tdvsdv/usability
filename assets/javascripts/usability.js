@@ -266,7 +266,8 @@ $(document).ready(function () {
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
-      var closed = localStorage["sidebar_closed"] || false;
+
+      var closed = ('localStorage' in window && window['localStorage'] !== null) ? localStorage["sidebar_closed"] : false;
       if (closed === "true") {
         hide_sidebar($('#close_sidebar_icon'));
       }
