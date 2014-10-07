@@ -245,6 +245,7 @@ $(document).ready(function () {
 
   $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
     jQuery(document.body).data('ajax_emmiter', jQuery(this));
+    // console.log('Emmited ajax event')
   });
 
   $(document).ajaxStart(function() {

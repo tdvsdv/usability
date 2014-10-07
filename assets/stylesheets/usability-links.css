@@ -16,7 +16,8 @@ a.icon > span, a.icon:hover > span {
 }
 
 a.in_link, a.in_link:hover,
-a.in_link.no_line > span, a.in_link.no_line:hover > span {
+a.in_link.no_line > span, a.in_link.no_line:hover > span,
+a.in_link.icon > span, a.in_link.icon:hover > span {
   border-bottom-style: dotted;
   border-bottom-width: 1px;
   text-decoration: none;
