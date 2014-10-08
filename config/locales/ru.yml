@@ -32,6 +32,7 @@ ru:
   settings_easy_perplex_executor_roles: 'Роли, использующиеся для определения исполнителя в проекте'
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
   settings_enable_download_attachments_all_in_one: 'Загружать вложения одним архивом'
+  settings_usability_dropdown_menu_links: 'Показывать основные ссылки в выпадающем меню для задач/заявок/планов...'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
@@ -58,7 +59,7 @@ ru:
   label_usability_easy_perplex_sd_requests_description: 'Отправить свою хотелку выбранному сотруднику (%{user}), позволить сотруднику самому запланировать сроки, определить приоритеты и назначить исполнителей.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Создать задачу.'
   label_usability_easy_perplex_create_request: '%{department}. Создать заявку'
-  label_usability_settings_easy_perplex_user_for_help: 'Контактное лицо по широкому спектру вопросов'
+  label_usability_settings_easy_perplex_user_for_help: 'Администратор системы (к кому обращаться при ошибке)'
   label_usability_easy_perplex_contact_to: 'Обратитесь к'
 
 
@@ -85,3 +86,4 @@ ru:
   magnificPopup_tLoading: "Загрузка..."
   us_of_issue: "Задачу"
   label_dmsf: "Документы"
+  label_usability_more: "Еще"

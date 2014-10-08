@@ -170,6 +170,39 @@ RMPlus.Usability = (function(my){
     });
   };
 
+  my.hide_sidebar = function (t) {
+    $('#sidebar').hide();
+    t.addClass('show_sidebar');
+    t.removeClass('close_sidebar');
+    $('#content').data('margin-right', $('#content').css('margin-right'));
+    $('#content').css('margin-right', '16px');
+    $('#sidebar').before(t);
+    localStorage["sidebar_closed"] = true;
+  }
+
+  my.show_sidebar = function (t) {
+    $('#sidebar').show();
+    t.removeClass('show_sidebar');
+    t.addClass('close_sidebar');
+    $('#content').css('margin-right', $('#content').data('margin-right'));
+    $('#sidebar').prepend(t);
+    localStorage["sidebar_closed"] = false;
+  }
+
+  // walk-around for non-working rails confirm in some cases (like for a.show_loader[data-remote="true"] - return false does not stop event)
+  my.hard_confirm = function (label,event) {
+    if (!confirm(label)) {
+      event.stopPropagation();
+      return false;
+    }
+    return true;
+  }
+
+  my.us_easy_perplex_actions_submit = function () {
+    $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
+    $("#us_subordinate_form").submit( );
+  }
+
   return my;
 })(RMPlus.Usability || {});
 
@@ -180,6 +213,8 @@ $(window).load(function(){
 });
 
 $(document).ready(function () {
+
+
   // Do images magic, if magnificPopup is enabled on the page
   if ($.magnificPopup != null) {
     // let's create main gallery for issue or sd_request
@@ -200,19 +235,35 @@ $(document).ready(function () {
     if (event.which === 2) {
       return false;
     }
-    console.log(event);
+    // console.log(event);
   });
 
   RMPlus.Usability.makePieCharts(document.body);
   RMPlus.Usability.add_total_sum_to_issue_queries();
 
-  $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
 
-  var contextual = $('#update').prev('.contextual');
-  if (contextual.length > 0) {
-    $('<div/>', {'class': 'H'}).insertBefore('#history').append($('#issue-changesets'), $('#history'));
-    $('<div/>', {'class': 'H'}).insertBefore('#update').append(contextual);
+  // Create dropdown links menu
+  if (RMPlus.Utils.exists('Usability.settings.dropdown_menu_links') && RMPlus.Usability.settings.dropdown_menu_links) {
+    var first_menu = $('#content>.contextual:first');
+    $(RMPlus.Usability.links_menu_tag).appendTo(first_menu);
+    $('#content>.contextual:last').remove();
+
+    var dd_ul = $('#dd-ul');
+    $('.other-formats a').each(function (index) {
+      var el = $('<li></li>').append($(this));
+      dd_ul.append(el);
+    });
+    $('.other-formats').remove();
   }
+
+  // var last_contextual = $('#update').prev('.contextual');
+  // if (last_contextual.length > 0) {
+  //   $('<div/>', {'class': 'H'}).insertBefore('#history').append($('#issue-changesets'), $('#history'));
+  //   last_contextual.remove();
+  // }
+
+  // $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
+
 
   $('#add_filter_select, #available_columns, #group_by, #query_sort_criteria_attribute_0, #query_sort_criteria_attribute_1, #query_sort_criteria_attribute_2').each(function () {
     $this = $(this);
@@ -263,23 +314,23 @@ $(document).ready(function () {
     jQuery('.ajax_hidden_emmiter').show();
   });
 
-  if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button')){
-    if (RMPlus.Usability.settings.show_sidebar_close_button){
+  if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button')) {
+    if (RMPlus.Usability.settings.show_sidebar_close_button) {
       var close_sidebar = $('<a/>', { href: '#',
                                       id: 'close_sidebar_icon',
                                       class: 'R close_sidebar icon',
                                       click: function() {
                                         if ($(this).hasClass('close_sidebar')) {
-                                          hide_sidebar($(this));
+                                          RMPlus.Usability.hide_sidebar($(this));
                                         } else {
-                                          show_sidebar($(this));
+                                          RMPlus.Usability.show_sidebar($(this));
                                         }
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
       var closed = localStorage["sidebar_closed"] || false;
       if (closed === "true") {
-        hide_sidebar($('#close_sidebar_icon'));
+        RMPlus.Usability.hide_sidebar($('#close_sidebar_icon'));
       }
     }
   }
@@ -297,79 +348,30 @@ $(document).ready(function () {
   }); */
 
 
-  $('.splitcontentleft ul').each(function() {
+  $('.splitcontentleft ul').each(function () {
     if ($(this).children().length == 0)
       $(this).remove();
   });
 
-  if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')){
-    if (RMPlus.Usability.settings.enable_underlined_links){
+  if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')) {
+    if (RMPlus.Usability.settings.enable_underlined_links) {
       RMPlus.Usability.underlineMenusAndIcons();
       RMPlus.Usability.underlineTabs();
     }
   }
 
-  $(document.body).on('change', '#us-subordinates-select2', function( ) {
-    us_easy_perplex_actions_submit( );
+  $(document.body).on('change', '#us-subordinates-select2', function () {
+    RMPlus.Usability.us_easy_perplex_actions_submit();
   });
 
-  $('#us-easy-perplex-link').click(function( ) {
+  $('#us-easy-perplex-link').click(function () {
     $('#easy-perplex-modal-window').html('<div class="us-big-loader"></div>');
     $('#easy-perplex-modal-window').modal('hide');
     $('#easy-perplex-modal-window').data('modal', null);
     $('#easy-perplex-modal-window').modal({ keyboard: true });
-    $.ajax({
-      type: 'GET',
-      url: this.href
-    });
+    $.ajax({ type: 'GET',
+             url: this.href });
     return false;
   });
 
 });
-
-
-function show_dropdown (dropdown, obj) {
-  var link = $(obj).offset();
-  link.width = $(obj).outerWidth();
-  link.height = $(obj).outerHeight();
-  dropdown.css('left', link.left - 5 +'px');
-  dropdown.css('top', link.top + link.height + 5 + 'px');
-  dropdown.show();
-}
-/* ----- from a_small_things starts ---- */
-
-function hide_sidebar (t) {
-    $('#sidebar').hide();
-    t.addClass('show_sidebar');
-    t.removeClass('close_sidebar');
-    $('#content').data('margin-right', $('#content').css('margin-right'));
-    $('#content').css('margin-right', '16px');
-    $('#sidebar').before(t);
-    localStorage["sidebar_closed"] = true;
-}
-
-function show_sidebar (t) {
-    $('#sidebar').show();
-    t.removeClass('show_sidebar');
-    t.addClass('close_sidebar');
-    $('#content').css('margin-right', $('#content').data('margin-right'));
-    $('#sidebar').prepend(t);
-    localStorage["sidebar_closed"] = false;
-}
-
-// walk-around for non-working rails confirm in some cases (like for a.show_loader[data-remote="true"] - return false does not stop event)
-function hard_confirm (label,event) {
-  if (!confirm(label)) {
-    event.stopPropagation();
-    return false;
-  }
-  return true;
-}
-
-/* ----- from a_small_things ends ---- */
-
-function us_easy_perplex_actions_submit( )
-{
-  $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
-  $("#us_subordinate_form").submit( );
-}

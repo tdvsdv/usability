@@ -32,6 +32,7 @@ en:
   settings_easy_perplex_executor_roles: 'Roles that are used to determine the executor in the project'
   settings_easy_perplex_cf_customer_id: 'Custom field used as a customer in issue'
   settings_enable_download_attachments_all_in_one: 'Download attachments in one archive'
+  settings_usability_dropdown_menu_links: 'Enable dropdown menu with basic links for isssue/request/plan etc.'
 
   warning_error_occured: "Redmine. Error %{status}"
   label_create_request: "Create request"
@@ -58,7 +59,7 @@ en:
   label_usability_easy_perplex_sd_requests_description: 'Send your wishlist to selected employee (%{user}), allow employee to schedule time, prioritize and assign executors himself.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Create issue.'
   label_usability_easy_perplex_create_request: '%{department}. Create request'
-  label_usability_settings_easy_perplex_user_for_help: 'Contact person for a wide range of questions'
+  label_usability_settings_easy_perplex_user_for_help: 'System admin (contact person on error)'
   label_usability_easy_perplex_contact_to: 'Please refer to'
 
 
@@ -85,3 +86,4 @@ en:
   magnificPopup_tLoading: "Loading..."
   us_of_issue: "Issue"
   label_dmsf: "Documents"
+  label_usability_more: "More"
