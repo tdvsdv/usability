@@ -116,7 +116,7 @@ RMPlus.Usability = (function (my) {
   my.createGallery = function (parent_element, gallery_name) {
     var image_index = 0;
     var galleryMap = [];
-    $('a', $(parent_element)).each(function() {
+    $('a', $(parent_element)).each(function () {
       var $this = $(this);
       if (my.fileIsImage(this.href)) {
         if (this.href.contains('/attachments/download')) {
@@ -203,30 +203,26 @@ RMPlus.Usability = (function (my) {
   return my;
 })(RMPlus.Usability || {});
 
-$(window).load(function(){
-  if ($('div.sd_request').length > 0) {
-    RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'request-comments');
-  }
-});
-
-$(document).ready(function () {
-
+$(window).load(function () {
 
   // Do images magic, if magnificPopup is enabled on the page
   if ($.magnificPopup != null) {
     // let's create main gallery for issue or sd_request
     if ($('div.issue').length > 0) {
       RMPlus.Usability.createGallery($('div.issue').get(0), 'main');
-      // comments and history gallery for sd_request
-      if ($('div.sd_request').length > 0) {
-        RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'request-history');
+      if ($('#tab-content-history').length > 0) {
+        console.log('FOR HISTORY')
+        RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'history');
+      }
+      if ($('#tab-content-comments').length > 0) {
+        RMPlus.Usability.createGallery($('#tab-content-comments').get(0), 'comments');
       }
     }
-    // comments gallery for issue
-    if ($('div#history').length > 0) {
-      RMPlus.Usability.createGallery($('div#history').get(0), 'comments');
-    }
   }
+
+});
+
+$(document).ready(function () {
 
   $(document.body).on('mousedown', '.gallery-item', function(event) {
     if (event.which === 2) {
