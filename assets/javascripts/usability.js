@@ -280,6 +280,9 @@ $(document).ready(function () {
       });
       $('.other-formats').remove();
     }
+    if ($('#dd-ul>li').length > 0) {
+      $('#usability_menu').show();
+    }
   }
 
   if (RMPlus.Utils.exists('Usability.settings.hide_bottom_issue_links') && RMPlus.Usability.settings.hide_bottom_issue_links) {

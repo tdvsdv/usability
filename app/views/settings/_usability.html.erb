@@ -1,7 +1,7 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] || { } %>
 <% settings = Setting.plugin_usability || {}.with_indifferent_access %>
 <% @settings = settings.reverse_merge(defaults).with_indifferent_access %>
-<% std_links = [[l(:button_create),'icon-new'],
+<% std_links = [[l(:button_create),'icon-add'],
                 [l(:button_edit),'icon-edit'],
                 [l(:button_log_time),'icon-time-add'],
                 [l(:button_watch),'icon-fav-off'],
