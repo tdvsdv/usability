@@ -1,4 +1,4 @@
-.rmplus_date_links {
+/*.rmplus_date_links {
   overflow: hidden;
 }
 
@@ -16,90 +16,7 @@
 .rmplus_date_links span.arr {
   float: left;
   display: block;
-}
-
-#usability_menu {
-  overflow: visible;
-}
-
-#content > .contextual > a,
-#usability_menu,
-#content > .contextual > .rmplus_date_links {
-  display: block;
-  float: left;
-  line-height: 20px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-
-#content > .contextual > a.selected,
-#content > .contextual > .rmplus_date_links > a {
-  padding: 0 2px;
-}
-
-div.contextual {
-  margin: 0;
-  padding: 0;
-}
-
-
-#usability_menu .dropdown-menu div.title-left {
-  margin: 0 10px;
-  padding-left: 0;
-}
-
-#content > .contextual > a,
-#content > .contextual > .dropdowns,
-#usability_menu,
-#content > .contextual > .rmplus_date_links {
-  margin: 0;
-  margin-left: 5px;
-}
-
-#usability_menu .dropdown-menu a {
-  margin: 0 10px;
-}
-
-
-
-#usability_menu .dropdown-menu a:hover {
-  background-color:  #fff;
-}
-
-#usability_menu .dropdown-menu:before {
-  position: absolute;
-  top: -7px;
-  left: 9px;
-  display: inline-block;
-  border-right: 7px solid rgba(0, 0, 0, 0);
-  border-bottom: 7px solid #CCC;
-  border-left: 7px solid rgba(0, 0, 0, 0);
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  content: '';
-  right: 12px;
-  left: auto;
-}
-
-#usability_menu .dropdown-menu:after {
-  position: absolute;
-  top: -6px;
-  left: 10px;
-  display: inline-block;
-  border-right: 6px solid rgba(0, 0, 0, 0);
-  border-bottom: 6px solid #FFF;
-  border-left: 6px solid rgba(0, 0, 0, 0);
-  content: '';
-  right: 13px;
-  left: auto;
-}
-
-.icon-dd-menu {
-  background-image: url(../images/dd-icon.png);
-}
-
-.pdf {
-  background-image: url(../images/pdf-icon.png);
-}
+}*/
 
 /* ----- from a_small_things starts ---- */
 

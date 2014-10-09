@@ -238,66 +238,6 @@ $(document).ready(function () {
   RMPlus.Usability.makePieCharts(document.body);
   RMPlus.Usability.add_total_sum_to_issue_queries();
 
-
-  // Create dropdown links menu
-  if (RMPlus.Utils.exists('Usability.settings.dropdown_menu_links') && RMPlus.Usability.settings.dropdown_menu_links) {
-    var first_menu = $('#content>.contextual:first');
-    var month_selection = first_menu.find('.rmplus_date_links:first');
-    if (month_selection.length > 0) {
-      $(RMPlus.Usability.links_menu_tag).insertBefore(month_selection);
-    }
-    else {
-      $(RMPlus.Usability.links_menu_tag).appendTo(first_menu);
-    }
-    var dd_ul = $('#dd-ul');
-    var items_selector = ['.move-to-dropdown'];
-
-    if (RMPlus.Utils.exists('Usability.settings.items_move_to_dropdown') && RMPlus.Usability.settings.items_move_to_dropdown.length > 0) {
-      console.dir(RMPlus.Usability.settings.items_move_to_dropdown);
-
-      for (var i = 0; i < RMPlus.Usability.settings.items_move_to_dropdown.length; i++) {
-        items_selector.push('.'+RMPlus.Usability.settings.items_move_to_dropdown[i]);
-      }
-      first_menu.find(items_selector.join(',')).each(function () {
-        var el = $(this);
-        if (el.text() == el.html()){
-          el.html('<span>'+el.addClass('no_line').html()+'</span>');
-        }
-        dd_ul.append($('<li></li>').append(el));
-      });
-    }
-
-    var export_links = $('.other-formats a');
-    if (export_links.length > 0) {
-      dd_ul.append($('<li><hr class="cm-menu-divider"></li>'));
-      dd_ul.append($('<li><div class="title title-left">' + RMPlus.Usability.label_export_to_format + '</div></li>'));
-      export_links.each(function (index) {
-        var el = $(this);
-        if (el.text() == el.html()){
-          el.html('<span>'+el.addClass('icon no_line').html()+'</span>');
-        }
-        dd_ul.append($('<li></li>').append(el));
-      });
-      $('.other-formats').remove();
-    }
-    if ($('#dd-ul>li').length > 0) {
-      $('#usability_menu').show();
-    }
-  }
-
-  if (RMPlus.Utils.exists('Usability.settings.hide_bottom_issue_links') && RMPlus.Usability.settings.hide_bottom_issue_links) {
-    $('#content>div.issue').nextAll('.contextual:last').remove();
-  }
-
-  // var last_contextual = $('#update').prev('.contextual');
-  // if (last_contextual.length > 0) {
-  //   $('<div/>', {'class': 'H'}).insertBefore('#history').append($('#issue-changesets'), $('#history'));
-  //   last_contextual.remove();
-  // }
-
-  // $('.contextual').next('div[style*="clear: both"]').remove().end().prev('div[style*="clear: both"]').remove();
-
-
   $('#add_filter_select, #available_columns, #group_by, #query_sort_criteria_attribute_0, #query_sort_criteria_attribute_1, #query_sort_criteria_attribute_2').each(function () {
     $this = $(this);
     var selected = $this.children('option:selected'); //Only for firefox

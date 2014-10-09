@@ -12,8 +12,6 @@
 
     my.settings = <%= all_settings.to_json.html_safe %>;
 
-    my.label_export_to_format = '<%= l(:label_export_to_format).html_safe %>';
-
     my.galleryPopupSettings = {
       type: 'image',
       gallery: {
@@ -36,8 +34,6 @@
       tClose: '<%= l(:magnificPopup_tClose) %>',
       tLoading: '<%= l(:magnificPopup_tLoading) %>'
     };
-
-    my.links_menu_tag = '<div class="dropdown nav pull-right" id="usability_menu" style="display: none;"><a href="#" class="dropdown-toggle in_link icon icon-dd-menu" data-toggle="dropdown"><span><%= l(:label_usability_more) %></span></a><ul id="dd-ul" class="dropdown-menu" role="menu" aria-labelledby="dLabel"></ul></div>';
 
     return my;
   })(RMPlus.Usability || {});
