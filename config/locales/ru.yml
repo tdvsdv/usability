@@ -33,6 +33,8 @@ ru:
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
   settings_enable_download_attachments_all_in_one: 'Загружать вложения одним архивом'
   settings_usability_dropdown_menu_links: 'Показывать основные ссылки в выпадающем меню для задач/заявок/планов...'
+  settings_usability_hide_bottom_issue_links: 'Скрывать нижние дублирующие ссылки редактирования задачи'
+  settings_items_move_to_dropdown: 'Переносить в выпадающее меню пункты'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
@@ -87,3 +89,13 @@ ru:
   us_of_issue: "Задачу"
   label_dmsf: "Документы"
   label_usability_more: "Еще"
+  label_add_indicator: "Добавить показатель"
+  label_add_pattern: "Добавить шаблон"
+  label_add_period: "Добавить расчетный период"
+  label_date_links: "Выбор месяца"
+  label_common_plan: "Общий план"
+  label_show_stats: "Статистика"
+  label_send_to_approve: "Отправить на согласование"
+  label_show_by_ver: "По версиям"
+  label_show_by_user: "По пользователям"
+  label_export_to_format: "Экспортировать в:"

@@ -4,14 +4,14 @@ if (typeof String.prototype.contains === 'undefined') {
   };
 }
 
-RMPlus.Usability = (function(my){
+RMPlus.Usability = (function (my) {
   var my = my || {};
 
   my.underlineMenusAndIcons = function () {
-    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon').each(function(index){
+    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon').each(function (index) {
       $(this).addClass('no_line');
     });
-    $('a.no_line:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function(index){
+    $('a.no_line:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function (index) {
       if ($(this).html() == $(this).text()) {
         $(this).html('<span>'+$(this).html()+'</span>');
       }
@@ -19,15 +19,15 @@ RMPlus.Usability = (function(my){
   };
 
 
-  my.underlineTabs = function(){
+  my.underlineTabs = function () {
     $('div.tabs ul li a').each(function(index) {
       $(this).addClass('no_line in_link');
       $(this).html('<span>'+$(this).html()+'</span>');
     });
   };
 
-  my.show_flashes = function(message_error, message_notice) {
-    $('.flash').remove( );
+  my.show_flashes = function (message_error, message_notice) {
+    $('.flash').remove();
     if (typeof message_error != 'undefined' && message_error != '') {
         $('#content').prepend('<div id="flash_error" class="flash error">' + message_error + '</div>');
         window.scrollTo(0, 0);
@@ -38,62 +38,59 @@ RMPlus.Usability = (function(my){
     }
   };
 
-  my.makePieCharts = function(element){
-    if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar')){
-      if (RMPlus.Usability.settings.enable_usability_progress_bar){
-        $('.pie-chart', $(element)).each(function(){
-          if (!$(this).attr('data-piecharted')){
-            var radius = parseInt(this.getAttribute('data-radius'));
-            var pcts = JSON.parse(this.getAttribute('data-pcts'));
-            var border_width = parseFloat(this.getAttribute('data-border-width'));
-            var labels = [];
-            Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
-            this.setAttribute('data-piecharted', 'true');
-          }
-        });
-      }
+  my.makePieCharts = function (element) {
+    if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar') && RMPlus.Usability.settings.enable_usability_progress_bar) {
+      $('.pie-chart', $(element)).each(function () {
+        if (!$(this).attr('data-piecharted')) {
+          var radius = parseInt(this.getAttribute('data-radius'));
+          var pcts = JSON.parse(this.getAttribute('data-pcts'));
+          var border_width = parseFloat(this.getAttribute('data-border-width'));
+          var labels = [];
+          Raphael(this, 2*(radius + border_width), 2*(radius + border_width)).pieChart(radius+border_width, radius+border_width, radius, pcts, border_width, labels);
+          this.setAttribute('data-piecharted', 'true');
+        }
+      });
     }
   };
 
   my.add_total_sum_to_issue_queries = function () {
     if (!RMPlus.Utils.exists('Usability.settings.totals_in_queries') || !RMPlus.Usability.settings.totals_in_queries) { return; }
+
     var totals = [];
     var group_totals = [];
     var table = $('#content div.autoscroll table.list.issues');
 
-    var add_totals = function(element, totals, before) {
+    var add_totals = function (element, totals, before) {
       if (totals.length == 0) { return; }
       var html = '';
       for (var sch = 0; sch < totals.length; sch ++) {
         html += "<td>" + (totals[sch] && totals[sch] != 0 ? totals[sch] : '&nbsp;') + "</td>";
       }
       if (before) {
-        element.before('<tr><td class="us_row_divider" colspan="' + totals.length.toString( ) + '"></td></tr><tr>' + html + '</tr>');
+        element.before('<tr><td class="us_row_divider" colspan="' + totals.length.toString() + '"></td></tr><tr>' + html + '</tr>');
       }
       else {
-        element.append('<tr><td class="us_row_divider" colspan="' + totals.length.toString( ) + '"></td></tr><tr>' + html + '</tr>');
+        element.append('<tr><td class="us_row_divider" colspan="' + totals.length.toString() + '"></td></tr><tr>' + html + '</tr>');
       }
     };
 
     var has_groups = false;
-    table.find('tr').each(function() {
+    table.find('tr').each(function () {
       var tr = $(this);
-      if (tr.hasClass('group'))
-      {
+      if (tr.hasClass('group')) {
         has_groups = true;
         if (group_totals.length == 0) { return; }
         add_totals.call(this, tr, group_totals, true);
         group_totals = [];
       }
-      tr.children().each(function(index) {
+      tr.children().each(function (index) {
         var val = this.innerHTML.replace(' ', '');
         if (val == '' || val == 'x') { totals[index] = totals[index] || 0; return; }
         if (isNaN(parseFloat(val)) || !isFinite(val)) { totals[index] = undefined; return; }
         val = parseFloat(val);
-        if (totals[index]) { totals[index] += val; }
-        else { totals[index] = val; }
-        if (group_totals[index]) { group_totals[index] += val; }
-        else { group_totals[index] = val; }
+
+        totals[index] = (totals[index]) ? (totals[index]+val) : val;
+        group_totals[index] = (group_totals[index]) ? (group_totals[index]+val) : val;
       });
     });
     if (has_groups) { add_totals.call(this, table, group_totals); }
@@ -103,7 +100,7 @@ RMPlus.Usability = (function(my){
   image_pattern = /\.([0-9a-z]+)(?:[\?#]|$)/i;
   image_extentions = "bmp|gif|jpg|jpe|jpeg|png";
 
-  function getFileExtention(string) {
+  function getFileExtention (string) {
     result = string.match(image_pattern);
     if (result != null) {
       return result[1].toLowerCase();
@@ -111,12 +108,12 @@ RMPlus.Usability = (function(my){
     return null;
   };
 
-  my.fileIsImage = function(string) {
+  my.fileIsImage = function (string) {
     var extention = getFileExtention(string);
     return image_extentions.contains(extention);
   };
 
-  my.createGallery = function(parent_element, gallery_name) {
+  my.createGallery = function (parent_element, gallery_name) {
     var image_index = 0;
     var galleryMap = [];
     $('a', $(parent_element)).each(function() {
@@ -147,7 +144,7 @@ RMPlus.Usability = (function(my){
     }
 
     // catch click on thumbnail and open gallery using href-index map
-    $('.gallery-item, .gallery-thumbnail, .gallery-thumbnail', $(parent_element)).on('click', function(event) {
+    $('.gallery-item, .gallery-thumbnail, .gallery-thumbnail', $(parent_element)).on('click', function (event) {
       if (event.which === 2) {
         if ($(event.target).is('span')) {
           window.open(event.target.parentNode.href);
@@ -190,13 +187,13 @@ RMPlus.Usability = (function(my){
   }
 
   // walk-around for non-working rails confirm in some cases (like for a.show_loader[data-remote="true"] - return false does not stop event)
-  my.hard_confirm = function (label,event) {
-    if (!confirm(label)) {
-      event.stopPropagation();
-      return false;
-    }
-    return true;
-  }
+  // my.hard_confirm = function (label,event) {
+  //   if (!confirm(label)) {
+  //     event.stopPropagation();
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   my.us_easy_perplex_actions_submit = function () {
     $(document.body).data('ajax_emmiter', $('#s2id_us-subordinates-select2')); //#us-perplex-loader
@@ -245,15 +242,48 @@ $(document).ready(function () {
   // Create dropdown links menu
   if (RMPlus.Utils.exists('Usability.settings.dropdown_menu_links') && RMPlus.Usability.settings.dropdown_menu_links) {
     var first_menu = $('#content>.contextual:first');
-    $(RMPlus.Usability.links_menu_tag).appendTo(first_menu);
-    $('#content>.contextual:last').remove();
-
+    var month_selection = first_menu.find('.rmplus_date_links:first');
+    if (month_selection.length > 0) {
+      $(RMPlus.Usability.links_menu_tag).insertBefore(month_selection);
+    }
+    else {
+      $(RMPlus.Usability.links_menu_tag).appendTo(first_menu);
+    }
     var dd_ul = $('#dd-ul');
-    $('.other-formats a').each(function (index) {
-      var el = $('<li></li>').append($(this));
-      dd_ul.append(el);
-    });
-    $('.other-formats').remove();
+    var items_selector = ['.move-to-dropdown'];
+
+    if (RMPlus.Utils.exists('Usability.settings.items_move_to_dropdown') && RMPlus.Usability.settings.items_move_to_dropdown.length > 0) {
+      console.dir(RMPlus.Usability.settings.items_move_to_dropdown);
+
+      for (var i = 0; i < RMPlus.Usability.settings.items_move_to_dropdown.length; i++) {
+        items_selector.push('.'+RMPlus.Usability.settings.items_move_to_dropdown[i]);
+      }
+      first_menu.find(items_selector.join(',')).each(function () {
+        var el = $(this);
+        if (el.text() == el.html()){
+          el.html('<span>'+el.addClass('no_line').html()+'</span>');
+        }
+        dd_ul.append($('<li></li>').append(el));
+      });
+    }
+
+    var export_links = $('.other-formats a');
+    if (export_links.length > 0) {
+      dd_ul.append($('<li><hr class="cm-menu-divider"></li>'));
+      dd_ul.append($('<li><div class="title title-left">' + RMPlus.Usability.label_export_to_format + '</div></li>'));
+      export_links.each(function (index) {
+        var el = $(this);
+        if (el.text() == el.html()){
+          el.html('<span>'+el.addClass('icon no_line').html()+'</span>');
+        }
+        dd_ul.append($('<li></li>').append(el));
+      });
+      $('.other-formats').remove();
+    }
+  }
+
+  if (RMPlus.Utils.exists('Usability.settings.hide_bottom_issue_links') && RMPlus.Usability.settings.hide_bottom_issue_links) {
+    $('#content>div.issue').nextAll('.contextual:last').remove();
   }
 
   // var last_contextual = $('#update').prev('.contextual');
@@ -270,28 +300,24 @@ $(document).ready(function () {
     var selected = $this.children('option:selected'); //Only for firefox
     $this.children('option').sort(function (a, b) {
             $a = $(a); $b = $(b);
-            if ($a.text() == 'NA')
-                {
-                return 1;
-                }
-            else if ($b.text() == 'NA')
-                {
-                return -1;
-                }
+            if ($a.text() == 'NA') {
+              return 1;
+            }
+            else if ($b.text() == 'NA') {
+              return -1;
+            }
             return ($a.text().toLowerCase() > $b.text().toLowerCase()) ? 1 : -1;
           }).appendTo($this);
     selected.attr('selected', 'selected')  //Only for firefox
   });
 
-  $('td.project>a').each(function(index) {
+  $('td.project>a').each(function (index) {
     $(this).parent().html($(this).html());
   });
 
   // Disables standart redmine ajax preloader
-  if (RMPlus.Utils.exists('Usability.settings.disable_ajax_preloader')){
-    if (RMPlus.Usability.settings.disable_ajax_preloader === 'true'){
-      $('#ajax-indicator').remove();
-    }
+  if (RMPlus.Utils.exists('Usability.settings.disable_ajax_preloader') && (RMPlus.Usability.settings.disable_ajax_preloader === 'true')) {
+    $('#ajax-indicator').remove();
   }
 
   $(document.body).on('click', 'form[data-remote="true"] input[type=submit], a.icon-del[data-remote="true"], a.show_loader[data-remote="true"]', function () {
@@ -299,9 +325,9 @@ $(document).ready(function () {
     // console.log('Emmited ajax event')
   });
 
-  $(document).ajaxStart(function() {
+  $(document).ajaxStart(function () {
     obj = jQuery(document.body).data('ajax_emmiter')
-    if(typeof obj != 'undefined') {
+    if (typeof obj != 'undefined') {
       obj.after('<div class="loader" style="width:'+obj.outerWidth().toString()+'px; height: '+obj.outerHeight().toString()+'px;"></div>');
       obj.addClass('ajax_hidden_emmiter');
       obj.hide();
@@ -309,21 +335,21 @@ $(document).ready(function () {
     jQuery(document.body).removeData('ajax_emmiter');
   });
 
-  $(document).ajaxStop(function() {
+  $(document).ajaxStop(function () {
     jQuery("div.loader:empty").remove();
     jQuery('.ajax_hidden_emmiter').show();
   });
 
-  if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button')) {
-    if (RMPlus.Usability.settings.show_sidebar_close_button) {
+  if (RMPlus.Utils.exists('Usability.settings.show_sidebar_close_button') && RMPlus.Usability.settings.show_sidebar_close_button) {
       var close_sidebar = $('<a/>', { href: '#',
                                       id: 'close_sidebar_icon',
                                       class: 'R close_sidebar icon',
-                                      click: function() {
-                                        if ($(this).hasClass('close_sidebar')) {
-                                          RMPlus.Usability.hide_sidebar($(this));
+                                      click: function () {
+                                        var btn = $(this);
+                                        if (btn.hasClass('close_sidebar')) {
+                                          RMPlus.Usability.hide_sidebar(btn);
                                         } else {
-                                          RMPlus.Usability.show_sidebar($(this));
+                                          RMPlus.Usability.show_sidebar(btn);
                                         }
                                       }
                           });
@@ -332,7 +358,6 @@ $(document).ready(function () {
       if (closed === "true") {
         RMPlus.Usability.hide_sidebar($('#close_sidebar_icon'));
       }
-    }
   }
 
   // now browser history remembers opened tab. Useful for refresh and back/forwards
@@ -353,11 +378,9 @@ $(document).ready(function () {
       $(this).remove();
   });
 
-  if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links')) {
-    if (RMPlus.Usability.settings.enable_underlined_links) {
-      RMPlus.Usability.underlineMenusAndIcons();
-      RMPlus.Usability.underlineTabs();
-    }
+  if (RMPlus.Utils.exists('Usability.settings.enable_underlined_links') && RMPlus.Usability.settings.enable_underlined_links) {
+    RMPlus.Usability.underlineMenusAndIcons();
+    RMPlus.Usability.underlineTabs();
   }
 
   $(document.body).on('change', '#us-subordinates-select2', function () {

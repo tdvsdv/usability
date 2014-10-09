@@ -1,6 +1,22 @@
 <% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] || { } %>
 <% settings = Setting.plugin_usability || {}.with_indifferent_access %>
 <% @settings = settings.reverse_merge(defaults).with_indifferent_access %>
+<% std_links = [[l(:button_create),'icon-new'],
+                [l(:button_edit),'icon-edit'],
+                [l(:button_log_time),'icon-time-add'],
+                [l(:button_watch),'icon-fav-off'],
+                [l(:button_unwatch),'icon-fav-on'],
+                [l(:button_copy),'icon-copy'],
+                [l(:button_delete),'icon-del'],
+                [l(:label_add_indicator),'add_indicator'],
+                [l(:label_add_pattern),'add_pattern'],
+                [l(:label_add_period),'add_period'],
+                # [l(:label_date_links),'rmplus_date_links'],
+                [l(:label_common_plan),'cp-icon-global-plan'],
+                [l(:label_show_stats),'cp-icon-stats'],
+                [l(:label_send_to_approve),'cp-icon-send-to-approve'],
+                [l(:label_show_by_ver),'cp-icon-ver'],
+                [l(:label_show_by_user),'cp-icon-user'] ] %>
 
 <div class="settings-main">
   <div class="settings-left">
@@ -36,6 +52,15 @@
       </label>
       <label>
         <%= check_box_tag 'settings[dropdown_menu_links]', true, @settings[:dropdown_menu_links] %> &mdash; <%= l(:settings_usability_dropdown_menu_links) %>
+      </label>
+      <label>
+        <%= check_box_tag 'settings[hide_bottom_issue_links]', true, @settings[:hide_bottom_issue_links] %> &mdash; <%= l(:settings_usability_hide_bottom_issue_links) %>
+      </label>
+      <label for="settings_users_at_error">
+        <%= l(:settings_items_move_to_dropdown) %>:
+        <%= select_tag( 'settings[items_move_to_dropdown]',
+                        options_for_select(std_links, @settings[:items_move_to_dropdown]),
+                        {style: 'width:220px;', class: 'select2', multiple: true} ) %>
       </label>
       <label>
         <span><%= l(:label_usability_settings_easy_perplex_user_for_help) %>:</span>

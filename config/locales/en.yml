@@ -33,6 +33,8 @@ en:
   settings_easy_perplex_cf_customer_id: 'Custom field used as a customer in issue'
   settings_enable_download_attachments_all_in_one: 'Download attachments in one archive'
   settings_usability_dropdown_menu_links: 'Enable dropdown menu with basic links for isssue/request/plan etc.'
+  settings_usability_hide_bottom_issue_links: 'Hide bottom issue edit links'
+  settings_items_move_to_dropdown: 'Standart links being moved to dropdown'
 
   warning_error_occured: "Redmine. Error %{status}"
   label_create_request: "Create request"
@@ -87,3 +89,13 @@ en:
   us_of_issue: "Issue"
   label_dmsf: "Documents"
   label_usability_more: "More"
+  label_add_indicator: "Add indicator"
+  label_add_pattern: "Add pattern"
+  label_add_period: "Add calc period"
+  label_date_links: "Month selection"
+  label_common_plan: "Common plan"
+  label_show_stats: "Stats"
+  label_send_to_approve: "Send to approve"
+  label_show_by_ver: "By version"
+  label_show_by_user: "By users"
+  label_export_to_format: "Export to:"
