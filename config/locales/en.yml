@@ -32,9 +32,6 @@ en:
   settings_easy_perplex_executor_roles: 'Roles that are used to determine the executor in the project'
   settings_easy_perplex_cf_customer_id: 'Custom field used as a customer in issue'
   settings_enable_download_attachments_all_in_one: 'Download attachments in one archive'
-  settings_usability_dropdown_menu_links: 'Enable dropdown menu with basic links for isssue/request/plan etc.'
-  settings_usability_hide_bottom_issue_links: 'Hide bottom issue edit links'
-  settings_items_move_to_dropdown: 'Standart links being moved to dropdown'
 
   warning_error_occured: "Redmine. Error %{status}"
   label_create_request: "Create request"

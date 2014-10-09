@@ -32,9 +32,6 @@ ru:
   settings_easy_perplex_executor_roles: 'Роли, использующиеся для определения исполнителя в проекте'
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
   settings_enable_download_attachments_all_in_one: 'Загружать вложения одним архивом'
-  settings_usability_dropdown_menu_links: 'Показывать основные ссылки в выпадающем меню для задач/заявок/планов...'
-  settings_usability_hide_bottom_issue_links: 'Скрывать нижние дублирующие ссылки редактирования задачи'
-  settings_items_move_to_dropdown: 'Переносить в выпадающее меню пункты'
 
   warning_error_occured: "Redmine. Ошибка %{status}"
   label_create_request: "Создать заявку"
