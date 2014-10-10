@@ -20,13 +20,18 @@ Redmine::Plugin.register :usability do
 
 
   delete_menu_item :top_menu, :help
-  delete_menu_item :account_menu, :login
-  delete_menu_item :account_menu, :my_account
-  delete_menu_item :top_menu, :projects
 
-  menu :account_menu, :my_name, {:controller => 'my', :action => 'account'}, :caption => Proc.new { User.current.name },  :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'my_name_popover_content'}}
-  menu :top_menu, :projects, {:controller => 'projects', :action => 'index'}, :caption => :label_project_plural, :if => Proc.new { User.current.logged? }, :html => {:class => "in_link sub_menu", :data => {:content_class => 'projects_popover_content'}}
-  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: :label_usability_easy_perplex_menu, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
+  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: Proc.new{ ('<span>' + I18n.t(:label_usability_easy_perplex_menu)+'</span>').html_safe }, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
+
+  menu :custom_menu, :us_preferences, { controller: :users, action: :edit_usability_preferences, id: User.current.id }, caption: Proc.new{ ('<span>' + I18n.t(:appearance_and_usability)+'</span>').html_safe }, if: Proc.new { User.current.logged? }, html: { class: 'in_link', remote: true }
+  menu :custom_menu, :us_favourite_proj_name, nil, caption: Proc.new{ ('<div class="title">' + User.current.favourite_project.name + '</div>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_issues, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues" class="no_line"><span>' + I18n.t(:label_issue_plural) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new" class="no_line"><span>' + I18n.t(:label_issue_new) + '</span></a>').html_safe}, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_favourite_proj_wiki, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/wiki" class="no_line"><span>' + I18n.t(:label_wiki) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && User.current.favourite_project.module_enabled?(:wiki) }
+  menu :custom_menu, :us_favourite_proj_dmsf, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/dmsf" class="no_line"><span>' + I18n.t(:label_dmsf) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && User.current.favourite_project.module_enabled?(:dmsf) }
+  menu :custom_menu, :us_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new" class="no_line"><span>' + I18n.t(:us_of_issue) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
+  menu :custom_menu, :us_help, nil, caption: Proc.new{ UsabilityMenu.us_help }, if: Proc.new{ true }
+
 end
 
 Rails.application.config.to_prepare do
@@ -36,10 +41,8 @@ Rails.application.config.to_prepare do
 
 
   ApplicationHelper.send(:include, Usability::ApplicationHelperPatch)
-  Redmine::MenuManager::MenuHelper.send(:include, Usability::MenuManagerPatch)
   User.send(:include, Usability::UserPatch)
   UsersController.send(:include, Usability::UsersControllerPatch)
-  Redmine::Info.send(:include, Usability::InfoPatch::Redmine::Info)
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
   IssuesController.send(:include, Usability::IssuesControllerPatch)
   AttachmentsHelper.send(:include, Usability::AttachmentsHelperPatch)
@@ -68,5 +71,3 @@ Rails.application.config.to_prepare do
 end
 
 require 'usability/view_hooks'
-
-Redmine::Plugin.find('usability').menu :top_menu, :help, Usability::InfoPatch::Redmine::Info.help_url, :last => true

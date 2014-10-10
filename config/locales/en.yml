@@ -23,9 +23,9 @@ en:
   settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
 
   settings_show_sidebar_close_button: "Allow to close the sidebar."
-  settings_enable_underlined_links: "Enhance underlining of links."
+  settings_enable_underlined_links: "Enhance underlining of links (<a href='https://github.com/tdvsdv/redmine_alex_skin'>our Redmine theme</a> is required)."
   settings_remove_project_page_header_breadcrumb: "Remove parent projects from the project page header."
-  settings_dont_render_project_jump_box: "Show \"Go to project\" in top menu."
+  settings_dont_render_project_jump_box: "Hide fast projects selection box."
   settings_enable_usability_progress_bar: "Enhance looks of the progress bar."
   settings_enable_custom_default_page: "Enable custom default page."
   settings_enable_easy_rm_tasks: 'Enable easy mechanism for creating issues to subordinate'
@@ -58,7 +58,7 @@ en:
   label_usability_easy_perplex_sd_requests_description: 'Send your wishlist to selected employee (%{user}), allow employee to schedule time, prioritize and assign executors himself.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Create issue.'
   label_usability_easy_perplex_create_request: '%{department}. Create request'
-  label_usability_settings_easy_perplex_user_for_help: 'Contact person for a wide range of questions'
+  label_usability_settings_easy_perplex_user_for_help: 'System admin (contact person on error)'
   label_usability_easy_perplex_contact_to: 'Please refer to'
 
 
@@ -72,6 +72,7 @@ en:
   text_usability_easy_perplex_subordinate_is_not_participant_of_any_service_desk: 'Employee %{user} can not receive and process requests. Contact Redmine administrator to configure service unit.'
 
   label_usability_download_all_in_one: 'Download attachments in one archive'
+  label_usability_settings_totals_in_queries: 'Show totals in queries'
 
   label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
 
@@ -82,3 +83,5 @@ en:
   magnificPopup_ajax_tError: "<a href=\"%url%\">The request</a> failed."
   magnificPopup_tClose: "Close (Esc)"
   magnificPopup_tLoading: "Loading..."
+  us_of_issue: "Issue"
+  label_dmsf: "Documents"

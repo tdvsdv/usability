@@ -23,7 +23,7 @@ ru:
   settings_disable_default_preloader: "Отключить штатный прелоадер Redmine."
 
   settings_show_sidebar_close_button: "Позволить скрывать боковое меню."
-  settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок."
+  settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок (требуется <a href='https://github.com/tdvsdv/redmine_alex_skin'>наш скин для Redmine</a>)."
   settings_remove_project_page_header_breadcrumb: "Не показывать родительские проекты в заголовке страницы проекта."
   settings_dont_render_project_jump_box: "Убрать встроенную возможность быстрого перехода в проект."
   settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
@@ -58,7 +58,7 @@ ru:
   label_usability_easy_perplex_sd_requests_description: 'Отправить свою хотелку выбранному сотруднику (%{user}), позволить сотруднику самому запланировать сроки, определить приоритеты и назначить исполнителей.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Создать задачу.'
   label_usability_easy_perplex_create_request: '%{department}. Создать заявку'
-  label_usability_settings_easy_perplex_user_for_help: 'Контактное лицо по широкому спектру вопросов'
+  label_usability_settings_easy_perplex_user_for_help: 'Администратор системы (к кому обращаться при ошибке)'
   label_usability_easy_perplex_contact_to: 'Обратитесь к'
 
 
@@ -83,3 +83,5 @@ ru:
   magnificPopup_ajax_tError: "Ошибка <a href=\"%url%\">запроса</a> к серверу."
   magnificPopup_tClose: "Закрыть (Esc)"
   magnificPopup_tLoading: "Загрузка..."
+  us_of_issue: "Задачу"
+  label_dmsf: "Документы"
