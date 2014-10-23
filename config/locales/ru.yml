@@ -58,7 +58,7 @@ ru:
   label_usability_easy_perplex_sd_requests_description: 'Отправить свою хотелку выбранному сотруднику (%{user}), позволить сотруднику самому запланировать сроки, определить приоритеты и назначить исполнителей.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Создать задачу.'
   label_usability_easy_perplex_create_request: '%{department}. Создать заявку'
-  label_usability_settings_easy_perplex_user_for_help: 'Контактное лицо по широкому спектру вопросов'
+  label_usability_settings_easy_perplex_user_for_help: 'Администратор системы (к кому обращаться при ошибке)'
   label_usability_easy_perplex_contact_to: 'Обратитесь к'
 
 

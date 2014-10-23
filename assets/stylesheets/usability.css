@@ -1,3 +1,23 @@
+/*.rmplus_date_links {
+  overflow: hidden;
+}
+
+
+.rmplus_date_links a {
+  display: block;
+  padding: 3px;
+  float: left;
+}
+
+.rmplus_date_links a.current {
+  padding: 2px;
+}
+
+.rmplus_date_links span.arr {
+  float: left;
+  display: block;
+}*/
+
 /* ----- from a_small_things starts ---- */
 
 div.loader {

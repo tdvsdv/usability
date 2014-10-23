@@ -41,12 +41,12 @@
 </script>
 
 <%= javascript_include_tag :raphael %>
-<%= javascript_include_tag 'pie-chart', :plugin => :usability %>
-<%= javascript_include_tag 'usability.js', :plugin => :usability %>
-<%= stylesheet_link_tag 'usability.css', :plugin => :usability %>
+<%= javascript_include_tag 'pie-chart', plugin: :usability %>
+<%= javascript_include_tag 'usability.js', plugin: :usability %>
+<%= stylesheet_link_tag 'usability.css', plugin: :usability %>
 
 <% if settings[:enable_underlined_links] %>
-  <%= stylesheet_link_tag 'usability-links.css', :plugin => :usability %>
+  <%= stylesheet_link_tag 'usability-links.css', plugin: :usability %>
 <% end %>
 
 <% if (!controller.nil? && controller.controller_name == 'settings' && controller.action_name == 'plugin') && params[:id] == 'usability' %>
