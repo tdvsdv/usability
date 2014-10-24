@@ -73,11 +73,11 @@ RMPlus.Usability = (function (my) {
         element.append('<tr><td class="us_row_divider" colspan="' + totals.length.toString() + '"></td></tr><tr>' + html + '</tr>');
       }
     };
-
+    var done_rows = 0;
     var has_groups = false;
     table.find('tr').each(function () {
       var tr = $(this);
-      if (tr.hasClass('group')) {
+      if (tr.hasClass('group') && done_rows > 1) {
         has_groups = true;
         if (group_totals.length == 0) { return; }
         add_totals.call(this, tr, group_totals, true);
@@ -85,13 +85,16 @@ RMPlus.Usability = (function (my) {
       }
       tr.children().each(function (index) {
         var val = this.innerHTML.replace(' ', '');
-        if (val == '' || val == 'x') { totals[index] = totals[index] || 0; return; }
+        totals[index] = totals[index] || 0;
+        group_totals[index] = group_totals[index] || 0;
+        if (val == '' || val == 'x') { return; }
         if (isNaN(parseFloat(val)) || !isFinite(val)) { totals[index] = undefined; return; }
         val = parseFloat(val);
 
         totals[index] = (totals[index]) ? (totals[index]+val) : val;
         group_totals[index] = (group_totals[index]) ? (group_totals[index]+val) : val;
       });
+      done_rows++;
     });
     if (has_groups) { add_totals.call(this, table, group_totals); }
     add_totals.call(this, table, totals);
