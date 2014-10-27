@@ -15,13 +15,13 @@ Redmine::Plugin.register :usability do
   url 'http://rmplus.pro/'
   author_url 'http://rmplus.pro/'
 
-  settings :partial => 'settings/usability',
-           :default => {:custom_help_url => ''}
+  settings partial: 'settings/usability',
+           default: { custom_help_url: '' }
 
 
   delete_menu_item :top_menu, :help
 
-  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: Proc.new{ ('<span>' + I18n.t(:label_usability_easy_perplex_menu)+'</span>').html_safe }, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
+  menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: Proc.new{ ('<span>' + I18n.t(:label_usability_easy_perplex_menu)+'</span>').html_safe }, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.respond_to?(:plugin_usability) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
 
   menu :custom_menu, :us_preferences, { controller: :users, action: :edit_usability_preferences, id: User.current.id }, caption: Proc.new{ ('<span>' + I18n.t(:appearance_and_usability)+'</span>').html_safe }, if: Proc.new { User.current.logged? }, html: { class: 'in_link', remote: true }
   menu :custom_menu, :us_favourite_proj_name, nil, caption: Proc.new{ ('<div class="title">' + User.current.favourite_project.name + '</div>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
@@ -31,15 +31,9 @@ Redmine::Plugin.register :usability do
   menu :custom_menu, :us_favourite_proj_dmsf, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/dmsf" class="no_line"><span>' + I18n.t(:label_dmsf) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) && User.current.favourite_project.module_enabled?(:dmsf) }
   menu :custom_menu, :us_new_issue, nil, caption: Proc.new{ ('<a href="/projects/'+User.current.favourite_project.identifier+'/issues/new" class="no_line"><span>' + I18n.t(:us_of_issue) + '</span></a>').html_safe }, if: Proc.new { User.current.logged? && User.current.favourite_project.is_a?(Project) }
   menu :custom_menu, :us_help, nil, caption: Proc.new{ UsabilityMenu.us_help }, if: Proc.new{ true }
-
 end
 
 Rails.application.config.to_prepare do
-  # Redmine::WikiFormatting::Textile::Formatter.extend(Usability::CutTag)
-  # Redmine::WikiFormatting::Textile::Formatter.send(:include, Usability::CutTag)
-
-
-
   ApplicationHelper.send(:include, Usability::ApplicationHelperPatch)
   User.send(:include, Usability::UserPatch)
   UsersController.send(:include, Usability::UsersControllerPatch)
@@ -67,7 +61,7 @@ Rails.application.config.to_prepare do
       out.html_safe
     end
   end
-#  Redmine::WikiFormatting::Macros.send(:include, Usability::MacrosPatch)
 end
 
+require 'setting'
 require 'usability/view_hooks'
