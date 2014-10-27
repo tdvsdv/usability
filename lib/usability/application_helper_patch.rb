@@ -19,7 +19,7 @@ module Usability
 
     module InstanceMethods
       def link_to_user_with_usability(user, options={})
-        return link_to_user_without_usability(user, options) unless Setting.plugin_usability['custom_details_on']
+        return link_to_user_without_usability(user, options) if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability['custom_details_on']
         if user.is_a?(User)
           name = h(user.name(options[:format]))
           if user.active?
@@ -36,7 +36,7 @@ module Usability
 
 
       def render_project_jump_box_with_usability
-        unless Setting.plugin_usability[:dont_render_project_jump_box]
+        if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability[:dont_render_project_jump_box]
           return render_project_jump_box_without_usability
         end
         return
@@ -44,7 +44,7 @@ module Usability
 
 
       def page_header_title_with_usability
-        return page_header_title_without_usability unless Setting.plugin_usability[:remove_project_page_header_breadcrumb]
+        return page_header_title_without_usability if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability[:remove_project_page_header_breadcrumb]
 
         s = ''
         s << '<span>'
@@ -59,7 +59,7 @@ module Usability
 
 
       def progress_bar_with_usability(pcts, options={})
-        return progress_bar_without_usability(pcts, options) unless Setting.plugin_usability[:enable_usability_progress_bar]
+        return progress_bar_without_usability(pcts, options) if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability[:enable_usability_progress_bar]
 
 
         unless pcts.is_a?(Array)
