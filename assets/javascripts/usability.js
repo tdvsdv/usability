@@ -8,7 +8,7 @@ RMPlus.Usability = (function (my) {
   var my = my || {};
 
   my.underlineMenusAndIcons = function () {
-    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon').each(function (index) {
+    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon, #content > .contextual:first > a').each(function (index) {
       $(this).addClass('no_line');
     });
     $('a.no_line:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function (index) {
