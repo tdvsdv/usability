@@ -26,7 +26,7 @@ en:
   settings_enable_underlined_links: "Enhance underlining of links (<a href='https://github.com/tdvsdv/redmine_alex_skin'>our Redmine theme</a> is required)."
   settings_remove_project_page_header_breadcrumb: "Remove parent projects from the project page header."
   settings_dont_render_project_jump_box: "Hide fast projects selection box."
-  settings_enable_usability_progress_bar: "Enhance looks of the progress bar."
+  settings_usability_progress_bar_type: "Type of the progress bar"
   settings_enable_custom_default_page: "Enable custom default page."
   settings_enable_easy_rm_tasks: 'Enable easy mechanism for creating issues to subordinate'
   settings_easy_perplex_executor_roles: 'Roles that are used to determine the executor in the project'
@@ -85,3 +85,7 @@ en:
   magnificPopup_tLoading: "Loading..."
   us_of_issue: "Issue"
   label_dmsf: "Documents"
+  usability_pb_std: "Standart"
+  usability_pb_tiny: "Tiny"
+  usability_pb_pie: "Pie"
+  usability_pb_tor: "Tor"

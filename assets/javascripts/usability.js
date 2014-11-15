@@ -39,7 +39,7 @@ RMPlus.Usability = (function (my) {
   };
 
   my.makePieCharts = function (element) {
-    if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar') && RMPlus.Usability.settings.enable_usability_progress_bar) {
+    if (RMPlus.Utils.exists('Usability.settings.usability_progress_bar_type') && RMPlus.Usability.settings.usability_progress_bar_type == 'pie') {
       $('.pie-chart', $(element)).each(function () {
         if (!$(this).attr('data-piecharted')) {
           var radius = parseInt(this.getAttribute('data-radius'));
