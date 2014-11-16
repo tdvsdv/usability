@@ -185,19 +185,23 @@ a.show_sidebar {
   height: 25px;
   display: inline-block;
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  border: 0;
   /*border-radius: 50%;*/
   /*background-color: #ccc;*/
 }
 
 .us-tor-text {
-font-size: 9px;
-display: inline-block;
-text-align: center;
-box-sizing: border-box;
-width: 24px;
-line-height: 24px;
-vertical-align: top;
-margin-left: -25px;
+  font-size: 9px;
+  display: inline-block;
+  text-align: center;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 25px;
+  line-height: 25px;
+  vertical-align: top;
+  margin-left: -25px;
+  border: 0;
 }
 
 /*@media all {
