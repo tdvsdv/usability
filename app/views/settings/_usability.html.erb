@@ -25,8 +25,14 @@
       <label for="settings_dont_render_project_jump_box">
         <%= check_box_tag 'settings[dont_render_project_jump_box]', true, @settings[:dont_render_project_jump_box] %> &mdash; <%= l(:settings_dont_render_project_jump_box) %>
       </label>
-      <label for="settings_enable_usability_progress_bar">
-        <%= check_box_tag 'settings[enable_usability_progress_bar]', true, @settings[:enable_usability_progress_bar] %> &mdash; <%= l(:settings_enable_usability_progress_bar) %>
+      <% progress_bars = [[l(:usability_pb_std),'std'],
+                          [l(:usability_pb_tiny),'tiny'],
+                          [l(:usability_pb_pie),'pie'],
+                          [l(:usability_pb_tor),'tor']] %>
+      <label for="settings_usability_progress_bar_type">
+        <%= l(:settings_usability_progress_bar_type) %>
+        <%= select_tag 'settings[usability_progress_bar_type]',
+                       options_for_select(progress_bars,@settings[:usability_progress_bar_type]) %>
       </label>
       <label>
         <%= check_box_tag 'settings[enable_download_attachments_all_in_one]', true, @settings[:enable_download_attachments_all_in_one] %> &mdash; <%= l(:settings_enable_download_attachments_all_in_one) %>

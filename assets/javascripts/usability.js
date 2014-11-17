@@ -8,7 +8,7 @@ RMPlus.Usability = (function (my) {
   var my = my || {};
 
   my.underlineMenusAndIcons = function () {
-    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon').each(function (index) {
+    $('#admin-menu ul li a, a.repository, #top-menu a, #main-menu a, a.icon, #content > .contextual:first > a').each(function (index) {
       $(this).addClass('no_line');
     });
     $('a.no_line:not(:has(span)), #admin-menu a, a.repository, #top-menu a, #main-menu a').each(function (index) {
@@ -39,7 +39,7 @@ RMPlus.Usability = (function (my) {
   };
 
   my.makePieCharts = function (element) {
-    if (RMPlus.Utils.exists('Usability.settings.enable_usability_progress_bar') && RMPlus.Usability.settings.enable_usability_progress_bar) {
+    if (RMPlus.Utils.exists('Usability.settings.usability_progress_bar_type') && RMPlus.Usability.settings.usability_progress_bar_type == 'pie') {
       $('.pie-chart', $(element)).each(function () {
         if (!$(this).attr('data-piecharted')) {
           var radius = parseInt(this.getAttribute('data-radius'));
@@ -73,11 +73,11 @@ RMPlus.Usability = (function (my) {
         element.append('<tr><td class="us_row_divider" colspan="' + totals.length.toString() + '"></td></tr><tr>' + html + '</tr>');
       }
     };
-
+    var done_rows = 0;
     var has_groups = false;
     table.find('tr').each(function () {
       var tr = $(this);
-      if (tr.hasClass('group')) {
+      if (tr.hasClass('group') && done_rows > 1) {
         has_groups = true;
         if (group_totals.length == 0) { return; }
         add_totals.call(this, tr, group_totals, true);
@@ -85,13 +85,16 @@ RMPlus.Usability = (function (my) {
       }
       tr.children().each(function (index) {
         var val = this.innerHTML.replace(' ', '');
-        if (val == '' || val == 'x') { totals[index] = totals[index] || 0; return; }
+        totals[index] = totals[index] || 0;
+        group_totals[index] = group_totals[index] || 0;
+        if (val == '' || val == 'x') { return; }
         if (isNaN(parseFloat(val)) || !isFinite(val)) { totals[index] = undefined; return; }
         val = parseFloat(val);
 
         totals[index] = (totals[index]) ? (totals[index]+val) : val;
         group_totals[index] = (group_totals[index]) ? (group_totals[index]+val) : val;
       });
+      done_rows++;
     });
     if (has_groups) { add_totals.call(this, table, group_totals); }
     add_totals.call(this, table, totals);
@@ -211,7 +214,7 @@ $(window).load(function () {
     if ($('div.issue').length > 0) {
       RMPlus.Usability.createGallery($('div.issue').get(0), 'main');
       if ($('#tab-content-history').length > 0) {
-        console.log('FOR HISTORY')
+        // console.log('FOR HISTORY')
         RMPlus.Usability.createGallery($('#tab-content-history').get(0), 'history');
       }
       if ($('#tab-content-comments').length > 0) {
@@ -293,7 +296,8 @@ $(document).ready(function () {
                                       }
                           });
       $('#sidebar').prepend(close_sidebar);
-      var closed = localStorage["sidebar_closed"] || false;
+
+      var closed = ('localStorage' in window && window['localStorage'] !== null) ? localStorage["sidebar_closed"] : false;
       if (closed === "true") {
         RMPlus.Usability.hide_sidebar($('#close_sidebar_icon'));
       }

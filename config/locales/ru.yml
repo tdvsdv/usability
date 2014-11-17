@@ -26,7 +26,7 @@ ru:
   settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок (требуется <a href='https://github.com/tdvsdv/redmine_alex_skin'>наш скин для Redmine</a>)."
   settings_remove_project_page_header_breadcrumb: "Не показывать родительские проекты в заголовке страницы проекта."
   settings_dont_render_project_jump_box: "Убрать встроенную возможность быстрого перехода в проект."
-  settings_enable_usability_progress_bar: "Улучшить отображение процента готовности (см. задачи)."
+  settings_usability_progress_bar_type: "Вид отображения процента готовности"
   settings_enable_custom_default_page: "Включить страницу по умолчанию."
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
   settings_easy_perplex_executor_roles: 'Роли, использующиеся для определения исполнителя в проекте'
@@ -85,3 +85,7 @@ ru:
   magnificPopup_tLoading: "Загрузка..."
   us_of_issue: "Задачу"
   label_dmsf: "Документы"
+  usability_pb_std: "Стандартный"
+  usability_pb_tiny: "Маленький"
+  usability_pb_pie: "Сектор"
+  usability_pb_tor: "Бублик"
