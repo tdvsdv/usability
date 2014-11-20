@@ -151,7 +151,6 @@ a.show_sidebar {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   width: 50px;
-  z-index: 9999;
   position: relative;
   margin: 3px 0;
   height: 14px;
