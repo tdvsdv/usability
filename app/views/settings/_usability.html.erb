@@ -73,7 +73,7 @@
         <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
         <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
         <% if @settings[:target_department] && settings_department_id.nil? %>
-          <% dep = UserDepartment.find(@settings[:target_department]) %>
+          <% dep = UserDepartment.where(@settings[:target_department]).first %>
           <% department = UserDepartment.joins(:node)
                                         .where("head_of_branch=? AND lft<=? AND rgt>=?",true, dep.node.lft, dep.node.rgt)
                                         .order('lft DESC').limit(1).try(:first) %>
