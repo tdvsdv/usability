@@ -35,6 +35,7 @@ end
 
 Rails.application.config.to_prepare do
   ApplicationHelper.send(:include, Usability::ApplicationHelperPatch)
+  AccountController.send(:include, Usability::AccountControllerPatch)
   User.send(:include, Usability::UserPatch)
   UsersController.send(:include, Usability::UsersControllerPatch)
   WelcomeController.send(:include, Usability::WelcomeControllerPatch)
