@@ -96,18 +96,18 @@
   margin: 0 auto;
 }
 
-#footer-block {
+/*#footer-block {
   bottom: 0;
   position: absolute;
   margin-bottom: 20px;
   width: 100%;
   box-sizing: border-box;
-}
+}*/
 
 #rmplus-logo {
   text-align: left;
   margin:0;
-  max-width: 1200px;
+  width: 360px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -133,6 +133,11 @@ $('#login-form table tr').each( function (index) {
   var a = tr.find('a:first');
   if (a.length == 1) {
     a.addClass('L').prependTo(tr.find('td:last'));
+  }
+  var sbmt = tr.find('input:submit');
+  if (sbmt.length == 1) {
+
+    sbmt.val(sbmt.val().replace(' »', ''));
   }
 });
 
@@ -161,9 +166,9 @@ function reallocate_login_form() {
 
 </script>
 
-<div id="footer-block">
-<div id="rmplus-logo" style="text-align: center; margin-top: 10px;">
+
+<div id="rmplus-logo" style="text-align: left; margin-top: 10px;">
   <%= image_tag 'logo.png', plugin: :usability, alt: l(:label_rmplus_logo), title: l(:label_rmplus_logo), width: 104, height: 39, style: 'vertical-align: bottom;' %>
 </div>
-</div>
+
 <% end %>
