@@ -89,3 +89,5 @@ en:
   usability_pb_tiny: "Tiny"
   usability_pb_pie: "Pie"
   usability_pb_tor: "Tor"
+
+  label_usability_settings_replace_login_page: "Replace login page"

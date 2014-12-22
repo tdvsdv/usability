@@ -25,7 +25,7 @@ module Usability
           if user.active?
             options[:class] ||= ''
             options[:style] ||= ''
-            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:button_close_window)}, :class => 'in_link data-show-loader ' + options[:class], :style => options[:style]
+            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:label_usability_close)}, :class => 'in_link data-show-loader ' + options[:class], :style => options[:style]
           else
             name
           end
