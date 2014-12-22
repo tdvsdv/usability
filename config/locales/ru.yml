@@ -91,3 +91,5 @@ ru:
   usability_pb_tor: "Бублик"
 
   label_usability_settings_replace_login_page: "Заменить страницу входа в систему"
+  label_usability_close: 'Закрыть'
+
