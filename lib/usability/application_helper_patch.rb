@@ -9,7 +9,6 @@ module Usability
         alias_method_chain :page_header_title, :usability
         alias_method_chain :progress_bar, :usability
         alias_method_chain :render_project_jump_box, :usability
-        alias_method_chain :link_to_user, :usability
       end
 
     end
@@ -18,22 +17,6 @@ module Usability
     end
 
     module InstanceMethods
-      def link_to_user_with_usability(user, options={})
-        return link_to_user_without_usability(user, options) if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability['custom_details_on']
-        if user.is_a?(User)
-          name = h(user.name(options[:format]))
-          if user.active?
-            options[:class] ||= ''
-            options[:style] ||= ''
-            link_to name, show_user_details_path(user.id), data: {toggle: 'modal', 'modal-type' => 'iframe', keyboard: true, 'modal-width' => '70%', 'modal-height' => '80%', 'close-label' => l(:label_usability_close)}, :class => 'in_link data-show-loader ' + options[:class], :style => options[:style]
-          else
-            name
-          end
-        else
-          h(user.to_s)
-        end
-      end
-
 
       def render_project_jump_box_with_usability
         if !Setting.respond_to?(:plugin_usability) || !Setting.plugin_usability[:dont_render_project_jump_box]

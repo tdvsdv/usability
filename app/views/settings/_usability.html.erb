@@ -2,6 +2,38 @@
 <% settings = Setting.plugin_usability || {}.with_indifferent_access %>
 <% @settings = settings.reverse_merge(defaults).with_indifferent_access %>
 
+<div class="box tabular settings">
+
+<table class="plugin_settings">
+<tbody>
+
+<tr>
+  <td></td>
+  <td>
+      <input checked="checked" id="settings_hide_parent_id" name="settings[hide_parent_id]" type="checkbox" value="true">
+      —
+      <label for="settings_hide_parent_id">Скрыть поле родительская задача в новом задании</label>
+  </td>
+</tr>
+
+<tr>
+  <td><label for="settings_field_for_inform">Поле для информирования о ключевых целях</label></td>
+  <td>
+  <select id="settings_field_for_inform" name="settings[field_for_inform]"><option value="">x</option>
+<option value="65" selected="selected">Кого информировать</option>
+<option value="64">Кто видит</option></select>
+  <a href="/custom_fields/65/edit" class="no_line"><img alt="Edit" src="/images/edit.png?1404650653"></a>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td id="settings_save_button"></td>
+</tr>
+
+</tbody></table>
+</div>
+
 <div class="settings-main">
   <div class="settings-left">
     <fieldset>
@@ -41,10 +73,6 @@
         <%= check_box_tag 'settings[totals_in_queries]', true, @settings[:totals_in_queries] %> &mdash; <%= l(:label_usability_settings_totals_in_queries) %>
       </label>
       <label>
-        <span><%= l(:label_usability_settings_easy_perplex_user_for_help) %>:</span>
-        <%= select_tag 'settings[easy_perplex_user_for_help]', options_for_select([['---', nil]] + User.active.sorted.collect { |it| [it.name, it.id] }, @settings[:easy_perplex_user_for_help]) %>
-      </label>
-      <label>
         <%= check_box_tag 'settings[replace_login_page]', true, @settings[:replace_login_page] %> &mdash; <%= l(:label_usability_settings_replace_login_page) %>
       </label>
     </fieldset>
@@ -53,10 +81,10 @@
       <legend><strong><%= l(:label_usability_settings_default_page) %></strong></legend>
       <label for="settings_default_page" class="for-checkbox">
         <span><%= l(:settings_default_page) %>:</span>
-        <%= text_field_tag 'settings[default_page]', @settings[:default_page], size: 30 %>
+        <%= text_field_tag 'settings[default_page]', @settings['default_page'], size: 30 %>
       </label>
       <label for="settings_enable_custom_default_page">
-        <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings[:enable_custom_default_page] %> &mdash; <%= l(:settings_enable_custom_default_page) %>
+        <%= check_box_tag 'settings[enable_custom_default_page]', true, @settings['enable_custom_default_page'] %> &mdash; <%= l(:settings_enable_custom_default_page).html_safe %>
       </label>
     </fieldset>
 
@@ -69,9 +97,9 @@
         <%= l(:settings_ask_users_at_error) %>:
         <%= select_tag( 'settings[users_at_error]',
                         options_for_select([['','']]+User.active.sort_by(&:name).map{|u| [u.name,u.id]}, @settings[:users_at_error]),
-                        {:style => 'width:220px;', :class => 'select2', :multiple => true} ) %>
+                        {style: 'width:220px;', class: 'select2', multiple: true} ) %>
       </label>
-      <% if Redmine::Plugin::registered_plugins.include?(:service_desk) %>
+      <% if Redmine::Plugin.installed?(:service_desk) %>
 
         <% req_type = SdRequestType.where(id: @settings[:request_type].to_i).first %>
         <% settings_department_id = req_type && req_type.department ? req_type.department.id : nil %>
@@ -116,21 +144,6 @@
     </fieldset>
 
     <fieldset>
-      <legend><strong><%= l(:label_usability_settings_user_custom_details) %></strong></legend>
-      <label for="settings_custom_details_url">
-        <%= l(:settings_url_for_custom_details) %>:
-        <%= text_field_tag 'settings[custom_details_url]', @settings[:custom_details_url], :size => 30 %>
-      </label>
-      <label for="settings_custom_details_id_field">
-        <%= l(:settings_custom_details_id_field) %>:
-        <%= text_field_tag 'settings[custom_details_id_field]', @settings[:custom_details_id_field], :size => 30 %>
-      </label>
-      <label for="settings_custom_details_on">
-        <%=check_box_tag 'settings[custom_details_on]', true, @settings[:custom_details_on] %> &mdash; <%= l(:settings_enable_custom_details) %>
-      </label>
-    </fieldset>
-
-    <fieldset>
       <legend><strong><%= l(:label_usability_settings_easy_perplex) %></strong></legend>
       <label for="settings_enable_easy_rm_tasks">
         <%= check_box_tag 'settings[enable_easy_rm_tasks]', true, @settings[:enable_easy_rm_tasks] %> &mdash; <%= l(:settings_enable_easy_rm_tasks) %>
@@ -152,7 +165,9 @@
 <%= render file: File.join(File.dirname(__FILE__), '_rmplus_logo.html.erb') %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
+
+  $(document).ready(function () {
+    $('#settings input[type=submit]').addClass('main-form-button').appendTo('#settings_save_button');
     $('.box.tabular.settings').css('overflow', 'hidden');
 
     <% if Redmine::Plugin.installed?(:service_desk) %>
@@ -161,5 +176,6 @@
       $('div.box.tabular.settings').addClass('H');
     <% end %>
   });
+
 </script>
 
