@@ -8,21 +8,107 @@
 <tbody>
 
 <tr>
-  <td></td>
+  <td><label for="settings_custom_help_url"><%= l(:custom_help_url) %></label></td>
   <td>
-      <input checked="checked" id="settings_hide_parent_id" name="settings[hide_parent_id]" type="checkbox" value="true">
-      —
-      <label for="settings_hide_parent_id">Скрыть поле родительская задача в новом задании</label>
+    <%= text_field_tag 'settings[custom_help_url]', @settings['custom_help_url'], size: 90 %>
+  </td>
+</tr>
+
+
+<tr>
+  <td>
+    <% progress_bars = [[l(:usability_pb_std),'std'],
+                        [l(:usability_pb_tiny),'tiny'],
+                        [l(:usability_pb_pie),'pie'],
+                        [l(:usability_pb_tor),'tor']] %>
+    <label for="settings_usability_progress_bar_type">
+      <%= l(:settings_usability_progress_bar_type) %>
+    </label>
+  </td>
+  <td>
+    <%= select_tag 'settings[usability_progress_bar_type]',
+                   options_for_select(progress_bars,@settings[:usability_progress_bar_type]) %>
   </td>
 </tr>
 
 <tr>
-  <td><label for="settings_field_for_inform">Поле для информирования о ключевых целях</label></td>
+  <td></td>
   <td>
-  <select id="settings_field_for_inform" name="settings[field_for_inform]"><option value="">x</option>
-<option value="65" selected="selected">Кого информировать</option>
-<option value="64">Кто видит</option></select>
-  <a href="/custom_fields/65/edit" class="no_line"><img alt="Edit" src="/images/edit.png?1404650653"></a>
+      <%= check_box_tag 'settings[disable_ajax_preloader]', true, @settings[:disable_ajax_preloader] %>
+      <label for="settings_disable_ajax_preloader">
+         &mdash; <%= l(:settings_disable_default_preloader) %>
+      </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+      <%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button] %>
+      <label for="settings_show_sidebar_close_button">
+         &mdash; <%= l(:settings_show_sidebar_close_button) %>
+      </label>
+  </td>
+</tr>
+
+
+<tr>
+  <td></td>
+  <td>
+      <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links] %>
+      <label for="settings_enable_underlined_links">
+         &mdash; <%= l(:settings_enable_underlined_links).html_safe %>
+      </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+      <%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb] %>
+      <label for="settings_remove_project_page_header_breadcrumb">
+         &mdash; <%= l(:settings_remove_project_page_header_breadcrumb) %>
+      </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+      <%= check_box_tag 'settings[dont_render_project_jump_box]', true, @settings[:dont_render_project_jump_box] %>
+      <label for="settings_dont_render_project_jump_box">
+         &mdash; <%= l(:settings_dont_render_project_jump_box) %>
+      </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+    <%= check_box_tag 'settings[enable_download_attachments_all_in_one]', true, @settings[:enable_download_attachments_all_in_one] %>
+    <label>
+       &mdash; <%= l(:settings_enable_download_attachments_all_in_one) %>
+    </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+    <%= check_box_tag 'settings[totals_in_queries]', true, @settings[:totals_in_queries] %>
+    <label>
+       &mdash; <%= l(:label_usability_settings_totals_in_queries) %>
+    </label>
+  </td>
+</tr>
+
+<tr>
+  <td></td>
+  <td>
+    <%= check_box_tag 'settings[replace_login_page]', true, @settings[:replace_login_page] %>
+    <label>
+       &mdash; <%= l(:label_usability_settings_replace_login_page) %>
+    </label>
   </td>
 </tr>
 
@@ -38,43 +124,6 @@
   <div class="settings-left">
     <fieldset>
       <legend><strong><%= l(:label_usability_settings_common) %></strong></legend>
-      <label for="settings_custom_help_url">
-          <%= l(:custom_help_url) %>:
-          <%=text_field_tag 'settings[custom_help_url]', @settings[:custom_help_url], :size => 30 %>
-      </label>
-      <label for="settings_disable_ajax_preloader">
-        <%= check_box_tag 'settings[disable_ajax_preloader]', true, @settings[:disable_ajax_preloader] %> &mdash; <%= l(:settings_disable_default_preloader) %>
-      </label>
-      <label for="settings_show_sidebar_close_button">
-        <%= check_box_tag 'settings[show_sidebar_close_button]', true, @settings[:show_sidebar_close_button] %> &mdash; <%= l(:settings_show_sidebar_close_button) %>
-      </label>
-      <label for="settings_enable_underlined_links">
-        <%= check_box_tag 'settings[enable_underlined_links]', true, @settings[:enable_underlined_links] %> &mdash; <%= l(:settings_enable_underlined_links).html_safe %>
-      </label>
-      <label for="settings_remove_project_page_header_breadcrumb">
-        <%= check_box_tag 'settings[remove_project_page_header_breadcrumb]', true, @settings[:remove_project_page_header_breadcrumb] %> &mdash; <%= l(:settings_remove_project_page_header_breadcrumb) %>
-      </label>
-      <label for="settings_dont_render_project_jump_box">
-        <%= check_box_tag 'settings[dont_render_project_jump_box]', true, @settings[:dont_render_project_jump_box] %> &mdash; <%= l(:settings_dont_render_project_jump_box) %>
-      </label>
-      <% progress_bars = [[l(:usability_pb_std),'std'],
-                          [l(:usability_pb_tiny),'tiny'],
-                          [l(:usability_pb_pie),'pie'],
-                          [l(:usability_pb_tor),'tor']] %>
-      <label for="settings_usability_progress_bar_type">
-        <%= l(:settings_usability_progress_bar_type) %>
-        <%= select_tag 'settings[usability_progress_bar_type]',
-                       options_for_select(progress_bars,@settings[:usability_progress_bar_type]) %>
-      </label>
-      <label>
-        <%= check_box_tag 'settings[enable_download_attachments_all_in_one]', true, @settings[:enable_download_attachments_all_in_one] %> &mdash; <%= l(:settings_enable_download_attachments_all_in_one) %>
-      </label>
-      <label>
-        <%= check_box_tag 'settings[totals_in_queries]', true, @settings[:totals_in_queries] %> &mdash; <%= l(:label_usability_settings_totals_in_queries) %>
-      </label>
-      <label>
-        <%= check_box_tag 'settings[replace_login_page]', true, @settings[:replace_login_page] %> &mdash; <%= l(:label_usability_settings_replace_login_page) %>
-      </label>
     </fieldset>
 
     <fieldset>
