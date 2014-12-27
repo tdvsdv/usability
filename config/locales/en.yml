@@ -91,3 +91,4 @@ en:
   usability_pb_tor: "Tor"
 
   label_usability_settings_replace_login_page: "Replace login page"
+  label_usability_close: 'Close'
