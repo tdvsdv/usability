@@ -1,16 +1,11 @@
-<% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
-<% settings = (Setting.respond_to?(:plugin_usability) ? Setting.plugin_usability : nil) || {} %>
-<% all_settings = {} %>
-<% defaults.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
-<% settings.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
-
+<% settings = (Setting.plugin_usability || {}) %>
 <%# Passing plugin settings from server to client %>
 <script type="text/javascript">
 // <![CDATA[
   RMPlus.Usability = (function(my){
     var my = my || {};
 
-    my.settings = <%= all_settings.to_json.html_safe %>;
+    my.settings = <%= settings.to_json.html_safe %>;
 
     my.galleryPopupSettings = {
       type: 'image',

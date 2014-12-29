@@ -223,3 +223,21 @@ a.show_sidebar {
     margin: 0;
   }
 }*/
+
+td.rmp-settings-group {
+  text-align: center !important;
+  font-weight: bold;
+  background-color: #f3f3f3;
+}
+
+.box.tabular.settings {
+  overflow: hidden;
+}
+
+.icon-inform {
+  background-image: url(../images/inform.png);
+}
+
+.fast-link {
+  margin-left: 5px;
+}

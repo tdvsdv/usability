@@ -15,7 +15,7 @@ ru:
   settings_ask_users_at_error: "К кому обратиться при ошибке"
 
   label_usability_settings_new_request_params: "Параметры новых заявок пользователей"
-  settings_new_request_to_department: "Параметры автоматически создаваемых заявок со страницы ошибок Redmine"
+  settings_behaviour_on_errors: "Параметры поведения при ошибках в Redmine"
 
   settings_disable_default_preloader: "Отключить штатный прелоадер Redmine."
 
@@ -90,4 +90,6 @@ ru:
   label_usability_settings_replace_login_page: "Заменить страницу входа в систему"
   label_usability_close: 'Закрыть'
   label_ask_for: "Вы можете обратяться к"
+  info_custom_help_url: "Подменяет ссылку помощи с redmine.org на свою страницу. Для использования wiki странички из проекта ссылка должна быть вида: ../../../../projects/project_identifier/wiki/wiki_page_name"
+  info_default_page: "После входа пользователь перенаправляется на страницу по умолчанию. Можно заменить любым ресурсом в Redmine, заданным относительной ссылкой, например: /my/page, /issues и т.п."
 

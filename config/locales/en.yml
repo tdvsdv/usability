@@ -14,7 +14,7 @@ en:
   settings_ask_users_at_error: "Who should I contact in case of error"
 
   label_usability_settings_new_request_params: "Settings for new requests"
-  settings_new_request_to_department: "Settings for new requests created for Redmine error pages"
+  settings_behaviour_on_errors: "Behaviour on errors"
 
   settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
 
@@ -87,3 +87,5 @@ en:
 
   label_usability_settings_replace_login_page: "Replace login page"
   label_ask_for: "You may ask for"
+  info_custom_help_url: "Replace standart help link redmine.org with custom link. For inner wiki page you may use link like this: ../../../../projects/project_identifier/wiki/wiki_page_name"
+  info_default_page: "Replacing default redirection after user login into Redmine. You may use any available related url like one of: /my/page, /issues, etc..."
