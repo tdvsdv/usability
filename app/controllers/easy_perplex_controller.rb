@@ -2,7 +2,7 @@ class EasyPerplexController < ApplicationController
   before_filter :require_login
   before_filter :check_ldap_installed, only: [:easy_perplex, :easy_perplex_actions]
 
-  if (Redmine::Plugin.installed?(:ldap_users_sync))
+  if Redmine::Plugin.installed?(:ldap_users_sync)
     include LdapCommonHelper
     helper LdapCommonHelper
   end

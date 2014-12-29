@@ -16,7 +16,7 @@ en:
   label_usability_settings_new_request_params: "Settings for new requests"
   settings_behaviour_on_errors: "Behaviour on errors"
 
-  settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
+  settings_disable_default_preloader: "Disable default redmine AJAX preloader."
 
   settings_show_sidebar_close_button: "Allow to close the sidebar."
   settings_enable_underlined_links: "Enhance underlining of links (<a href='https://github.com/tdvsdv/redmine_alex_skin'>our Redmine theme</a> is required)."
@@ -42,11 +42,11 @@ en:
 
   label_usability_settings_easy_perplex: 'Settings of easy mechanism for creation of issues to subordinates'
 
-  label_usability_easy_perplex_menu: 'Perplex'
-  label_usability_easy_perplex_modal_header: 'Perplex your immediate subordinate'
+  label_usability_easy_perplex_menu: 'Appoint'
+  label_usability_easy_perplex_modal_header: 'Appoint your immediate subordinate'
   label_usability_easy_perplex_modal_cancel: 'Cancel'
   label_usability_easy_perplex_select_subordinate: 'Select subordinate'
-  label_usability_easy_perplex_subordinate: 'Who do you want to perplex?'
+  label_usability_easy_perplex_subordinate: 'Who do you want to Appoint?'
   label_usability_easy_perplex_subordinate_description: 'Start typing the name and select subordinate from the list'
   label_usability_easy_perplex_issues_header: 'Create issue'
   label_usability_easy_perplex_issues_description: 'Assign a time-limited (with timelines) issue on the selected executor (%{user}).'

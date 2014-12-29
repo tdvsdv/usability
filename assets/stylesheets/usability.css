@@ -241,3 +241,50 @@ td.rmp-settings-group {
 .fast-link {
   margin-left: 5px;
 }
+
+.tabular.settings table.plugin_settings label {
+  margin-left: 0px;
+  width: inherit;
+  font-weight: normal;
+  float: inherit;
+  text-align: inherit;
+  width: inherit;
+}
+
+#settings .box {
+  padding: 0px;
+  margin-bottom: 0px;
+  background-color: inherit;
+  color: inherit;
+  line-height: inherit;
+  border-width: 0px;
+  word-wrap: break-word;
+}
+
+table.plugin_settings {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+table.plugin_settings td {
+  border: 1px solid #CCC;
+  padding: 10px;
+  vertical-align: top;
+}
+
+table.plugin_settings tr td:first-child {
+  border-left-width: 0px;
+  text-align: right;
+}
+
+table.plugin_settings tr td:last-child {
+  border-right-width: 0px;
+}
+
+table.plugin_settings tr:first-child td {
+  border-top-width: 0px;
+}
+
+table.plugin_settings tr:last-child td {
+  border-bottom-width: 0px;
+}
