@@ -212,7 +212,7 @@
   </tr>
 <% end %>
 
-
+<% if Redmine::Plugin.installed?(:ldap_users_sync) %>
 <tr>
   <td colspan="2" class="rmp-settings-group"><%= l(:label_usability_settings_easy_perplex) %></td>
 </tr>
@@ -256,6 +256,7 @@
                     class: 'cf-fast-change' %>
   </td>
 </tr>
+<% end %>
 
 <tr>
   <td></td>

@@ -22,7 +22,7 @@ Redmine::Plugin.register :usability do
                       'disable_ajax_preloader' => true }
 
 
-  delete_menu_item :top_menu, :help
+  # delete_menu_item :top_menu, :help
 
   menu :top_menu, :easy_perplex, { controller: :easy_perplex, action: :easy_perplex }, caption: Proc.new{ ('<span>' + I18n.t(:label_usability_easy_perplex_menu)+'</span>').html_safe }, if: Proc.new { Redmine::Plugin.installed?(:ldap_users_sync) && Setting.respond_to?(:plugin_usability) && Setting.plugin_usability['enable_easy_rm_tasks'] && User.current.logged? && User.current.respond_to?(:first_under) && User.current.first_under }, html: { id: 'us-easy-perplex-link', class: 'in_link', remote: true }
 

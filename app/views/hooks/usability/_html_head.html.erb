@@ -32,6 +32,14 @@
 
     return my;
   })(RMPlus.Usability || {});
+
+  <% if (Setting.plugin_usability || {})['custom_help_url'].to_s != '' %>
+
+    $(document).ready( function () {
+      $("#top-menu a.help:first").attr("href", "<%= Setting.plugin_usability['custom_help_url'] %>");
+    });
+
+  <% end %>
 // ]]>
 </script>
 
