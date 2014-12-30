@@ -92,3 +92,4 @@ en:
   label_ask_for: "You may ask for"
   info_custom_help_url: "Replace standart help link redmine.org with custom link. For inner wiki page you may use link like this: ../../../../projects/project_identifier/wiki/wiki_page_name"
   info_default_page: "Replacing default redirection after user login into Redmine. You may use any available related url like one of: /my/page, /issues, etc..."
+  field_email: "e-mail"

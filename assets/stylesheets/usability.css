@@ -220,10 +220,11 @@ a.show_sidebar {
   }
 }*/
 
-td.rmp-settings-group {
-  text-align: center !important;
+.rmp-settings-group td{
   font-weight: bold;
   background-color: #f3f3f3;
+  border-left: none !important;
+  border-right: none !important;
 }
 
 .box.tabular.settings {
@@ -283,4 +284,9 @@ table.plugin_settings tr:first-child td {
 
 table.plugin_settings tr:last-child td {
   border-bottom-width: 0px;
+}
+
+
+.us_info_block {
+  padding-left: 10px;
 }
