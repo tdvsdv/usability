@@ -19,7 +19,9 @@ Redmine::Plugin.register :usability do
            default: { 'custom_help_url' => '',
                       'usability_progress_bar_type' => 'tiny',
                       'show_sidebar_close_button' => true,
-                      'disable_ajax_preloader' => true }
+                      'disable_ajax_preloader' => true,
+                      'usability_sidebar_gap' => 40,
+                      'usability_sidebar_width' => 310 }
 
 
   # delete_menu_item :top_menu, :help

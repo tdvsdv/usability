@@ -171,21 +171,27 @@ RMPlus.Usability = (function (my) {
   };
 
   my.hide_sidebar = function (t) {
-    $('#sidebar').hide();
+    var content = $('#content');
+    var sidebar = $('#sidebar');
+
+    sidebar.hide();
     t.addClass('show_sidebar');
     t.removeClass('close_sidebar');
-    $('#content').data('margin-right', $('#content').css('margin-right'));
-    $('#content').css('margin-right', '16px');
-    $('#sidebar').before(t);
+
+    content.data('margin-right', content.css('margin-right'));
+    content.css('margin-right', '16px');
+    sidebar.before(t);
     localStorage["sidebar_closed"] = true;
   }
 
   my.show_sidebar = function (t) {
-    $('#sidebar').show();
+    var content = $('#content');
+    var sidebar = $('#sidebar');
+    sidebar.show();
     t.removeClass('show_sidebar');
     t.addClass('close_sidebar');
-    $('#content').css('margin-right', $('#content').data('margin-right'));
-    $('#sidebar').prepend(t);
+    content.css('margin-right', content.data('margin-right'));
+    sidebar.prepend(t);
     localStorage["sidebar_closed"] = false;
   }
 

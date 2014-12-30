@@ -12,6 +12,9 @@ en:
   settings_default_page: "Default page"
 
   settings_ask_users_at_error: "Who should I contact in case of error"
+  settings_usability_sidebar_width: "Sidebar width (px)"
+  settings_usability_sidebar_gap: "Sidebar gap (px)"
+  label_usability_settings_sidebar: "Sidebar settings"
 
   label_usability_settings_new_request_params: "Settings for new requests"
   settings_behaviour_on_errors: "Behaviour on errors"

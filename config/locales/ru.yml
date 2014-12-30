@@ -10,9 +10,10 @@ ru:
   select_an_event_to_open_the_pop_up_menu: "Выберите событие для открытия вспомогательного меню"
   go_to_project_issues: "Перейти к заданиям проекта"
 
-
-
   settings_ask_users_at_error: "К кому обратиться при ошибке"
+  settings_usability_sidebar_width: "Ширина бокового меню (px)"
+  settings_usability_sidebar_gap: "Отступ бокового меню (px)"
+  label_usability_settings_sidebar: "Параметры бокового меню"
 
   label_usability_settings_new_request_params: "Параметры новых заявок пользователей"
   settings_behaviour_on_errors: "Параметры поведения при ошибках в Redmine"
