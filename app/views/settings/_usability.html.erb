@@ -317,8 +317,12 @@
       var next_href = $(this).next();
       if (next_href.length == 1 && next_href.hasClass('fast-link')) {
         next_href.attr('href', '/custom_fields/'+$(this).val().toString()+'/edit');
+        next_href.show();
       }
-    })
+      if (next_href.length == 1 && ($(this).val().toString() == '' || $(this).val().toString() == 'undefined')) {
+        next_href.hide();
+      }
+    });
 
     $('.cf-fast-change').trigger('change');
 
