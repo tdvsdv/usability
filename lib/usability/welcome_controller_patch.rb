@@ -18,17 +18,18 @@ module Usability
 	  module InstanceMethods
 	    # Methods to add to specific issue objects
 	    def index_with_usability
-	    	index_without_usability
-	    	if Setting.plugin_usability[:enable_custom_default_page]
+	    	if Setting.plugin_usability['enable_custom_default_page']
 	    		def_page = Setting.plugin_usability['default_page']
-	    		if (def_page.nil? || def_page == '')
+	    		if def_page.nil? || def_page == ''
 	    			redirect_to url_for(controller: 'my', action: 'page')
-	    			return
+	    		else
+	    			redirect_to def_page
 	    		end
-
-	    		redirect_to def_page
+	    		return
 	    	end
+	    	index_without_usability
 	    end
+
 	  end
 	end
 end

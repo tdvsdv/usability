@@ -66,7 +66,7 @@ a.in_link {
             <%= hidden_field_tag('sd_request[due_date]', Date.today.to_s) %>
           <% end %>
         <% end %>
-        <a id="us_back_link" class="btn btn-warning bt20" href="javascript:history.back()">
+        <a id="us_back_link" class="btn btn-warning bt20" href="javascript:history.back()" style="overflow: hidden; height: auto;">
           <span><%= l(:label_go_back) %></span>
         </a>
         <br><br>
@@ -80,7 +80,18 @@ a.in_link {
               </div>
             <% end %>
           <% else %>
-            <div class="uc_ask_label"><%= l(:label_ask_for) %>: <%= @users.each{|u| link_to_user(u)}.join(', ').html_safe %></div>
+            <div class="uc_ask_label"><%= l(:label_ask_for) %>: </div>
+              <% @users.each do |user| %>
+                <div class="ld_user_info">
+                  <div class="ld_user_avatar L">
+                    <%= avatar(user, {size: '50'}) %>
+                  </div>
+                  <div class="H us_info_block">
+                    <div class="ld_user_name"><%= link_to_user(user) %></div>
+                    <div class="ld_user_inf ld_user_mail"><%= l(:field_email) %> : <%= link_to(user.mail, 'mailto:'+user.mail, class: 'in_link ld_mail_link') %></div>
+                  </div>
+                </div>
+              <% end %>
           <% end %>
         <% end %>
       </div>

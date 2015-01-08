@@ -1,16 +1,11 @@
-<% defaults = Redmine::Plugin::registered_plugins[:usability].settings[:default] %>
-<% settings = (Setting.respond_to?(:plugin_usability) ? Setting.plugin_usability : nil) || {} %>
-<% all_settings = {} %>
-<% defaults.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
-<% settings.each{|name, value| all_settings[name] = settings[name] || defaults[name]} %>
-
+<% settings = (Setting.plugin_usability || {}) %>
 <%# Passing plugin settings from server to client %>
 <script type="text/javascript">
 // <![CDATA[
   RMPlus.Usability = (function(my){
     var my = my || {};
 
-    my.settings = <%= all_settings.to_json.html_safe %>;
+    my.settings = <%= settings.to_json.html_safe %>;
 
     my.galleryPopupSettings = {
       type: 'image',
@@ -37,6 +32,14 @@
 
     return my;
   })(RMPlus.Usability || {});
+
+  <% if (Setting.plugin_usability || {})['custom_help_url'].to_s != '' %>
+
+    $(document).ready( function () {
+      $("#top-menu a.help:first").attr("href", "<%= Setting.plugin_usability['custom_help_url'] %>");
+    });
+
+  <% end %>
 // ]]>
 </script>
 
@@ -56,4 +59,17 @@
 <% if ['issues', 'sd_requests', 'kpi', 'kpi_user_surcharges'].include?(controller.controller_name) %>
   <%= javascript_include_tag 'jquery.magnific-popup.min.js', plugin: :usability %>
   <%= stylesheet_link_tag 'magnific-popup.css', plugin: :usability %>
+<% end %>
+
+
+<% if (Setting.plugin_usability || {})['show_sidebar_close_button'].to_s != '' && (Setting.plugin_usability || {})['usability_sidebar_width'].to_i > 0 %>
+<style type="text/css">
+  #content {
+    margin-right: <%= (Setting.plugin_usability || {})['usability_sidebar_width'].to_i+(Setting.plugin_usability || {})['usability_sidebar_gap'].to_i %>px;
+    width: auto;
+  }
+  #sidebar {
+    width: <%= (Setting.plugin_usability || {})['usability_sidebar_width'].to_i %>px;
+  }
+</style>
 <% end %>

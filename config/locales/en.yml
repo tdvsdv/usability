@@ -9,21 +9,20 @@ en:
   appearance_and_usability: "Appearance and usability"
   select_an_event_to_open_the_pop_up_menu: "Select an event to open pop-up menu."
   go_to_project_issues: "Go to project issues"
-  plugin_test_usability: "usability"
-  settings_enable_custom_details: "Use custom user \"my\" page"
-  settings_url_for_custom_details: "Url for custom user \"my\" page"
-  settings_custom_details_id_field: "User attr for find external details"
   settings_default_page: "Default page"
 
   settings_ask_users_at_error: "Who should I contact in case of error"
+  settings_usability_sidebar_width: "Sidebar width (px)"
+  settings_usability_sidebar_gap: "Sidebar gap (px)"
+  label_usability_settings_sidebar: "Sidebar settings"
 
   label_usability_settings_new_request_params: "Settings for new requests"
-  settings_new_request_to_department: "Settings for new requests created for Redmine error pages"
+  settings_behaviour_on_errors: "Behaviour on errors"
 
-  settings_disable_default_preloader: "Disable Default redmine AJAX preloader."
+  settings_disable_default_preloader: "Disable default redmine AJAX preloader."
 
   settings_show_sidebar_close_button: "Allow to close the sidebar."
-  settings_enable_underlined_links: "Enhance underlining of links (<a href='https://github.com/tdvsdv/redmine_alex_skin'>our Redmine theme</a> is required)."
+  settings_enable_underlined_links: "Enhance underlining of links (<a href='https://bitbucket.org/dkuk/redmine_alex_skin'>our Redmine theme</a> is required)."
   settings_remove_project_page_header_breadcrumb: "Remove parent projects from the project page header."
   settings_dont_render_project_jump_box: "Hide fast projects selection box."
   settings_usability_progress_bar_type: "Type of the progress bar"
@@ -46,11 +45,11 @@ en:
 
   label_usability_settings_easy_perplex: 'Settings of easy mechanism for creation of issues to subordinates'
 
-  label_usability_easy_perplex_menu: 'Perplex'
-  label_usability_easy_perplex_modal_header: 'Perplex your immediate subordinate'
+  label_usability_easy_perplex_menu: 'Appoint'
+  label_usability_easy_perplex_modal_header: 'Appoint your immediate subordinate'
   label_usability_easy_perplex_modal_cancel: 'Cancel'
   label_usability_easy_perplex_select_subordinate: 'Select subordinate'
-  label_usability_easy_perplex_subordinate: 'Who do you want to perplex?'
+  label_usability_easy_perplex_subordinate: 'Who do you want to Appoint?'
   label_usability_easy_perplex_subordinate_description: 'Start typing the name and select subordinate from the list'
   label_usability_easy_perplex_issues_header: 'Create issue'
   label_usability_easy_perplex_issues_description: 'Assign a time-limited (with timelines) issue on the selected executor (%{user}).'
@@ -58,7 +57,6 @@ en:
   label_usability_easy_perplex_sd_requests_description: 'Send your wishlist to selected employee (%{user}), allow employee to schedule time, prioritize and assign executors himself.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Create issue.'
   label_usability_easy_perplex_create_request: '%{department}. Create request'
-  label_usability_settings_easy_perplex_user_for_help: 'System admin (contact person on error)'
   label_usability_easy_perplex_contact_to: 'Please refer to'
 
 
@@ -92,3 +90,7 @@ en:
 
   label_usability_settings_replace_login_page: "Replace login page"
   label_usability_close: 'Close'
+  label_ask_for: "You may ask for"
+  info_custom_help_url: "Replace standart help link redmine.org with custom link. For inner wiki page you may use link like this: ../../../../projects/project_identifier/wiki/wiki_page_name"
+  info_default_page: "Replacing default redirection after user login into Redmine. You may use any available related url like one of: /my/page, /issues, etc..."
+  field_email: "e-mail"

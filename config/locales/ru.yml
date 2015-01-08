@@ -10,24 +10,23 @@ ru:
   select_an_event_to_open_the_pop_up_menu: "Выберите событие для открытия вспомогательного меню"
   go_to_project_issues: "Перейти к заданиям проекта"
 
-  settings_enable_custom_details: "Использовать свою страничку о пользователе."
-  settings_url_for_custom_details: "Ссылка на страничку о пользователе"
-  settings_custom_details_id_field: "Атрибут пользователя для поиска во внешнем источнике"
-  settings_default_page: "Страница по умолчанию"
-
   settings_ask_users_at_error: "К кому обратиться при ошибке"
+  settings_usability_sidebar_width: "Ширина бокового меню (px)"
+  settings_usability_sidebar_gap: "Отступ бокового меню (px)"
+  label_usability_settings_sidebar: "Параметры бокового меню"
 
   label_usability_settings_new_request_params: "Параметры новых заявок пользователей"
-  settings_new_request_to_department: "Параметры автоматически создаваемых заявок со страницы ошибок Redmine"
+  settings_behaviour_on_errors: "Параметры поведения при ошибках в Redmine"
 
   settings_disable_default_preloader: "Отключить штатный прелоадер Redmine."
 
   settings_show_sidebar_close_button: "Позволить скрывать боковое меню."
-  settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок (требуется <a href='https://github.com/tdvsdv/redmine_alex_skin'>наш скин для Redmine</a>)."
+  settings_enable_underlined_links: "Вставлять дополнительные теги при загрузке страницы, чтобы обеспечить более хорошее подчеркивание ссылок (требуется <a href='https://bitbucket.org/dkuk/redmine_alex_skin'>наш скин для Redmine</a>)."
   settings_remove_project_page_header_breadcrumb: "Не показывать родительские проекты в заголовке страницы проекта."
   settings_dont_render_project_jump_box: "Убрать встроенную возможность быстрого перехода в проект."
   settings_usability_progress_bar_type: "Вид отображения процента готовности"
-  settings_enable_custom_default_page: "Включить страницу по умолчанию."
+  settings_default_page: "Страница по умолчанию"
+  settings_enable_custom_default_page: 'Включить страницу по умолчанию (если не указано ничего, то будет использована <a href="/my/page">Моя страница</a>).'
   settings_enable_easy_rm_tasks: 'Включить упрощенный механизм создания задания подчиненному'
   settings_easy_perplex_executor_roles: 'Роли, использующиеся для определения исполнителя в проекте'
   settings_easy_perplex_cf_customer_id: 'Настраиваемое поле, используемое в качестве заказчика в задаче'
@@ -58,7 +57,6 @@ ru:
   label_usability_easy_perplex_sd_requests_description: 'Отправить свою хотелку выбранному сотруднику (%{user}), позволить сотруднику самому запланировать сроки, определить приоритеты и назначить исполнителей.'
   label_usability_easy_perplex_create_issue: '<strong>%{project}</strong>. Создать задачу.'
   label_usability_easy_perplex_create_request: '%{department}. Создать заявку'
-  label_usability_settings_easy_perplex_user_for_help: 'Администратор системы (к кому обращаться при ошибке)'
   label_usability_easy_perplex_contact_to: 'Обратитесь к'
 
 
@@ -92,4 +90,8 @@ ru:
 
   label_usability_settings_replace_login_page: "Заменить страницу входа в систему"
   label_usability_close: 'Закрыть'
+  label_ask_for: "Вы можете обратяться к"
+  info_custom_help_url: "Подменяет ссылку помощи с redmine.org на свою страницу. Для использования wiki странички из проекта ссылка должна быть вида: ../../../../projects/project_identifier/wiki/wiki_page_name"
+  info_default_page: "После входа пользователь перенаправляется на страницу по умолчанию. Можно заменить любым ресурсом в Redmine, заданным относительной ссылкой, например: /my/page, /issues и т.п."
+  field_email: "e-mail"
 

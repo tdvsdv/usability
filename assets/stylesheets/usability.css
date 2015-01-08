@@ -70,10 +70,6 @@ a.show_sidebar {
   margin: 10px 0;
 }
 
-#header a {
-  color: #295200;
-}
-
 .usability-settings-input {
   clear: both;
   float: left;
@@ -223,3 +219,74 @@ a.show_sidebar {
     margin: 0;
   }
 }*/
+
+.rmp-settings-group td{
+  font-weight: bold;
+  background-color: #f3f3f3;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.box.tabular.settings {
+  overflow: hidden;
+}
+
+.icon-inform {
+  background-image: url(../images/inform.png);
+}
+
+.fast-link {
+  margin-left: 5px;
+}
+
+.tabular.settings table.plugin_settings label {
+  margin-left: 0px;
+  width: inherit;
+  font-weight: normal;
+  float: inherit;
+  text-align: inherit;
+  width: inherit;
+}
+
+#settings .box {
+  padding: 0px;
+  margin-bottom: 0px;
+  background-color: inherit;
+  color: inherit;
+  line-height: inherit;
+  border-width: 0px;
+  word-wrap: break-word;
+}
+
+table.plugin_settings {
+  border-spacing: 0px;
+  border-collapse: collapse;
+}
+
+table.plugin_settings td {
+  border: 1px solid #CCC;
+  padding: 10px;
+  vertical-align: top;
+}
+
+table.plugin_settings tr td:first-child {
+  border-left-width: 0px;
+  text-align: right;
+}
+
+table.plugin_settings tr td:last-child {
+  border-right-width: 0px;
+}
+
+table.plugin_settings tr:first-child td {
+  border-top-width: 0px;
+}
+
+table.plugin_settings tr:last-child td {
+  border-bottom-width: 0px;
+}
+
+
+.us_info_block {
+  padding-left: 10px;
+}

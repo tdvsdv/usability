@@ -1,7 +1,9 @@
-<% if (Redmine::Plugin.installed?(:ldap_users_sync)) %>
-  <% user = (Setting.plugin_usability || { })[:easy_perplex_user_for_help].to_i %>
-  <% if (user != 0) %>
+<% if Redmine::Plugin.installed?(:ldap_users_sync) %>
+  <% users = (Setting.plugin_usability || {})['users_at_error'] %>
+  <% if users.is_a?(Array) && users.any? %>
     <%= l(:label_usability_easy_perplex_contact_to) %>:
-    <%= show_user_info(User.find(user)) %>
+    <% User.where(id: users.map(&:to_i)).each do |u| %>
+      <%= show_user_info(u) %>
+    <% end %>
   <% end %>
 <% end %>
