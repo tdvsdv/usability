@@ -1,7 +1,7 @@
 # Plugin's routes
 # See: http://guides.rubyonrails.org/routing.html
-match '404', :to => 'us_errors#error_404'
-match '500', :to => 'us_errors#error_500'
+get '404', :to => 'us_errors#error_404'
+get '500', :to => 'us_errors#error_500'
 # get '422', :to => 'us_errors#error_422'
 
 get 'users/:id/edit_usability_preferences', :controller => 'users', :action => 'edit_usability_preferences', :id => /\d+/
